@@ -1,0 +1,6 @@
+.idea
+vendor
+!bin/setup-dev
+!bin/git/*
+!bin/static_analysis/*
+bin
