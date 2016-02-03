@@ -25,33 +25,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
-
-use Druid\Client\Common\ClientInterface;
+namespace Druid\Tests;
 
 /**
- * Class DruidRequest
+ * Class DruidRequestTest
  *
- * @package Druid
+ * @package Druid\Tests
  *
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidRequest
+class DruidRequestTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * Druid Client Implementation
-     *
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * DruidRequest constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
+    //
 }

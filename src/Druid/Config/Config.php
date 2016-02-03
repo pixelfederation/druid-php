@@ -25,33 +25,97 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
-
-use Druid\Client\Common\ClientInterface;
+namespace Druid\Config;
 
 /**
- * Class DruidRequest
+ * Class Config
  *
- * @package Druid
- *
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Config
  */
-final class DruidRequest
+final class Config
 {
     /**
-     * Druid Client Implementation
+     * Druid Default Protocol
      *
-     * @var ClientInterface
+     * @const string
      */
-    private $client;
+    const DEFAULT_PROTOCOL = 'http';
 
     /**
-     * DruidRequest constructor.
+     * Druid Default Hostname
      *
-     * @param ClientInterface $client
+     * @const string
      */
-    public function __construct(ClientInterface $client)
+    const DEFAULT_HOST = 'localhost';
+
+    /**
+     * Druid Default Port
+     *
+     * @const int
+     */
+    const DEFAULT_PORT = 8084;
+
+    /**
+     * Druid Default Api Version
+     *
+     * @const string
+     */
+    const DEFAULT_API_VERSION = 'v2';
+
+    /**
+     * Current Array Config
+     *
+     * @var array
+     */
+    private $config;
+
+    /**
+     * Config constructor.
+     *
+     * @param array $config
+     */
+    public function __construct(array $config)
     {
-        $this->client = $client;
+        $this->config = $config;
+    }
+
+    /**
+     * Get Druid Protocol
+     *
+     * @return string
+     */
+    public function getProtocol()
+    {
+        return isset($this->config['protocol']) ? $this->config['protocol'] : self::DEFAULT_PROTOCOL;
+    }
+
+    /**
+     * Get Druid Host
+     *
+     * @return string
+     */
+    public function getHost()
+    {
+        return isset($this->config['host']) ? $this->config['host'] : self::DEFAULT_HOST;
+    }
+
+    /**
+     * Get Druid Port
+     *
+     * @return int
+     */
+    public function getPort()
+    {
+        return isset($this->config['port']) ? $this->config['port'] : self::DEFAULT_PORT;
+    }
+
+    /**
+     * Get Druid Api Version
+     *
+     * @return string
+     */
+    public function getApiVersion()
+    {
+        return isset($this->config['api_version']) ? $this->config['api_version'] : self::DEFAULT_API_VERSION;
     }
 }

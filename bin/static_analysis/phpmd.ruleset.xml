@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="VITESS PDO PHPMD rule set"
+<ruleset name="DRUID PHP PHPMD rule set"
          xmlns="http://pmd.sf.net/ruleset/1.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
@@ -7,7 +7,7 @@
          xsi:noNamespaceSchemaLocation="
                      http://pmd.sf.net/ruleset_xml_schema.xsd">
     <description>
-        Custom rule set for the Vitess PDO driver. All defaults are enabled.
+        Custom rule set for the Druid PHP driver. All defaults are enabled.
     </description>
 
 </ruleset>

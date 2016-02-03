@@ -25,33 +25,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Exceptions;
 
-use Druid\Client\Common\ClientInterface;
+use \Exception;
 
 /**
- * Class DruidRequest
+ * Class DruidDriverException
  *
- * @package Druid
+ * @package Druid\Exceptions
  *
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidRequest
+class DruidDriverException extends Exception
 {
-    /**
-     * Druid Client Implementation
-     *
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * DruidRequest constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
+    //
 }

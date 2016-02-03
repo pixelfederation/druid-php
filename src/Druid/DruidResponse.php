@@ -31,6 +31,7 @@ namespace Druid;
  * Class DruidRequest
  *
  * @package Druid
+ *
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 final class DruidResponse

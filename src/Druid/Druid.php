@@ -27,31 +27,45 @@
  */
 namespace Druid;
 
-use Druid\Client\Common\ClientInterface;
+use Druid\Config\Config;
 
 /**
- * Class DruidRequest
+ * Class Druid
  *
  * @package Druid
  *
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidRequest
+final class Druid
 {
     /**
-     * Druid Client Implementation
+     * Version of Druid PHP Driver
      *
-     * @var ClientInterface
+     * @const string
      */
-    private $client;
+    const VERSION = '0.0.1';
 
     /**
-     * DruidRequest constructor.
+     * Druid Api Version for requests
      *
-     * @param ClientInterface $client
+     * @const strign
      */
-    public function __construct(ClientInterface $client)
+    const DEFAULT_DRUID_API_VERSION = 'v2';
+
+    /**
+     * Druid Configuration
+     *
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * Druid constructor.
+     *
+     * @param array $config
+     */
+    public function __construct(array $config = [])
     {
-        $this->client = $client;
+        $this->config = new Config($config);
     }
 }
