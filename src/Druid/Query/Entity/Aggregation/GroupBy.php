@@ -28,6 +28,11 @@
 namespace Druid\Query\Entity\Aggregation;
 
 use Druid\Query\Common\Aggregation\GroupByInterface;
+use Druid\Query\Common\Component\Aggregation\AggregationCollectionInterface;
+use Druid\Query\Common\Component\DimensionSpec\DimensionSpecCollectionInterface;
+use Druid\Query\Common\Component\Filter\FilterInterface;
+use Druid\Query\Common\Component\Interval\IntervalCollectionInterface;
+use Druid\Query\Common\Component\LimitSpec\LimitSpecInterface;
 use Druid\Query\Entity\AbstractAggregation;
 
 /**
@@ -38,4 +43,140 @@ use Druid\Query\Entity\AbstractAggregation;
 final class GroupBy extends AbstractAggregation implements GroupByInterface
 {
     protected static $queryType = 'groupBy';
+
+    /**
+     * @var DimensionSpecCollectionInterface
+     */
+    private $dimensions;
+
+    /**
+     * @var LimitSpecInterface
+     */
+    private $limitSpec;
+
+    /**
+     * @var FilterInterface
+     */
+    private $filter;
+
+    /**
+     * @var AggregationCollectionInterface
+     */
+    private $aggregations;
+
+    /**
+     * @var IntervalCollectionInterface
+     */
+    private $intervals;
+
+    public function toJson()
+    {
+        $result = [
+            'queryType' => $this->getQueryType(),
+            'dataSource' => $this->getDatasource(),
+            'dimensions' => $this->getDimensions(),
+            'limitSpec' => $this->getLimitSpec(),
+            'granularity' => $this->getGranularity(),
+            'filter' => $this->getFilter(),
+            'aggregations' => $this->getAggregations(),
+            'intervals' => $this->getIntervals()
+        ];
+
+        return \json_encode($result);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getDimensions()
+    {
+        return $this->dimensions;
+    }
+
+    /**
+     * @param DimensionSpecCollectionInterface $dimensions
+     * @return GroupBy
+     */
+    public function setDimensions(DimensionSpecCollectionInterface $dimensions)
+    {
+        $this->dimensions = $dimensions;
+
+        return $this;
+    }
+
+    /**
+     * @return LimitSpecInterface
+     */
+    public function getLimitSpec()
+    {
+        return $this->limitSpec;
+    }
+
+    /**
+     * @param LimitSpecInterface $limitSpec
+     * @return GroupBy
+     */
+    public function setLimitSpec(LimitSpecInterface $limitSpec)
+    {
+        $this->limitSpec = $limitSpec;
+
+        return $this;
+    }
+
+    /**
+     * @return FilterInterface
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * @param FilterInterface $filter
+     * @return GroupBy
+     */
+    public function setFilter(FilterInterface $filter)
+    {
+        $this->filter = $filter;
+
+        return $this;
+    }
+
+    /**
+     * @return AggregationCollectionInterface
+     */
+    public function getAggregations()
+    {
+        return $this->aggregations;
+    }
+
+    /**
+     * @param AggregationCollectionInterface $aggregations
+     * @return GroupBy
+     */
+    public function setAggregations(AggregationCollectionInterface $aggregations)
+    {
+        $this->aggregations = $aggregations;
+
+        return $this;
+    }
+
+    /**
+     * @return IntervalCollectionInterface
+     */
+    public function getIntervals()
+    {
+        return $this->intervals;
+    }
+
+    /**
+     * @param IntervalCollectionInterface $intervals
+     * @return GroupBy
+     */
+    public function setIntervals(IntervalCollectionInterface $intervals)
+    {
+        $this->intervals = $intervals;
+
+        return $this;
+    }
 }

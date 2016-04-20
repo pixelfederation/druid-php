@@ -36,5 +36,8 @@ use Druid\Query\Common\ComponentInterface;
  */
 interface FilterInterface extends ComponentInterface
 {
-    //
+    /**
+     * @return string
+     */
+    public function getType();
 }

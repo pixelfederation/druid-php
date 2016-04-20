@@ -63,6 +63,13 @@ final class Config
     const DEFAULT_API_VERSION = 'v2';
 
     /**
+     * Druid Default Path
+     *
+     * @const string
+     */
+    const DEFAULT_PATH = 'druid';
+
+    /**
      * Current Array Config
      *
      * @var array
@@ -117,5 +124,24 @@ final class Config
     public function getApiVersion()
     {
         return isset($this->config['api_version']) ? $this->config['api_version'] : self::DEFAULT_API_VERSION;
+    }
+
+    public function getPath()
+    {
+        return isset($this->config['path']) ? $this->config['path'] : self::DEFAULT_PATH;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf('%s://%s:%d/%d/%d', [
+            $this->getProtocol(),
+            $this->getHost(),
+            $this->getPort(),
+            $this->getPath(),
+            $this->getApiVersion()
+        ]);
     }
 }

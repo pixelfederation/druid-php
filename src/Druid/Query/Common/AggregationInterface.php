@@ -40,7 +40,7 @@ interface AggregationInterface extends QueryInterface
     /**
      * Get Granularity
      *
-     * @return AggregationInterface
+     * @return GranularityInterface
      */
     public function getGranularity();
 

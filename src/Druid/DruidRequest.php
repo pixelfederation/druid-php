@@ -27,7 +27,7 @@
  */
 namespace Druid;
 
-use Druid\HttpClient\Common\ClientInterface;
+use Druid\Query\Common\QueryInterface;
 
 /**
  * Class DruidRequest
@@ -38,62 +38,26 @@ use Druid\HttpClient\Common\ClientInterface;
 class DruidRequest
 {
     /**
-     * Druid Client Implementation
-     *
-     * @var ClientInterface
+     * @var QueryInterface
      */
-    private $client;
+    private $query;
 
     /**
-     * List Of Headers
-     *
-     * @var array
+     * @return QueryInterface
      */
-    private $headers = [];
-
-    /**
-     * DruidRequest constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
+    public function getQuery()
     {
-        $this->client = $client;
+        return $this->query;
     }
 
     /**
-     * Set Request Headers
-     *
-     * @param array $headers
-     *
-     * @return $this
+     * @param QueryInterface $query
+     * @return DruidRequest
      */
-    public function setHeaders(array $headers)
+    public function setQuery($query)
     {
-        $this->headers = $headers;
+        $this->query = $query;
 
         return $this;
-    }
-
-    /**
-     * Get Request Headers
-     *
-     * @return array
-     */
-    public function getHeaders()
-    {
-        return array_merge($this->headers, $this->getDefaultHeaders());
-    }
-
-    /**
-     * Get Request Default Headers
-     *
-     * @return array
-     */
-    private function getDefaultHeaders()
-    {
-        return [
-            'Content-Type' => 'application/json'
-        ];
     }
 }

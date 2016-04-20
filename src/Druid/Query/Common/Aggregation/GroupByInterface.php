@@ -28,6 +28,11 @@
 namespace Druid\Query\Common\Aggregation;
 
 use Druid\Query\Common\AggregationInterface;
+use Druid\Query\Common\Component\Aggregation\AggregationCollectionInterface;
+use Druid\Query\Common\Component\DimensionSpec\DimensionSpecCollectionInterface;
+use Druid\Query\Common\Component\Filter\FilterInterface;
+use Druid\Query\Common\Component\Interval\IntervalCollectionInterface;
+use Druid\Query\Common\Component\LimitSpec\LimitSpecInterface;
 
 /**
  * Interface GroupByInterface
@@ -36,5 +41,28 @@ use Druid\Query\Common\AggregationInterface;
  */
 interface GroupByInterface extends AggregationInterface
 {
-    //
+    /**
+     * @return DimensionSpecCollectionInterface
+     */
+    public function getDimensions();
+
+    /**
+     * @return LimitSpecInterface
+     */
+    public function getLimitSpec();
+
+    /**
+     * @return FilterInterface
+     */
+    public function getFilter();
+
+    /**
+     * @return AggregationCollectionInterface
+     */
+    public function getAggregations();
+
+    /**
+     * @return IntervalCollectionInterface
+     */
+    public function getIntervals();
 }

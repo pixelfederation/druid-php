@@ -55,7 +55,7 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
      */
     public function __construct(Config $config, GuzzleClient $guzzleClient = null)
     {
-        $this->guzzleClient = $guzzleClient ?: new GuzzleClient();
+        $this->guzzleClient = $guzzleClient ?: new GuzzleClient(['base_uri' => (string) $config]);
 
         parent::__construct($config);
     }
@@ -65,7 +65,7 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
      */
     public function send(DruidRequest $druidRequest)
     {
-        
+        $this->guzzleClient->post('');
     }
 
     /**

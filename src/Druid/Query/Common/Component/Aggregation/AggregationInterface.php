@@ -37,5 +37,18 @@ use Druid\Query\Common\ComponentInterface;
  */
 interface AggregationInterface extends ComponentInterface
 {
-    //
+    /**
+     * @return string
+     */
+    public function getType();
+
+    /**
+     * @return string
+     */
+    public function getName();
+
+    /**
+     * @return string
+     */
+    public function getFieldName();
 }
