@@ -25,15 +25,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\HttpClient\Common;
+
+use Druid\DruidRequest;
 
 /**
- * Class DruidRequest
+ * Interface ClientInterface
  *
- * @package Druid
+ * @package Druid\Client\Common
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+interface ClientInterface
 {
+    /**
+     * Sends a request to the server and returns the raw response.
+     *
+     * @param DruidRequest $request
+     *
+     * @return mixed
+     */
+    public function send(DruidRequest $request);
 
+    /**
+     * Close Opened Connection
+     *
+     * @return void
+     */
+    public function closeConnection();
 }

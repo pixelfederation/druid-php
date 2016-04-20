@@ -25,15 +25,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Common;
+
+use Druid\Query\Common\Granularity\GranularityInterface;
 
 /**
- * Class DruidRequest
+ * Interface AggregationInterface
  *
- * @package Druid
+ * @package Druid\Query\Common
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+interface AggregationInterface extends QueryInterface
 {
+    /**
+     * Get Granularity
+     *
+     * @return AggregationInterface
+     */
+    public function getGranularity();
 
+    /**
+     * Set Granularity
+     *
+     * @param GranularityInterface $granularity
+     *
+     * @return AggregationInterface
+     */
+    public function setGranularity(GranularityInterface $granularity);
 }

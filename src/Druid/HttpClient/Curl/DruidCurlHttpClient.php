@@ -25,15 +25,52 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\HttpClient\Curl;
+
+use Druid\Config\Config;
+use Druid\HttpClient\AbstractDruidClient;
 
 /**
- * Class DruidRequest
+ * Class DruidCurlHttpClient
  *
- * @package Druid
+ * @package Druid\HttpClient\Curl
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+final class DruidCurlHttpClient extends AbstractDruidClient
 {
+    /**
+     * Druid Curl
+     *
+     * @var DruidCurl
+     */
+    private $druidCurl;
 
+    /**
+     * DruidCurlHttpClient constructor.
+     *
+     * @param Config $config
+     * @param DruidCurl|null $druidCurl
+     */
+    public function __construct(Config $config, DruidCurl $druidCurl = null)
+    {
+        $this->druidCurl = $druidCurl ?: new DruidCurl();
+
+        parent::__construct($config);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function send($url, $method, $body, array $headers, $timeOut)
+    {
+        // TODO: Implement send() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function closeConnection()
+    {
+        $this->druidCurl->close();
+    }
 }

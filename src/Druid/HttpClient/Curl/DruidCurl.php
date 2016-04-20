@@ -25,67 +25,117 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
-
-use Druid\Config\Config;
-use Druid\HttpClient\Common\ClientInterface;
-use Druid\HttpClient\Factory\DruidHttpClientFactory;
-use Druid\Query\Common\Query;
+namespace Druid\HttpClient\Curl;
 
 /**
- * Class Druid
+ * Class DruidCurl
  *
- * @package Druid
- *
+ * @package Druid\HttpClient\Curl
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class Druid
+final class DruidCurl
 {
     /**
-     * Version of Druid PHP Driver
+     * Current CURL resource
      *
-     * @const string
+     * @var resource
      */
-    const VERSION = '0.0.1';
+    protected $curl;
 
     /**
-     * Druid Client
+     * Initialize CURL Client
      *
-     * @var DruidClient
+     * @return void
      */
-    private $client;
-
-    /**
-     * Druid constructor.
-     *
-     * @param array $config
-     */
-    public function __construct(array $config = [])
+    public function init()
     {
-        $this->client = new DruidClient($this->getDruidHttpClient($config));
+        $this->curl = curl_init();
     }
 
     /**
-     * Get Druid Client
+     * Set CURL Option
      *
-     * @return DruidClient
+     * @param int $key
+     * @param mixed $value
+     *
+     * @return void
      */
-    public function getClient()
+    public function setOpt($key, $value)
     {
-        return $this->client;
+        curl_setopt($this->curl, $key, $value);
     }
 
     /**
-     * Create Druid HTTP Client Instance
+     * Set Array of options
      *
-     * @param array $config
+     * @param array $option
      *
-     * @return ClientInterface
-     *
-     * @throws Exceptions\DruidDriverHttpClientCreationException
+     * @return void
      */
-    private function getDruidHttpClient(array $config)
+    public function setOptArray(array $option)
     {
-        return (new DruidHttpClientFactory($config))->getDruidHttpClient();
+        curl_setopt_array($this->curl, $option);
+    }
+
+    /**
+     * Send CURL Request
+     *
+     * @return mixed
+     */
+    public function exec()
+    {
+        return curl_exec($this->curl);
+    }
+
+    /**
+     * Get CURL Error Number
+     *
+     * @return int
+     */
+    public function errno()
+    {
+        return curl_errno($this->curl);
+    }
+
+    /**
+     * Get CURL Error Message
+     *
+     * @return string
+     */
+    public function error()
+    {
+        return curl_error($this->curl);
+    }
+
+    /**
+     * Get CURL Info from response
+     *
+     * @param $type
+     *
+     * @return mixed
+     */
+    public function getinfo($type)
+    {
+        return curl_getinfo($this->curl, $type);
+    }
+
+    /**
+     * Get Curl Version
+     *
+     * @return array
+     */
+    public function version()
+    {
+        return curl_version();
+    }
+
+    /**
+     * Close CURL Connection
+     *
+     * @return void
+     */
+    public function close()
+    {
+        curl_close($this->curl);
     }
 }

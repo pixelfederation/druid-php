@@ -25,15 +25,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Entity\Aggregation;
+
+use Druid\Query\Common\Aggregation\TopNInterface;
+use Druid\Query\Entity\AbstractAggregation;
 
 /**
- * Class DruidRequest
+ * Class TopN
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Query\Entity\Aggregation
  */
-final class DruidResponse
+final class TopN extends AbstractAggregation implements TopNInterface
 {
-
+    protected static $queryType = 'topN';
 }

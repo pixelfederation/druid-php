@@ -25,15 +25,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Common\Granularity;
+
+use Druid\Query\Common\ComponentInterface;
 
 /**
- * Class DruidRequest
+ * Interface GranularityInterface
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * The granularity field determines how data gets bucketed across the time dimension,
+ * or how it gets aggregated by hour, day, minute, etc.
+ *
+ * @package Druid\Query\Common\Granularity
  */
-final class DruidResponse
+interface GranularityInterface extends ComponentInterface
 {
-
+    /**
+     * Return
+     *
+     *
+     * @return string
+     */
+    public function getGranularity();
 }

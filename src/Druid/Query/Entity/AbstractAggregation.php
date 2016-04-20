@@ -25,15 +25,40 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Entity;
+
+use Druid\Query\Common\AggregationInterface;
+use Druid\Query\Common\Granularity\GranularityInterface;
 
 /**
- * Class DruidRequest
+ * Class Aggregation
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Query\Entity
  */
-final class DruidResponse
+abstract class AbstractAggregation extends AbstractQuery implements AggregationInterface
 {
+    /**
+     * Granularity
+     *
+     * @var GranularityInterface
+     */
+    protected $granularity;
 
+    /**
+     * @inheritDoc
+     */
+    public function getGranularity()
+    {
+        return $this->granularity;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setGranularity(GranularityInterface $granularity)
+    {
+        $this->granularity = $granularity;
+
+        return $this;
+    }
 }

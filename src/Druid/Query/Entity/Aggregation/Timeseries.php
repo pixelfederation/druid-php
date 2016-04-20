@@ -25,15 +25,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid\Client\Common;
+namespace Druid\Query\Entity\Aggregation;
+
+use Druid\Query\Common\Aggregation\TimeseriesInterface;
+use Druid\Query\Entity\AbstractAggregation;
 
 /**
- * Interface ClientInterface
+ * Class Timeseries
  *
- * @package Druid\Client\Common
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Query\Entity\Aggregation
  */
-interface ClientInterface
+final class Timeseries extends AbstractAggregation implements TimeseriesInterface
 {
-
+    protected static $queryType = 'timeseries';
 }

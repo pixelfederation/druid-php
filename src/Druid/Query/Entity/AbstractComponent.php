@@ -25,17 +25,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid\Client;
+namespace Druid\Query\Entity;
 
-use Druid\Client\Common\ClientInterface;
+use Druid\Query\Common\ComponentInterface;
 
 /**
- * Class AbstractDruidClient
+ * Class AbstractComponent
  *
- * @package Druid\Client
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Query\Entity
  */
-abstract class AbstractDruidClient implements ClientInterface
+abstract class AbstractComponent extends AbstractQuery implements ComponentInterface
 {
-
+    //
 }

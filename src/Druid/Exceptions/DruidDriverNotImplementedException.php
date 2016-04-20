@@ -25,15 +25,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Exceptions;
 
 /**
- * Class DruidRequest
+ * Class DruidDriverNotImplementedException
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Exceptions
  */
-final class DruidResponse
+class DruidDriverNotImplementedException extends DruidDriverException
 {
-
+    //
 }

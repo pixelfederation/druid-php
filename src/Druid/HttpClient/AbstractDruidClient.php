@@ -25,15 +25,43 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\HttpClient;
+
+use Druid\Config\Config;
+use Druid\HttpClient\Common\ClientInterface;
 
 /**
- * Class DruidRequest
+ * Class AbstractDruidClient
  *
- * @package Druid
+ * @package Druid\Client
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+abstract class AbstractDruidClient implements ClientInterface
 {
+    /**
+     * Connection Configuration
+     *
+     * @var Config
+     */
+    protected $config;
 
+    /**
+     * AbstractDruidClient constructor.
+     *
+     * @param Config $config
+     */
+    public function __construct(Config $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * Get Configuration
+     *
+     * @return Config
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
 }

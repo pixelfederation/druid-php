@@ -25,15 +25,49 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Common\Granularity;
+
+use DateTime;
 
 /**
- * Class DruidRequest
+ * Interface DurationGranularityInterface
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * Duration granularities are specified as an exact duration in milliseconds and timestamps are returned as UTC.
+ * Duration granularity values are in millis.
+ *
+ * @package Druid\Query\Common\Granularity
  */
-final class DruidResponse
+interface DurationGranularityInterface extends GranularityInterface
 {
+    /**
+     * Get Duration
+     *
+     * @return int
+     */
+    public function getDuration();
 
+    /**
+     * Set Duration
+     *
+     * @param int $duration
+     *
+     * @return DurationGranularityInterface
+     */
+    public function setDuration($duration);
+
+    /**
+     * Get Origin
+     *
+     * @return mixed
+     */
+    public function getOrigin();
+
+    /**
+     * Set Origin
+     *
+     * @param DateTime|null $dateTime
+     *
+     * @return DurationGranularityInterface
+     */
+    public function setOrigin(DateTime $dateTime = null);
 }

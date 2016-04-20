@@ -27,13 +27,63 @@
  */
 namespace Druid;
 
+use Druid\HttpClient\Common\ClientInterface;
+
 /**
- * Class DruidRequest
+ * Class DruidClient
  *
  * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+final class DruidClient
 {
+    /**
+     * Druid Http Client
+     *
+     * @var ClientInterface
+     */
+    private $httpClient;
 
+    /**
+     * DruidClient constructor.
+     *
+     * @param ClientInterface $httpClient
+     */
+    public function __construct(ClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * Makes Request to Druid and returns the result
+     *
+     * @param DruidRequest $request
+     *
+     * @return DruidResponse
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function sendRequest(DruidRequest $request)
+    {
+
+    }
+
+    /**
+     * Get Druid Http Client
+     *
+     * @return ClientInterface
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
+    }
+
+    /**
+     * Close Open Connection
+     *
+     * @return void
+     */
+    public function __destruct()
+    {
+        $this->httpClient->closeConnection();
+    }
 }

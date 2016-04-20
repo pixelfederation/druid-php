@@ -25,15 +25,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Entity\Aggregation;
+
+use Druid\Query\Common\Aggregation\GroupByInterface;
+use Druid\Query\Entity\AbstractAggregation;
 
 /**
- * Class DruidRequest
+ * Class GroupBy
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Query\Entity\Aggregation
  */
-final class DruidResponse
+final class GroupBy extends AbstractAggregation implements GroupByInterface
 {
-
+    protected static $queryType = 'groupBy';
 }

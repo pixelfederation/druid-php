@@ -27,16 +27,15 @@
  */
 namespace Druid;
 
-use Druid\Client\Common\ClientInterface;
+use Druid\HttpClient\Common\ClientInterface;
 
 /**
  * Class DruidRequest
  *
  * @package Druid
- *
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidRequest
+class DruidRequest
 {
     /**
      * Druid Client Implementation
@@ -46,6 +45,13 @@ final class DruidRequest
     private $client;
 
     /**
+     * List Of Headers
+     *
+     * @var array
+     */
+    private $headers = [];
+
+    /**
      * DruidRequest constructor.
      *
      * @param ClientInterface $client
@@ -53,5 +59,41 @@ final class DruidRequest
     public function __construct(ClientInterface $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Set Request Headers
+     *
+     * @param array $headers
+     *
+     * @return $this
+     */
+    public function setHeaders(array $headers)
+    {
+        $this->headers = $headers;
+
+        return $this;
+    }
+
+    /**
+     * Get Request Headers
+     *
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return array_merge($this->headers, $this->getDefaultHeaders());
+    }
+
+    /**
+     * Get Request Default Headers
+     *
+     * @return array
+     */
+    private function getDefaultHeaders()
+    {
+        return [
+            'Content-Type' => 'application/json'
+        ];
     }
 }

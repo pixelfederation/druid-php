@@ -25,15 +25,48 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Common;
+use Druid\Query\Common\Datasource\DatasourceInterface;
 
 /**
- * Class DruidRequest
+ * Interface Query
  *
- * @package Druid
+ * @package Druid\Query\Common
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+interface QueryInterface
 {
+    /**
+     * Get Query Type
+     *
+     * This String should always be always some from query types listed bellow;
+     * this is the first thing Druid looks at to figure out how to interpret the query.
+     *
+     * - timeseries
+     * - topN
+     * - queryType
+     * - timeBoundary
+     * - segmentMetadata
+     * - dataSourceMetadata
+     * - search
+     *
+     * @return string
+     */
+    public function getQueryType();
 
+    /**
+     * Get Current Datasource
+     *
+     * @return DatasourceInterface
+     */
+    public function getDatasource();
+
+    /**
+     * Set Datasource
+     *
+     * @param DatasourceInterface $datasource
+     *
+     * @return QueryInterface
+     */
+    public function setDatasource(DatasourceInterface $datasource);
 }

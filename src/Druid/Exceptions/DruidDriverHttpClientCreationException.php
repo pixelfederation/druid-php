@@ -25,15 +25,15 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Exceptions;
 
 /**
- * Class DruidRequest
+ * Class DruidDriverHttpClientCreationException
  *
- * @package Druid
+ * @package Druid\Exceptions
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+class DruidDriverHttpClientCreationException extends DruidDriverException
 {
-
+    //
 }

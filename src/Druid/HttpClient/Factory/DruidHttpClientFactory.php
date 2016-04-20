@@ -25,15 +25,60 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\HttpClient\Factory;
+
+use Druid\Config\Config;
+use Druid\Exceptions\DruidDriverHttpClientCreationException;
+use Druid\HttpClient\Common\ClientInterface;
+use Druid\HttpClient\Curl\DruidCurlHttpClient;
+use Druid\HttpClient\Guzzle\DruidGuzzleHttpClient;
 
 /**
- * Class DruidRequest
+ * Class HttpClientFactory
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * This factory crates new instance of Druid HTTP client,
+ * every client must inherit ClientInterface
+ *
+ * @package Druid\HttpClient\Factory
  */
-final class DruidResponse
+class DruidHttpClientFactory
 {
+    /**
+     * Connection Configuration
+     *
+     * @var Config
+     */
+    private $config;
 
+    /**
+     * HttpClientFactory constructor.
+     *
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = new Config($config);
+    }
+
+    /**
+     * Get Druid Http Client
+     *
+     * @return ClientInterface
+     *
+     * @throws DruidDriverHttpClientCreationException
+     */
+    public function getDruidHttpClient()
+    {
+        if (class_exists('GuzzleHttp\Client')) {
+            return new DruidGuzzleHttpClient($this->config);
+        }
+
+        if (extension_loaded('curl')) {
+            return new DruidCurlHttpClient($this->config);
+        }
+
+        throw new DruidDriverHttpClientCreationException(
+            'Unable to create Druid HTTP client, only CURL and Guzzle Clients are supported.'
+        );
+    }
 }

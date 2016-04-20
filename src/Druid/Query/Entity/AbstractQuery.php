@@ -25,15 +25,56 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Entity;
+
+use Druid\Query\Common\Datasource\DatasourceInterface;
+use Druid\Query\Common\QueryInterface;
 
 /**
- * Class DruidRequest
+ * Class Query
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Query\Entity
+ * @ExclusionPolicy("all")
  */
-final class DruidResponse
+abstract class AbstractQuery implements QueryInterface
 {
+    /**
+     * Query Type
+     *
+     * @var string
+     */
+    protected static $queryType;
 
+    /**
+     * Query Datasource
+     *
+     * @var DatasourceInterface
+     */
+    protected $dataSource;
+
+    /**
+     * @inheritDoc
+     */
+    public function getQueryType()
+    {
+        return self::$queryType;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDatasource()
+    {
+        return $this->dataSource;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setDatasource(DatasourceInterface $datasource)
+    {
+        $this->dataSource = $datasource;
+
+        return $this;
+    }
 }

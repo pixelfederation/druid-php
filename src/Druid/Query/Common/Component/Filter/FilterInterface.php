@@ -25,15 +25,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Common\Filter;
+
+use Druid\Query\Common\ComponentInterface;
 
 /**
- * Class DruidRequest
+ * Interface FilterInterface
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Query\Common\Filter
  */
-final class DruidResponse
+interface FilterInterface extends ComponentInterface
 {
-
+    //
 }

@@ -25,15 +25,56 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\HttpClient\Guzzle;
+
+use Druid\Config\Config;
+use Druid\DruidRequest;
+use Druid\HttpClient\AbstractDruidClient;
+use GuzzleHttp\Client as GuzzleClient;
 
 /**
- * Class DruidRequest
+ * Class DruidGuzzleHttpClient
  *
- * @package Druid
+ * @package Druid\HttpClient
  * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+final class DruidGuzzleHttpClient extends AbstractDruidClient
 {
+    /**
+     * Guzzle PHP Client
+     *
+     * @var GuzzleClient
+     */
+    private $guzzleClient;
 
+    /**
+     * DruidGuzzleHttpClient constructor.
+     *
+     * @param Config $config
+     * @param GuzzleClient|null $guzzleClient
+     */
+    public function __construct(Config $config, GuzzleClient $guzzleClient = null)
+    {
+        $this->guzzleClient = $guzzleClient ?: new GuzzleClient();
+
+        parent::__construct($config);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function send(DruidRequest $druidRequest)
+    {
+        
+    }
+
+    /**
+     * Guzzle Connection is closed by default after response
+     *
+     * @return void
+     */
+    public function closeConnection()
+    {
+        return;
+    }
 }

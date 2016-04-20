@@ -25,15 +25,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid;
+namespace Druid\Query\Entity\Component\Granularity;
+
+use Druid\Query\Common\Granularity\GranularityInterface;
+use Druid\Query\Entity\AbstractComponent;
 
 /**
- * Class DruidRequest
+ * Class AbstractGranularity
  *
- * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @package Druid\Query\Entity\Component\Granularity
  */
-final class DruidResponse
+abstract class AbstractGranularity extends AbstractComponent implements GranularityInterface
 {
+    /**
+     * Granularity
+     *
+     * @var GranularityInterface
+     */
+    protected static $granularity;
 
+    /**
+     * @inheritDoc
+     */
+    public function getGranularity()
+    {
+        return self::$granularity;
+    }
 }
