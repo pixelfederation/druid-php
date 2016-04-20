@@ -28,7 +28,7 @@
 namespace Druid\Query\Entity;
 
 use Druid\Query\Common\AggregationInterface;
-use Druid\Query\Common\Granularity\GranularityInterface;
+use Druid\Query\Common\Component\Granularity\GranularityInterface;
 
 /**
  * Class Aggregation

@@ -36,7 +36,7 @@ use GuzzleHttp\Client as GuzzleClient;
  * Class DruidGuzzleHttpClient
  *
  * @package Druid\HttpClient
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 final class DruidGuzzleHttpClient extends AbstractDruidClient
 {
@@ -50,7 +50,7 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
     /**
      * DruidGuzzleHttpClient constructor.
      *
-     * @param Config $config
+     * @param Config            $config
      * @param GuzzleClient|null $guzzleClient
      */
     public function __construct(Config $config, GuzzleClient $guzzleClient = null)

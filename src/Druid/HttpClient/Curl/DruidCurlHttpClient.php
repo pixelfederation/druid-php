@@ -28,13 +28,14 @@
 namespace Druid\HttpClient\Curl;
 
 use Druid\Config\Config;
+use Druid\DruidRequest;
 use Druid\HttpClient\AbstractDruidClient;
 
 /**
  * Class DruidCurlHttpClient
  *
  * @package Druid\HttpClient\Curl
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 final class DruidCurlHttpClient extends AbstractDruidClient
 {
@@ -48,7 +49,7 @@ final class DruidCurlHttpClient extends AbstractDruidClient
     /**
      * DruidCurlHttpClient constructor.
      *
-     * @param Config $config
+     * @param Config         $config
      * @param DruidCurl|null $druidCurl
      */
     public function __construct(Config $config, DruidCurl $druidCurl = null)
@@ -61,7 +62,7 @@ final class DruidCurlHttpClient extends AbstractDruidClient
     /**
      * @inheritdoc
      */
-    public function send($url, $method, $body, array $headers, $timeOut)
+    public function send(DruidRequest $request)
     {
         // TODO: Implement send() method.
     }

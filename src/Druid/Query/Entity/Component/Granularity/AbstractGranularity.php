@@ -27,7 +27,7 @@
  */
 namespace Druid\Query\Entity\Component\Granularity;
 
-use Druid\Query\Common\Granularity\GranularityInterface;
+use Druid\Query\Common\Component\Granularity\GranularityInterface;
 use Druid\Query\Entity\AbstractComponent;
 
 /**

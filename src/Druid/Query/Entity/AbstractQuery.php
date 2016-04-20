@@ -27,14 +27,15 @@
  */
 namespace Druid\Query\Entity;
 
-use Druid\Query\Common\Datasource\DatasourceInterface;
+use Druid\Query\Common\Component\Datasource\DatasourceInterface;
 use Druid\Query\Common\QueryInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Query
  *
- * @package Druid\Query\Entity
- * @ExclusionPolicy("all")
+ * @package                Druid\Query\Entity
+ * @Serializer\ExclusionPolicy("all")
  */
 abstract class AbstractQuery implements QueryInterface
 {

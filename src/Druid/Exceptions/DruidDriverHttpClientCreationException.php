@@ -31,7 +31,7 @@ namespace Druid\Exceptions;
  * Class DruidDriverHttpClientCreationException
  *
  * @package Druid\Exceptions
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 class DruidDriverHttpClientCreationException extends DruidDriverException
 {

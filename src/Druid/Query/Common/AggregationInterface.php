@@ -27,13 +27,13 @@
  */
 namespace Druid\Query\Common;
 
-use Druid\Query\Common\Granularity\GranularityInterface;
+use Druid\Query\Common\Component\Granularity\GranularityInterface;
 
 /**
  * Interface AggregationInterface
  *
  * @package Druid\Query\Common
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 interface AggregationInterface extends QueryInterface
 {

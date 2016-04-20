@@ -34,7 +34,7 @@ use Druid\HttpClient\Common\ClientInterface;
  * Class AbstractDruidClient
  *
  * @package Druid\Client
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 abstract class AbstractDruidClient implements ClientInterface
 {

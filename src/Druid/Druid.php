@@ -27,10 +27,8 @@
  */
 namespace Druid;
 
-use Druid\Config\Config;
 use Druid\HttpClient\Common\ClientInterface;
 use Druid\HttpClient\Factory\DruidHttpClientFactory;
-use Druid\Query\Common\Query;
 
 /**
  * Class Druid

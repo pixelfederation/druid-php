@@ -4,3 +4,4 @@ vendor
 !bin/git/*
 !bin/static_analysis/*
 bin
+docs

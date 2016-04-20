@@ -25,7 +25,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid\Query\Common\Datasource;
+namespace Druid\Query\Common\Component\Datasource;
 
 use Druid\Query\Common\ComponentInterface;
 

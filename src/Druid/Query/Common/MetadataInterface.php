@@ -31,7 +31,7 @@ namespace Druid\Query\Common;
  * Interface MetadataQueryInterface
  *
  * @package Druid\Query\Common
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 interface MetadataInterface extends QueryInterface
 {

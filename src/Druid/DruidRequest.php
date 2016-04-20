@@ -33,7 +33,7 @@ use Druid\HttpClient\Common\ClientInterface;
  * Class DruidRequest
  *
  * @package Druid
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 class DruidRequest
 {

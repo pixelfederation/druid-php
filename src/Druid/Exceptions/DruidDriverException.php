@@ -33,7 +33,7 @@ use \Exception;
  * Class DruidDriverException
  *
  * @package Druid\Exceptions
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 class DruidDriverException extends Exception
 {

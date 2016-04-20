@@ -31,7 +31,7 @@ namespace Druid\HttpClient\Curl;
  * Class DruidCurl
  *
  * @package Druid\HttpClient\Curl
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 final class DruidCurl
 {
@@ -55,7 +55,7 @@ final class DruidCurl
     /**
      * Set CURL Option
      *
-     * @param int $key
+     * @param int   $key
      * @param mixed $value
      *
      * @return void

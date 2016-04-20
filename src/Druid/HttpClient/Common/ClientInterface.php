@@ -33,7 +33,7 @@ use Druid\DruidRequest;
  * Interface ClientInterface
  *
  * @package Druid\Client\Common
- * @author Tomas Mihalicka <tmihalicka@pixelfederation.com>
+ * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
 interface ClientInterface
 {

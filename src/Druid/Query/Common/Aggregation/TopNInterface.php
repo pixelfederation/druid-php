@@ -27,6 +27,8 @@
  */
 namespace Druid\Query\Common\Aggregation;
 
+use Druid\Query\Common\AggregationInterface;
+
 /**
  * Interface TopNInterface
  *
