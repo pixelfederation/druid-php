@@ -28,7 +28,7 @@
 
 namespace Druid\Query\Common;
 
-use Druid\Query\Common\Component\Datasource\DatasourceInterface;
+use Druid\Query\Common\Component\DataSource\DataSourceInterface;
 
 /**
  * Interface Query
@@ -57,18 +57,18 @@ interface QueryInterface
     public function getQueryType();
 
     /**
-     * Get Current Datasource
+     * Get Current DataSource
      *
-     * @return DatasourceInterface
+     * @return string
      */
-    public function getDatasource();
+    public function getDataSource();
 
     /**
-     * Set Datasource
+     * Set DataSource
      *
-     * @param DatasourceInterface $datasource
+     * @param DataSourceInterface $dataSource
      *
      * @return QueryInterface
      */
-    public function setDatasource(DatasourceInterface $datasource);
+    public function setDataSource($dataSource);
 }

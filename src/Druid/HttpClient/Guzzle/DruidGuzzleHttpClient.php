@@ -31,6 +31,7 @@ use Druid\Config\Config;
 use Druid\DruidRequest;
 use Druid\HttpClient\AbstractDruidClient;
 use GuzzleHttp\Client as GuzzleClient;
+use JMS\Serializer\Serializer;
 
 /**
  * Class DruidGuzzleHttpClient
@@ -50,12 +51,12 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
     /**
      * DruidGuzzleHttpClient constructor.
      *
-     * @param Config            $config
+     * @param Config $config
      * @param GuzzleClient|null $guzzleClient
      */
     public function __construct(Config $config, GuzzleClient $guzzleClient = null)
     {
-        $this->guzzleClient = $guzzleClient ?: new GuzzleClient(['base_uri' => (string) $config]);
+        $this->guzzleClient = $guzzleClient ?: new GuzzleClient(['base_uri' => (string)$config]);
 
         parent::__construct($config);
     }
@@ -65,7 +66,10 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
      */
     public function send(DruidRequest $druidRequest)
     {
-        $this->guzzleClient->post('');
+        $this->guzzleClient->post(
+            '',
+            ['body' => $druidRequest->toJson()]
+        );
     }
 
     /**

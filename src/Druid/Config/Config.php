@@ -136,12 +136,13 @@ final class Config
      */
     public function __toString()
     {
-        return sprintf('%s://%s:%d/%d/%d', [
+        return sprintf(
+            '%s://%s:%d/%s/%s',
             $this->getProtocol(),
             $this->getHost(),
             $this->getPort(),
             $this->getPath(),
             $this->getApiVersion()
-        ]);
+        );
     }
 }

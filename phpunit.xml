@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    phpunit -c phpunit.xml
--->
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -11,17 +8,20 @@
          syntaxCheck="true"
          forceCoversAnnotation="true"
          beStrictAboutTestsThatDoNotTestAnything="false"
-         bootstrap="./vendor/autoload.php">
+         bootstrap="tests/bootstrap.php">
 
     <testsuites>
         <testsuite name="unit">
-            <directory>./tests/</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="false">
+        <whitelist>
             <directory suffix=".php">src</directory>
         </whitelist>
     </filter>
-
+    <logging>
+        <log type="coverage-html" target="docs/codecoverage"/>
+        <log type="coverage-clover" target="docs/coverage.xml"/>
+    </logging>
 </phpunit>

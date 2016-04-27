@@ -33,7 +33,7 @@ namespace Druid;
  * @package Druid
  * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-final class DruidResponse
+class DruidResponse
 {
 
 }

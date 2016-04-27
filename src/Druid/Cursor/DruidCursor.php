@@ -41,7 +41,7 @@ class DruidCursor implements Iterator
      *
      * @var int
      */
-    private $position = -1;
+    protected $position = -1;
 
     public function current()
     {

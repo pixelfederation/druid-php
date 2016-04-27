@@ -45,4 +45,9 @@ interface GranularityInterface extends ComponentInterface
      * @return string
      */
     public function getGranularity();
+
+    /**
+     * @return string
+     */
+    public function __toString();
 }

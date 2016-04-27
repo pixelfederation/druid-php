@@ -40,7 +40,7 @@ abstract class AbstractGranularity extends AbstractComponent implements Granular
     /**
      * Granularity
      *
-     * @var GranularityInterface
+     * @var string
      */
     protected static $granularity;
 
@@ -49,6 +49,14 @@ abstract class AbstractGranularity extends AbstractComponent implements Granular
      */
     public function getGranularity()
     {
-        return self::$granularity;
+        return static::$granularity;
+    }
+
+    /**
+     * @return GranularityInterface|string
+     */
+    public function __toString()
+    {
+        return $this->getGranularity();
     }
 }

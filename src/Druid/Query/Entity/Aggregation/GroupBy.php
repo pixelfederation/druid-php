@@ -34,6 +34,7 @@ use Druid\Query\Common\Component\Filter\FilterInterface;
 use Druid\Query\Common\Component\Interval\IntervalCollectionInterface;
 use Druid\Query\Common\Component\LimitSpec\LimitSpecInterface;
 use Druid\Query\Entity\AbstractAggregation;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class GroupBy
@@ -68,22 +69,6 @@ final class GroupBy extends AbstractAggregation implements GroupByInterface
      * @var IntervalCollectionInterface
      */
     private $intervals;
-
-    public function toJson()
-    {
-        $result = [
-            'queryType' => $this->getQueryType(),
-            'dataSource' => $this->getDatasource(),
-            'dimensions' => $this->getDimensions(),
-            'limitSpec' => $this->getLimitSpec(),
-            'granularity' => $this->getGranularity(),
-            'filter' => $this->getFilter(),
-            'aggregations' => $this->getAggregations(),
-            'intervals' => $this->getIntervals()
-        ];
-
-        return \json_encode($result);
-    }
 
     /**
      * @inheritdoc

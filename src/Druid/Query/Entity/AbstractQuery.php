@@ -27,15 +27,14 @@
  */
 namespace Druid\Query\Entity;
 
-use Druid\Query\Common\Component\Datasource\DatasourceInterface;
+use Druid\Query\Common\Component\DataSource\DataSourceInterface;
 use Druid\Query\Common\QueryInterface;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Query
  *
- * @package                Druid\Query\Entity
- * @Serializer\ExclusionPolicy("all")
+ * @package Druid\Query\Entity
  */
 abstract class AbstractQuery implements QueryInterface
 {
@@ -47,9 +46,10 @@ abstract class AbstractQuery implements QueryInterface
     protected static $queryType;
 
     /**
-     * Query Datasource
+     * Query DataSource
      *
-     * @var DatasourceInterface
+     * @var                       DataSourceInterface
+     * @Serializer\Type("string")
      */
     protected $dataSource;
 
@@ -64,7 +64,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    public function getDatasource()
+    public function getDataSource()
     {
         return $this->dataSource;
     }
@@ -72,9 +72,9 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    public function setDatasource(DatasourceInterface $datasource)
+    public function setDataSource($dataSource)
     {
-        $this->dataSource = $datasource;
+        $this->dataSource = $dataSource;
 
         return $this;
     }

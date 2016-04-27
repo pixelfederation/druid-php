@@ -28,6 +28,7 @@
 namespace Druid;
 
 use Druid\Query\Common\QueryInterface;
+use JMS\Serializer\Serializer;
 
 /**
  * Class DruidRequest
@@ -43,21 +44,33 @@ class DruidRequest
     private $query;
 
     /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
+     * DruidRequest constructor.
+     *
+     * @param QueryInterface $query
+     * @param Serializer     $serializer
+     */
+    public function __construct(QueryInterface $query, Serializer $serializer)
+    {
+        $this->query = $query;
+        $this->serializer = $serializer;
+    }
+
+    /**
      * @return QueryInterface
+     * @covers DruidRequest::getQuery
      */
     public function getQuery()
     {
         return $this->query;
     }
 
-    /**
-     * @param QueryInterface $query
-     * @return DruidRequest
-     */
-    public function setQuery($query)
+    public function toJson()
     {
-        $this->query = $query;
-
-        return $this;
+        return $this->serializer->serialize($this->query, 'json');
     }
 }

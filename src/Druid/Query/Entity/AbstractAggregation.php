@@ -29,6 +29,7 @@ namespace Druid\Query\Entity;
 
 use Druid\Query\Common\AggregationInterface;
 use Druid\Query\Common\Component\Granularity\GranularityInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Aggregation
@@ -40,7 +41,8 @@ abstract class AbstractAggregation extends AbstractQuery implements AggregationI
     /**
      * Granularity
      *
-     * @var GranularityInterface
+     * @var                       GranularityInterface
+     * @Serializer\Type("string")
      */
     protected $granularity;
 

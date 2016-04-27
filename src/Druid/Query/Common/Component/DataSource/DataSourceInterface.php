@@ -25,16 +25,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Druid\Query\Common\Component\Datasource;
+namespace Druid\Query\Common\Component\DataSource;
 
 use Druid\Query\Common\ComponentInterface;
 
 /**
- * Interface DatasourceInterface
+ * Interface DataSourceInterface
  *
- * @package Druid\Query\Common\Datasource
+ * @package Druid\Query\Common\DataSource
  */
-interface DatasourceInterface extends ComponentInterface
+interface DataSourceInterface extends ComponentInterface
 {
-    //
+    /**
+     * @return string
+     */
+    public function getDataSource();
 }

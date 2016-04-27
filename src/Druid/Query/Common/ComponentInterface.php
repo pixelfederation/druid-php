@@ -32,7 +32,7 @@ namespace Druid\Query\Common;
  *
  * @package Druid\Query\Common
  */
-interface ComponentInterface extends \JsonSerializable
+interface ComponentInterface
 {
     //
 }

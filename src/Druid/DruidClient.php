@@ -64,7 +64,7 @@ final class DruidClient
      */
     public function sendRequest(DruidRequest $request)
     {
-
+        return $this->httpClient->send($request);
     }
 
     /**
