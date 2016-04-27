@@ -10,16 +10,16 @@
          convertWarningsToExceptions="true"
          syntaxCheck="true"
          forceCoversAnnotation="true"
+         beStrictAboutTestsThatDoNotTestAnything="false"
          bootstrap="./vendor/autoload.php">
 
     <testsuites>
         <testsuite name="unit">
-            <directory>./tests/Druid/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
-
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+        <whitelist processUncoveredFilesFromWhitelist="false">
             <directory suffix=".php">src</directory>
         </whitelist>
     </filter>

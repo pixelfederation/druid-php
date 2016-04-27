@@ -37,7 +37,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Druid\\Tests\\": "tests/Druid/"
+      "Druid\\": "tests/Druid/"
     }
   }
 }
