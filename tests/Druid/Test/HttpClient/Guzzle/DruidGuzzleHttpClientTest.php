@@ -55,7 +55,7 @@ class DruidGuzzleHttpClientTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods(['getProxy'])
             ->getMock();
-        
+
         $config->expects($this->once())->method('getProxy')->willReturn('tcp://127.0.0.1:8080');
 
         $guzzle = $this
@@ -91,5 +91,20 @@ class DruidGuzzleHttpClientTest extends \PHPUnit_Framework_TestCase
         $client = new DruidGuzzleHttpClient($config, $guzzle);
 
         $this->assertEquals(null, $client->closeConnection());
+    }
+
+    /**
+     * @covers \Druid\HttpClient\AbstractDruidClient::__construct
+     * @covers \Druid\HttpClient\AbstractDruidClient::getConfig
+     */
+    public function testGetConfig()
+    {
+        $config = $this->getMockBuilder(Config::class)->disableOriginalConstructor()->getMock();
+        $guzzle = $this->getMockBuilder(Client::class)->disableOriginalConstructor()->getMock();
+
+        /** @var Config $config */
+        $client = new DruidGuzzleHttpClient($config, $guzzle);
+
+        $this->assertEquals($config, $client->getConfig());
     }
 }
