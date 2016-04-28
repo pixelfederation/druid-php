@@ -8,7 +8,7 @@
 namespace Druid\Test;
 
 use Druid\Druid;
-use Druid\Factory\DruiRequestFactory;
+use Druid\Factory\DruidRequestFactory;
 use Druid\Query\Entity\Aggregation\GroupBy;
 use Druid\Query\Entity\Component\Aggregation\Aggregation;
 use Druid\Query\Entity\Component\Aggregation\AggregationCollection;
@@ -48,7 +48,7 @@ class DruidIntegrationTest extends \PHPUnit_Framework_TestCase
 
 
 
-        $factory = new DruiRequestFactory;
+        $factory = new DruidRequestFactory;
         $request =  $factory->create($query);
         return $request;
     }

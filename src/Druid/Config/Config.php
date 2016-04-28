@@ -32,7 +32,7 @@ namespace Druid\Config;
  *
  * @package Druid\Config
  */
-final class Config
+class Config
 {
     /**
      * Druid Default Protocol

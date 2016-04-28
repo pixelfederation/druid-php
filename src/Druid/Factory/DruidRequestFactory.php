@@ -7,13 +7,12 @@
 
 namespace Druid\Factory;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use Druid\DruidRequest;
 use Druid\Query\Common\QueryInterface;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 
-class DruiRequestFactory
+class DruidRequestFactory
 {
     /**
      * @param QueryInterface $query

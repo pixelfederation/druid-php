@@ -31,7 +31,6 @@ use Druid\Config\Config;
 use Druid\DruidRequest;
 use Druid\HttpClient\AbstractDruidClient;
 use GuzzleHttp\Client as GuzzleClient;
-use JMS\Serializer\Serializer;
 
 /**
  * Class DruidGuzzleHttpClient
@@ -66,19 +65,24 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
      */
     public function send(DruidRequest $druidRequest)
     {
-        $this->guzzleClient->post(
+        return $this->guzzleClient->post(
             '',
-            ['body' => $druidRequest->toJson()]
+            [
+                'body' => $druidRequest->toJson(),
+                'proxy' => [
+                    'http' => 'tcp://localhost:8080'
+                ]
+            ]
         );
     }
 
     /**
      * Guzzle Connection is closed by default after response
      *
-     * @return void
+     * @return null
      */
     public function closeConnection()
     {
-        return;
+        return null;
     }
 }
