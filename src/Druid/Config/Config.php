@@ -126,9 +126,28 @@ class Config
         return isset($this->config['api_version']) ? $this->config['api_version'] : self::DEFAULT_API_VERSION;
     }
 
+    /**
+     * Get Druid Path
+     *
+     * @return string
+     */
     public function getPath()
     {
         return isset($this->config['path']) ? $this->config['path'] : self::DEFAULT_PATH;
+    }
+
+    /**
+     * Get Proxy Setting
+     *
+     * @return string|null
+     */
+    public function getProxy()
+    {
+        if (isset($this->config['proxy'])) {
+            return $this->config['proxy'];
+        }
+
+        return null;
     }
 
     /**

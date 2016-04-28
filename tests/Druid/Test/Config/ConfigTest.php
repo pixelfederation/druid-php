@@ -55,4 +55,18 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $setup);
     }
+
+    public function testGetProxy()
+    {
+        $config = new Config(['proxy' => 'tcp://127.0.0.1:8080']);
+
+        $this->assertEquals('tcp://127.0.0.1:8080', $config->getProxy());
+    }
+
+    public function testGetNonExistsProxy()
+    {
+        $config = new Config([]);
+
+        $this->assertEquals(null, $config->getProxy());
+    }
 }

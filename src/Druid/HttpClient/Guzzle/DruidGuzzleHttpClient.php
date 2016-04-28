@@ -65,15 +65,16 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
      */
     public function send(DruidRequest $druidRequest)
     {
-        return $this->guzzleClient->post(
-            '',
-            [
-                'body' => $druidRequest->toJson(),
-                'proxy' => [
-                    'http' => 'tcp://localhost:8080'
-                ]
-            ]
-        );
+
+        $proxy = $this->getConfig()->getProxy();
+        $options = ['body' => $druidRequest->toJson()];
+        if ($proxy !== null) {
+            $options['proxy'] = [
+                $this->getConfig()->getProtocol() => $proxy
+            ];
+        }
+
+        return $this->guzzleClient->post('', $options);
     }
 
     /**
