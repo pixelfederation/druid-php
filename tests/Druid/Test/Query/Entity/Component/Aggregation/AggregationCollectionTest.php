@@ -7,7 +7,7 @@
 
 namespace Druid\Test\Query\Entity\Component\Aggregation;
 
-use Druid\Query\Common\Component\Aggregation\AggregationInterface;
+use Druid\Query\Common\Component\Aggregation\AggregatorInterface;
 use Druid\Query\Entity\Component\Aggregation\AggregationCollection;
 
 /**
@@ -21,7 +21,7 @@ class AggregationCollectionTest extends \PHPUnit_Framework_TestCase
     public function testSetGetAggregations()
     {
         $collection = new AggregationCollection();
-        $aggregation = $this->getMockBuilder(AggregationInterface::class)->setMethods([
+        $aggregation = $this->getMockBuilder(AggregatorInterface::class)->setMethods([
             'getType',
             'getName',
             'getFieldName'

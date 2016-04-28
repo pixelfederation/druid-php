@@ -17,6 +17,8 @@ use Druid\Query\Common\Component\DimensionSpec\DimensionSpecInterface;
 class DimensionSpec implements DimensionSpecInterface
 {
 
+    const DEFAULT_TYPE_NAME = 'default';
+
     /**
      * @var string
      */
@@ -34,11 +36,11 @@ class DimensionSpec implements DimensionSpecInterface
     /**
      * DimensionSpec constructor.
      *
-     * @param string $type
      * @param string $dimension
+     * @param string $type
      * @param string $outputName
      */
-    public function __construct($type, $dimension, $outputName = null)
+    public function __construct($dimension, $type = self::DEFAULT_TYPE_NAME, $outputName = null)
     {
         $this->type = $type;
         $this->dimension = $dimension;

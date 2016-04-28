@@ -9,6 +9,7 @@ namespace Druid\Query\Entity\Component\DimensionSpec;
 
 use Druid\Query\Common\Component\DimensionSpec\DimensionSpecCollectionInterface;
 use Druid\Query\Common\Component\DimensionSpec\DimensionSpecInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class DimensionSpecCollection
@@ -20,6 +21,8 @@ class DimensionSpecCollection implements DimensionSpecCollectionInterface
 
     /**
      * @var array|DimensionSpecInterface[]
+     * @Serializer\Type("array<Druid\Query\Entity\Component\DimensionSpec\DimensionSpec>")
+     * @Serializer\Inline
      */
     private $dimensions;
 

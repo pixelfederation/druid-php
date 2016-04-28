@@ -8,7 +8,7 @@
 namespace Druid\Query\Entity\Component\Aggregation;
 
 use Druid\Query\Common\Component\Aggregation\AggregationCollectionInterface;
-use Druid\Query\Common\Component\Aggregation\AggregationInterface;
+use Druid\Query\Common\Component\Aggregation\AggregatorInterface;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
@@ -19,8 +19,8 @@ use JMS\Serializer\Annotation as Serializer;
 class AggregationCollection implements AggregationCollectionInterface
 {
     /**
-     * @var array|AggregationInterface[]
-     * @Serializer\Type("array<Druid\Query\Entity\Component\Aggregation\Aggregation>")
+     * @var array|AggregatorInterface[]
+     * @Serializer\Type("array")
      * @Serializer\Inline
      */
     protected $aggregations;
@@ -28,7 +28,7 @@ class AggregationCollection implements AggregationCollectionInterface
     /**
      * AggregationCollection constructor.
      *
-     * @param array|\Druid\Query\Common\Component\Aggregation\AggregationInterface[] $aggregations
+     * @param array|\Druid\Query\Common\Component\Aggregation\AggregatorInterface[] $aggregations
      */
     public function __construct(array $aggregations = [])
     {
@@ -49,10 +49,10 @@ class AggregationCollection implements AggregationCollectionInterface
     }
 
     /**
-     * @param AggregationInterface $aggregation
+     * @param AggregatorInterface $aggregation
      * @return $this
      */
-    public function addAggregation(AggregationInterface $aggregation)
+    public function addAggregation(AggregatorInterface $aggregation)
     {
         $this->aggregations[] = $aggregation;
 
@@ -60,7 +60,7 @@ class AggregationCollection implements AggregationCollectionInterface
     }
 
     /**
-     * @return array|AggregationInterface[]
+     * @return array|AggregatorInterface[]
      */
     public function getAggregations()
     {

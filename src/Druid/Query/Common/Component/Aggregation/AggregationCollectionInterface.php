@@ -13,7 +13,7 @@ interface AggregationCollectionInterface extends ComponentInterface
 {
 
     /**
-     * @return AggregationInterface[]|array
+     * @return AggregatorInterface[]|array
      */
     public function getAggregations();
 }

@@ -33,6 +33,7 @@ use Druid\Query\Common\Component\DimensionSpec\DimensionSpecCollectionInterface;
 use Druid\Query\Common\Component\Filter\FilterInterface;
 use Druid\Query\Common\Component\Interval\IntervalCollectionInterface;
 use Druid\Query\Common\Component\LimitSpec\LimitSpecInterface;
+use Druid\Query\Common\Component\PostAggregation\PostAggregatorCollectionInterface;
 use Druid\Query\Entity\AbstractAggregation;
 use JMS\Serializer\Annotation as Serializer;
 
@@ -40,6 +41,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Class GroupBy
  *
  * @package Druid\Query\Entity\Aggregation
+ * @codeCoverageIgnore
  */
 final class GroupBy extends AbstractAggregation implements GroupByInterface
 {
@@ -69,6 +71,11 @@ final class GroupBy extends AbstractAggregation implements GroupByInterface
      * @var IntervalCollectionInterface
      */
     private $intervals;
+
+    /**
+     * @var PostAggregatorCollectionInterface
+     */
+    private $postAggregations;
 
     /**
      * @inheritdoc
@@ -161,6 +168,25 @@ final class GroupBy extends AbstractAggregation implements GroupByInterface
     public function setIntervals(IntervalCollectionInterface $intervals)
     {
         $this->intervals = $intervals;
+
+        return $this;
+    }
+
+    /**
+     * @return PostAggregatorCollectionInterface
+     */
+    public function getPostAggregations()
+    {
+        return $this->postAggregations;
+    }
+
+    /**
+     * @param PostAggregatorCollectionInterface $postAggregations
+     * @return GroupBy
+     */
+    public function setPostAggregations($postAggregations)
+    {
+        $this->postAggregations = $postAggregations;
 
         return $this;
     }

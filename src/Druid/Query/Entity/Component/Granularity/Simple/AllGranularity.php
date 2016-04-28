@@ -27,3 +27,10 @@
  */
 
 namespace Druid\Query\Entity\Component\Granularity\Simple;
+
+use Druid\Query\Entity\Component\Granularity\AbstractGranularity;
+
+class AllGranularity extends AbstractGranularity
+{
+    static protected $granularity = 'all';
+}
