@@ -28,9 +28,7 @@
 namespace Druid\HttpClient\Factory;
 
 use Druid\Config\Config;
-use Druid\Exceptions\DruidDriverHttpClientCreationException;
 use Druid\HttpClient\Common\ClientInterface;
-use Druid\HttpClient\Curl\DruidCurlHttpClient;
 use Druid\HttpClient\Guzzle\DruidGuzzleHttpClient;
 
 /**
@@ -64,21 +62,9 @@ class DruidHttpClientFactory
      * Get Druid Http Client
      *
      * @return ClientInterface
-     *
-     * @throws DruidDriverHttpClientCreationException
      */
     public function getDruidHttpClient()
     {
-        if (class_exists('GuzzleHttp\Client')) {
-            return new DruidGuzzleHttpClient($this->config);
-        }
-
-        if (extension_loaded('curl')) {
-            return new DruidCurlHttpClient($this->config);
-        }
-
-        throw new DruidDriverHttpClientCreationException(
-            'Unable to create Druid HTTP client, only CURL and Guzzle Clients are supported.'
-        );
+        return new DruidGuzzleHttpClient($this->config);
     }
 }
