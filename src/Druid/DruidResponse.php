@@ -27,13 +27,59 @@
  */
 namespace Druid;
 
+use Druid\Common\RecordFactoryInterface;
+
 /**
  * Class DruidRequest
  *
  * @package Druid
  * @author  Tomas Mihalicka <tmihalicka@pixelfederation.com>
  */
-class DruidResponse
+class DruidResponse implements \Iterator
 {
+    private $key;
+    private $items;
+    private $cache;
+    private $factory;
 
+    /**
+     * GroupByResponse constructor.
+     * @param array $items
+     * @param RecordFactoryInterface $factory
+     */
+    public function __construct(array $items, RecordFactoryInterface $factory)
+    {
+        $this->key = 0;
+        $this->items = $items;
+        $this->factory = $factory;
+    }
+
+    public function current()
+    {
+        if (!isset($this->cache[$this->key])) {
+            $this->factory->create($this->items[$this->key]);
+        }
+
+        return $this->cache[$this->key];
+    }
+
+    public function next()
+    {
+        $this->key++;
+    }
+
+    public function key()
+    {
+        return $this->key;
+    }
+
+    public function valid()
+    {
+        return isset($this->items[$this->key]);
+    }
+
+    public function rewind()
+    {
+        $this->key = 0;
+    }
 }

@@ -58,7 +58,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function getQueryType()
     {
-        return self::$queryType;
+        return static::$queryType;
     }
 
     /**

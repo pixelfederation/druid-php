@@ -52,7 +52,7 @@ class DruidRequest
      * DruidRequest constructor.
      *
      * @param QueryInterface $query
-     * @param Serializer     $serializer
+     * @param Serializer $serializer
      */
     public function __construct(QueryInterface $query, Serializer $serializer)
     {
@@ -62,15 +62,27 @@ class DruidRequest
 
     /**
      * @return QueryInterface
-     * @covers DruidRequest::getQuery
      */
     public function getQuery()
     {
         return $this->query;
     }
 
+    /**
+     * Convert injected query to to json string
+     *
+     * @return string
+     */
     public function toJson()
     {
         return $this->serializer->serialize($this->query, 'json');
+    }
+
+    /**
+     * @return string
+     */
+    public function getQueryType()
+    {
+        return $this->query->getQueryType();
     }
 }

@@ -46,6 +46,7 @@ class DruidClientTest extends \PHPUnit_Framework_TestCase
     public function testSendRequest()
     {
         $mock = $this->getMockBuilder('Druid\HttpClient\Common\ClientInterface')
+            ->disableOriginalConstructor()
             ->setMethods(['closeConnection', 'send'])
             ->getMock();
 
@@ -53,7 +54,9 @@ class DruidClientTest extends \PHPUnit_Framework_TestCase
         $client = new DruidClient($mock);
 
         $request = $this->getMockBuilder(DruidRequest::class)->disableOriginalConstructor()->getMock();
-        $mock->expects($this->once())->method('send')->willReturn($this->getMock(DruidResponse::class));
+
+        $response = $this->getMockBuilder(DruidResponse::class)->disableOriginalConstructor()->getMock();
+        $mock->expects($this->once())->method('send')->willReturn($response);
 
         $response = $client->sendRequest($request);
         $this->assertInstanceOf(DruidResponse::class, $response);

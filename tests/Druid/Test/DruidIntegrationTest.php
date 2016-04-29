@@ -9,6 +9,7 @@ namespace Druid\Test;
 
 use Druid\Druid;
 use Druid\DruidRequest;
+use Druid\DruidResponse;
 use Druid\Factory\DruidRequestFactory;
 use Druid\Query\Entity\Aggregation\GroupBy;
 use Druid\Query\Entity\Component\Aggregation;
@@ -47,15 +48,16 @@ class DruidIntegrationTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $druid->getClient()->sendRequest($request);
+        $response = $druid->getClient()->sendRequest($request);
+        $this->assertInstanceOf(DruidResponse::class, $response);
     }
 
     public function requestProvider()
     {
         return [
-//            'basic' => [$this->createBasicRequest()],
+            'basic' => [$this->createBasicRequest()],
 //            'advance' => [$this->createAdvanceRequest()],
-            'hard' => [$this->createHardRequest()],
+//            'hard' => [$this->createHardRequest()],
         ];
     }
 

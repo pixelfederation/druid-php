@@ -29,6 +29,7 @@ namespace Druid\HttpClient\Guzzle;
 
 use Druid\Config\Config;
 use Druid\DruidRequest;
+use Druid\Factory\ResponseFactory;
 use Druid\HttpClient\AbstractDruidClient;
 use GuzzleHttp\Client as GuzzleClient;
 
@@ -46,18 +47,23 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
      * @var GuzzleClient
      */
     private $guzzleClient;
+    /**
+     * @var
+     */
+    private $responseFactory;
 
     /**
      * DruidGuzzleHttpClient constructor.
      *
      * @param Config $config
+     * @param ResponseFactory $responseFactory
      * @param GuzzleClient|null $guzzleClient
      */
-    public function __construct(Config $config, GuzzleClient $guzzleClient = null)
+    public function __construct(Config $config, ResponseFactory $responseFactory, GuzzleClient $guzzleClient = null)
     {
-        $this->guzzleClient = $guzzleClient ?: new GuzzleClient(['base_uri' => (string)$config]);
-
         parent::__construct($config);
+        $this->guzzleClient = $guzzleClient ?: new GuzzleClient(['base_uri' => (string)$config]);
+        $this->responseFactory = $responseFactory;
     }
 
     /**
@@ -74,7 +80,12 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
             ];
         }
 
-        return $this->guzzleClient->post('', $options);
+        $guzzleResponse = $this->guzzleClient->post('', $options);
+        $items = $guzzleResponse->getBody();
+
+        return $this->responseFactory->create(json_decode($items), $druidRequest->getQueryType());
+
+
     }
 
     /**

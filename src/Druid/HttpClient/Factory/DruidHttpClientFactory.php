@@ -28,6 +28,7 @@
 namespace Druid\HttpClient\Factory;
 
 use Druid\Config\Config;
+use Druid\Factory\ResponseFactory;
 use Druid\HttpClient\Common\ClientInterface;
 use Druid\HttpClient\Guzzle\DruidGuzzleHttpClient;
 
@@ -65,6 +66,6 @@ class DruidHttpClientFactory
      */
     public function getDruidHttpClient()
     {
-        return new DruidGuzzleHttpClient($this->config);
+        return new DruidGuzzleHttpClient($this->config, new ResponseFactory());
     }
 }

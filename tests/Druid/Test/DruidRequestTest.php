@@ -37,4 +37,15 @@ class DruidRequestTest extends \PHPUnit_Framework_TestCase
         $request = new DruidRequest($query, $serializer);
         $this->assertSame($query, $request->getQuery());
     }
+
+    public function testGetQueryType()
+    {
+        $query = $this->getMock(QueryInterface::class);
+        $query->expects($this->once())->method('getQueryType')->willReturn('groupBy');
+
+        $serializer = $this->getMockBuilder(Serializer::class)->disableOriginalConstructor()->getMock();
+
+        $request = new DruidRequest($query, $serializer);
+        $this->assertSame('groupBy', $request->getQueryType());
+    }
 }
