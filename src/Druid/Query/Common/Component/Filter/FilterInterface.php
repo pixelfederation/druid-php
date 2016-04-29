@@ -36,6 +36,7 @@ use Druid\Query\Common\ComponentInterface;
  */
 interface FilterInterface extends ComponentInterface
 {
+    const SELECTOR_TYPE = 'selector';
     /**
      * @return string
      */

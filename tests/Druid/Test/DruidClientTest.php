@@ -29,7 +29,8 @@ class DruidClientTest extends \PHPUnit_Framework_TestCase
         $mock->expects($this->once())
             ->method('closeConnection');
 
-        new DruidClient($mock);
+        $client = new DruidClient($mock);
+        $client = null;
     }
 
     public function testGetHttpClient()

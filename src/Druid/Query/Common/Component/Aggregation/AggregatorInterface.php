@@ -13,5 +13,7 @@ namespace Druid\Query\Common\Component\Aggregation;
  */
 interface AggregatorInterface
 {
+    const FILTERED_TYPE = 'filtered';
+
     public function getType();
 }

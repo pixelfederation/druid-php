@@ -31,7 +31,7 @@ class FilteredAggregation extends AbstractAggregator implements FilteredAggregat
      */
     public function __construct(FilterInterface $filter, AggregatorInterface $aggregator)
     {
-        parent::__construct('filtered');
+        parent::__construct(self::FILTERED_TYPE);
 
         $this->filter = $filter;
         $this->aggregator = $aggregator;

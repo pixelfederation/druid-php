@@ -32,8 +32,7 @@ class SelectorFilter extends AbstractFilter implements SelectorFilterInterface
      */
     public function __construct($dimension, $value)
     {
-        /* @todo selector do const */
-        parent::__construct('selector');
+        parent::__construct(self::SELECTOR_TYPE);
         $this->dimension = $dimension;
         $this->value = $value;
     }
