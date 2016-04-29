@@ -29,6 +29,10 @@ namespace Druid;
 
 use Druid\HttpClient\Common\ClientInterface;
 use Druid\HttpClient\Factory\DruidHttpClientFactory;
+use Druid\Query\Common\AggregationInterface;
+use Druid\Query\Common\QueryInterface;
+use Druid\QueryBuilder\AbstractQueryBuilder;
+use Druid\QueryBuilder\GroupByQueryBuilder;
 
 /**
  * Class Druid
@@ -85,5 +89,21 @@ final class Druid
     private function getDruidHttpClient(array $config)
     {
         return (new DruidHttpClientFactory($config))->getDruidHttpClient();
+    }
+
+    /**
+     * @param string $type
+     * @return AbstractQueryBuilder
+     */
+    public function createQueryBuilder($type)
+    {
+        switch ($type) {
+            case AggregationInterface::GROUP_BY_TYPE:
+                return new GroupByQueryBuilder();
+        }
+
+        throw new \RuntimeException(
+            sprintf('Invalid query builder type %s', $type)
+        );
     }
 }

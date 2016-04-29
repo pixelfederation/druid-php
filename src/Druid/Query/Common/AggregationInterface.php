@@ -37,6 +37,10 @@ use Druid\Query\Common\Component\Granularity\GranularityInterface;
  */
 interface AggregationInterface extends QueryInterface
 {
+    const GROUP_BY_TYPE = 'groupBy';
+    const TIMESERIES_TYPE = 'timeseries';
+    const TOP_N_TYPE = 'topN';
+
     /**
      * Get Granularity
      *

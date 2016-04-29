@@ -45,7 +45,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 final class GroupBy extends AbstractAggregation implements GroupByInterface
 {
-    protected static $queryType = 'groupBy';
+    protected static $queryType = self::GROUP_BY_TYPE;
 
     /**
      * @var DimensionSpecCollectionInterface
