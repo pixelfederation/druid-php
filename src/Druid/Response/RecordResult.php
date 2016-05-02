@@ -50,4 +50,12 @@ class RecordResult
     {
         return isset($this->data[$name]);
     }
+
+    /**
+     * @return array
+     */
+    public function asArray()
+    {
+        return $this->data;
+    }
 }
