@@ -57,7 +57,7 @@ class DruidResponse implements \Iterator
     public function current()
     {
         if (!isset($this->cache[$this->key])) {
-            $this->factory->create($this->items[$this->key]);
+            $this->cache[$this->key] = $this->factory->create($this->items[$this->key]);
         }
 
         return $this->cache[$this->key];
@@ -75,7 +75,7 @@ class DruidResponse implements \Iterator
 
     public function valid()
     {
-        return isset($this->items[$this->key]);
+        return array_key_exists($this->key, $this->items);
     }
 
     public function rewind()
