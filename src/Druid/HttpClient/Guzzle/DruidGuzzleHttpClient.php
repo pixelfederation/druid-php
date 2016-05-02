@@ -83,7 +83,7 @@ final class DruidGuzzleHttpClient extends AbstractDruidClient
         $guzzleResponse = $this->guzzleClient->post('', $options);
         $items = $guzzleResponse->getBody();
 
-        return $this->responseFactory->create(json_decode($items), $druidRequest->getQueryType());
+        return $this->responseFactory->create(json_decode($items, true), $druidRequest->getQueryType());
 
 
     }
