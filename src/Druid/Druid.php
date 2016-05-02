@@ -27,6 +27,7 @@
  */
 namespace Druid;
 
+use Druid\Factory\DruidRequestFactory;
 use Druid\HttpClient\Common\ClientInterface;
 use Druid\HttpClient\Factory\DruidHttpClientFactory;
 use Druid\Query\Common\AggregationInterface;
@@ -105,5 +106,15 @@ final class Druid
         throw new \RuntimeException(
             sprintf('Invalid query builder type %s', $type)
         );
+    }
+
+    /**
+     * @param QueryInterface $query
+     * @return DruidRequest
+     */
+    public function createRequest(QueryInterface $query)
+    {
+        $factory = new DruidRequestFactory();
+        return $factory->create($query);
     }
 }

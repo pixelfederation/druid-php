@@ -9,7 +9,9 @@ namespace Druid\Test;
 
 use Druid\Druid;
 use Druid\DruidClient;
+use Druid\DruidRequest;
 use Druid\Query\Common\AggregationInterface;
+use Druid\Query\Common\QueryInterface;
 use Druid\QueryBuilder\GroupByQueryBuilder;
 
 /**
@@ -42,5 +44,17 @@ class DruidTest extends \PHPUnit_Framework_TestCase
     {
         $druid = new Druid([]);
         $druid->createQueryBuilder('non_existing_type');
+    }
+
+    public function testCreateRequest()
+    {
+        $druid = new Druid([]);
+
+        $query = $this->getMock(QueryInterface::class);
+
+        /** @var QueryInterface $query */
+        $request = $druid->createRequest($query);
+
+        $this->assertInstanceOf(DruidRequest::class, $request);
     }
 }
