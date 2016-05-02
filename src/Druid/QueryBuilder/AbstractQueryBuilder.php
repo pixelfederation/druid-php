@@ -132,7 +132,7 @@ abstract class AbstractQueryBuilder
 
     /**
      * @param string $type
-     * @return mixed
+     * @return array
      */
     public function get($type)
     {
