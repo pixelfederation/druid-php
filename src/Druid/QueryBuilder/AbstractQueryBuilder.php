@@ -75,6 +75,7 @@ abstract class AbstractQueryBuilder
      */
     public function setGranularity(GranularityInterface $granularity)
     {
+        $this->remove(self::GRANULARITY_PART);
         $this->add(self::GRANULARITY_PART, $granularity);
 
         return $this;
@@ -86,6 +87,7 @@ abstract class AbstractQueryBuilder
      */
     public function setDataSource($dataSource)
     {
+        $this->remove(self::DATA_SOURCE_PART);
         $this->add(self::DATA_SOURCE_PART, $this->component->dataSource($dataSource));
 
         return $this;
@@ -156,6 +158,15 @@ abstract class AbstractQueryBuilder
         return array_key_exists($type, $this->parts);
     }
 
+    /**
+     * @param string $type
+     */
+    public function remove($type)
+    {
+        if ($this->has($type)) {
+            unset($this->parts[$type]);
+        }
+    }
 
     /**
      * @return QueryInterface
