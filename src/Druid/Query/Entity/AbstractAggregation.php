@@ -41,8 +41,7 @@ abstract class AbstractAggregation extends AbstractQuery implements AggregationI
     /**
      * Granularity
      *
-     * @var                       GranularityInterface
-     * @Serializer\Type("string")
+     * @var GranularityInterface
      */
     protected $granularity;
 

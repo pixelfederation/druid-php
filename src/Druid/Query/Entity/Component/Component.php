@@ -8,7 +8,7 @@
 namespace Druid\Query\Entity\Component;
 
 use Druid\Query\Entity\Component\DataSource\DataSource;
-use Druid\Query\Entity\Component\Granularity\Simple\DayGranularity;
+use Druid\Query\Entity\Component\Granularity\PeriodGranularity;
 use Druid\Query\Entity\Component\PostAggregation;
 use Druid\Query\Entity\Component\Filter;
 use Druid\Query\Entity\Component\Aggregation;
@@ -91,8 +91,22 @@ class Component
         return new DataSource($dataSource);
     }
 
+    /**
+     * @return PeriodGranularity
+     */
     public function dayGranularity()
     {
-        return new DayGranularity();
+        return $this->periodGranularity('P1D');
+    }
+
+    /**
+     * @param $period
+     * @param string $timeZone
+     * @param string $origin
+     * @return PeriodGranularity
+     */
+    public function periodGranularity($period, $timeZone = null, $origin = null)
+    {
+        return new PeriodGranularity($period, $timeZone, $origin);
     }
 }
