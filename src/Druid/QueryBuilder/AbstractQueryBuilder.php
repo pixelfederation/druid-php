@@ -103,12 +103,21 @@ abstract class AbstractQueryBuilder
     }
 
     /**
-     * @param string $dimension
+     * @param string $name
+     * @param string $outputName
      * @return $this
+     * @internal param string $dimension
      */
-    public function addDimension($dimension)
+    public function addDimension($name, $outputName = null)
     {
-        $this->add(self::DIMENSION_PART, new Component\DimensionSpec\DimensionSpec($dimension));
+        $this->add(
+            self::DIMENSION_PART,
+            new Component\DimensionSpec\DimensionSpec(
+                $name,
+                Component\DimensionSpec\DimensionSpec::DEFAULT_TYPE_NAME,
+                $outputName
+            )
+        );
 
         return $this;
     }
