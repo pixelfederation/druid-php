@@ -106,7 +106,6 @@ abstract class AbstractQueryBuilder
      * @param string $name
      * @param string $outputName
      * @return $this
-     * @internal param string $dimension
      */
     public function addDimension($name, $outputName = null)
     {
