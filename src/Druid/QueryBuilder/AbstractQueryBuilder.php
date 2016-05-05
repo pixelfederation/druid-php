@@ -151,7 +151,11 @@ abstract class AbstractQueryBuilder
      */
     public function get($type)
     {
-        return $this->parts[$type];
+        if ($this->has($type)) {
+            return $this->parts[$type];
+        }
+        
+        return [];
     }
 
     /**

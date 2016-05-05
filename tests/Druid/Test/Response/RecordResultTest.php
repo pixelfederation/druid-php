@@ -28,4 +28,10 @@ class RecordResultTest extends \PHPUnit_Framework_TestCase
         $record = new RecordResult([]);
         $this->assertEquals('default', $record->get('key', 'default'));
     }
+
+    public function testAsArray()
+    {
+        $record = new RecordResult([]);
+        $this->assertTrue(is_array($record->asArray()));
+    }
 }

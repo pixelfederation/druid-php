@@ -17,6 +17,7 @@ use Druid\QueryBuilder\GroupByQueryBuilder;
  * Class GroupByQueryBuilderTest
  * @package Druid\Test\QueryBuilder
  * @covers \Druid\QueryBuilder\GroupByQueryBuilder
+ * @covers \Druid\QueryBuilder\AbstractQueryBuilder
  */
 class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,5 +45,20 @@ class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
         $dataSource = $queryBuilder->get(AbstractQueryBuilder::DATA_SOURCE_PART)[0];
 
         $this->assertEquals('datasource', $dataSource->getDataSource());
+    }
+
+    public function testRemove()
+    {
+        $queryBuilder = new GroupByQueryBuilder();
+        $queryBuilder
+            ->setDataSource('datasource');
+
+        $this->assertInstanceOf(
+            DataSourceInterface::class,
+            $queryBuilder->get(AbstractQueryBuilder::DATA_SOURCE_PART)[0]
+        );
+
+        $queryBuilder->remove(AbstractQueryBuilder::DATA_SOURCE_PART);
+        $this->assertEmpty($queryBuilder->get(AbstractQueryBuilder::DATA_SOURCE_PART));
     }
 }
