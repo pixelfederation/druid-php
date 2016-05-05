@@ -43,7 +43,12 @@ abstract class AbstractQueryBuilder
     public function __construct()
     {
         $this->parts = [];
-        $this->component = new Component\Component();
+
+        $factories = [];
+        $factories[] = new Component\Factory\AggregatorComponentFactory();
+        $factories[] = new Component\Factory\PostAggregatorComponentFactory();
+
+        $this->component = new Component\Component(new Component\Factory\ComponentFactoryManager($factories));
     }
 
     /**

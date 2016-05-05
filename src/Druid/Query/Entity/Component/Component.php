@@ -8,6 +8,9 @@
 namespace Druid\Query\Entity\Component;
 
 use Druid\Query\Entity\Component\DataSource\DataSource;
+use Druid\Query\Entity\Component\Factory\AggregatorComponentFactory;
+use Druid\Query\Entity\Component\Factory\ComponentFactoryManager;
+use Druid\Query\Entity\Component\Factory\PostAggregatorComponentFactory;
 use Druid\Query\Entity\Component\Granularity\PeriodGranularity;
 use Druid\Query\Entity\Component\PostAggregation;
 use Druid\Query\Entity\Component\Filter;
@@ -22,18 +25,48 @@ class Component
 {
 
     /**
+     * @var ComponentFactoryManager
+     */
+    private $factories;
+
+    /**
+     * Component constructor.
+     * @param ComponentFactoryManager $factories
+     */
+    public function __construct(ComponentFactoryManager $factories)
+    {
+        $this->factories = $factories;
+    }
+
+
+    /**
      * @param array $filter
      * @param array $aggregator
      * @return Aggregation\FilteredAggregation
      */
     public function filteredAggregator(array $filter, array $aggregator)
     {
-        $aggregator = new Aggregation\FilteredAggregation(
-            new Filter\SelectorFilter($filter[0], $filter[1]),
-            new Aggregation\StandardAggregator($aggregator[0], $aggregator[1], $aggregator[2])
-        );
+        $factory = $this->factories
+            ->getFactory(AggregatorComponentFactory::TYPE_AGG);
 
-        return $aggregator;
+        return $factory
+            ->create(
+                'filtered',
+                [
+                    $this->selectorFilter($filter[0], $filter[1]),
+                    $this->standardAggregator($aggregator[0], $aggregator[1], $aggregator[2])
+                ]
+            );
+    }
+
+    /**
+     * @param string $dimension
+     * @param string $value
+     * @return Filter\SelectorFilter
+     */
+    public function selectorFilter($dimension, $value)
+    {
+        return new Filter\SelectorFilter($dimension, $value);
     }
 
     /**
@@ -44,7 +77,9 @@ class Component
      */
     public function standardAggregator($type, $name, $fieldName)
     {
-        return new Aggregation\StandardAggregator($type, $name, $fieldName);
+        return $this->factories
+            ->getFactory(AggregatorComponentFactory::TYPE_AGG)
+            ->create('standard', [$type, $name, $fieldName]);
     }
 
     /**
@@ -55,11 +90,9 @@ class Component
      */
     public function arithmeticPostAggregator($name, $function, array $fields)
     {
-        return new PostAggregation\ArithmeticPostAggregator(
-            $name,
-            $function,
-            new PostAggregation\PostAggregatorCollection($fields)
-        );
+        return $this->factories
+            ->getFactory(PostAggregatorComponentFactory::TYPE_POST_AGG)
+            ->create('arithmetic', [$name, $function, new PostAggregation\PostAggregatorCollection($fields)]);
     }
 
     /**
@@ -69,7 +102,9 @@ class Component
      */
     public function fieldAccessPostAggregator($name, $fieldName)
     {
-        return new PostAggregation\FieldAccessPostAggregator($name, $fieldName);
+        return $this->factories
+            ->getFactory(PostAggregatorComponentFactory::TYPE_POST_AGG)
+            ->create('fieldAccess', [$name, $fieldName]);
     }
 
     /**
@@ -79,7 +114,9 @@ class Component
      */
     public function constantPostAggregator($name, $value)
     {
-        return new PostAggregation\ConstantPostAggregator($name, $value);
+        return $this->factories
+            ->getFactory(PostAggregatorComponentFactory::TYPE_POST_AGG)
+            ->create('constant', [$name, $value]);
     }
 
     /**
