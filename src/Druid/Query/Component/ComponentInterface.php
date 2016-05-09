@@ -8,13 +8,10 @@
 namespace Druid\Query\Component;
 
 /**
- * Interface NamedComponentInterface
+ * Interface ComponentInterface
  * @package Druid\Query\Component
  */
-interface NamedComponentInterface
+interface ComponentInterface
 {
-    /**
-     * @return string
-     */
-    public function getName();
+
 }

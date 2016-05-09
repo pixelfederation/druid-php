@@ -7,10 +7,14 @@
 
 namespace Druid\Query\Component;
 
-interface TypedComponentInterface
+/**
+ * Interface NamedComponentInterface
+ * @package Druid\Query\Component
+ */
+interface NamedInterface
 {
     /**
      * @return string
      */
-    public function getType();
+    public function getName();
 }
