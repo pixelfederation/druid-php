@@ -5,27 +5,26 @@
  * @license   Internal use only
  */
 
-namespace Druid\Query\Component\DataSource;
+namespace Druid\Query\Component\Aggregator;
 
 use Druid\Query\Component\AbstractTypedComponent;
-use Druid\Query\Component\DataSourceInterface;
-use Druid\Query\Component\NamedInterface;
+use Druid\Query\Component\AggregatorInterface;
 
-class TableDataSource extends AbstractTypedComponent implements DataSourceInterface, NamedInterface
+/**
+ * Class CountAggregator
+ * @package Druid\Query\Component\Aggregator
+ */
+class CountAggregator extends AbstractTypedComponent implements AggregatorInterface
 {
-    /**
-     * @var string
-     */
     private $name;
 
     /**
-     * Table constructor.
-     * @param string $name
+     * CountAggregator constructor.
+     * @param $name
      */
     public function __construct($name)
     {
-        parent::__construct(self::TYPE_TABLE);
-
+        parent::__construct(self::TYPE_COUNT);
         $this->name = $name;
     }
 

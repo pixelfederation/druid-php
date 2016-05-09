@@ -5,9 +5,7 @@
  * @license   Internal use only
  */
 
-namespace Druid;
-
-use Druid\Driver\DriverConnectionInterface;
+namespace Druid\Driver;
 
 /**
  * Interface DriverInterface
@@ -16,7 +14,8 @@ use Druid\Driver\DriverConnectionInterface;
 interface DriverInterface
 {
     /**
+     * @param array $params
      * @return DriverConnectionInterface
      */
-    public function connect();
+    public function connect(array $params);
 }

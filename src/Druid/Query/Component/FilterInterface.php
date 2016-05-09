@@ -8,10 +8,10 @@
 namespace Druid\Query\Component;
 
 /**
- * Interface DataSourceInterface
+ * Interface FilterInterface
  * @package Druid\Query\Component
  */
-interface DataSourceInterface extends TypedInterface, ComponentInterface
+interface FilterInterface
 {
-    const TYPE_TABLE = 'table';
+
 }

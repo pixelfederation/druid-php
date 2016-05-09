@@ -9,7 +9,7 @@ namespace Druid\Tests;
 
 use Druid\Connection;
 use Druid\Driver\DriverConnectionInterface;
-use Druid\DriverInterface;
+use Druid\Driver\DriverInterface;
 use Druid\Query\QueryInterface;
 
 /**
@@ -25,9 +25,11 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $driverConnectionMock = $this->getMockBuilder(DriverConnectionInterface::class)->setMethods(['send'])->getMock();
         $driverConnectionMock->expects($this->once())->method('send')->willReturn(true);
 
-        $driverMock->expects($this->once())->method('connect')->willReturn($driverConnectionMock);
+        $driverMock->expects($this->once())->method('connect')
+            ->with(['base_uri' => 'http://localhost'])
+            ->willReturn($driverConnectionMock);
 
-        $connection = new Connection($driverMock);
+        $connection = new Connection($driverMock, ['base_uri' => 'http://localhost']);
 
         $queryMock = $this->getMock(QueryInterface::class);
         $result = $connection->send($queryMock);

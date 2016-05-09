@@ -8,10 +8,11 @@
 namespace Druid\Query\Component;
 
 /**
- * Interface DataSourceInterface
+ * Interface LimitSpecInterface
  * @package Druid\Query\Component
  */
-interface DataSourceInterface extends TypedInterface, ComponentInterface
+interface LimitSpecInterface extends TypedInterface
 {
-    const TYPE_TABLE = 'table';
+
+    const TYPE_DEFAULT = 'default';
 }

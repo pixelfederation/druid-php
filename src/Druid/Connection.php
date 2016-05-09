@@ -8,6 +8,7 @@
 namespace Druid;
 
 use Druid\Driver\DriverConnectionInterface;
+use Druid\Driver\DriverInterface;
 use Druid\Query\QueryInterface;
 
 /**
@@ -27,12 +28,19 @@ class Connection implements DriverConnectionInterface
     private $connection;
 
     /**
+     * @var array
+     */
+    private $params;
+
+    /**
      * Connection constructor.
      * @param DriverInterface $driver
+     * @param array $params
      */
-    public function __construct(DriverInterface $driver)
+    public function __construct(DriverInterface $driver, array $params)
     {
         $this->driver = $driver;
+        $this->params = $params;
     }
 
     /**
@@ -40,7 +48,7 @@ class Connection implements DriverConnectionInterface
      */
     private function connect()
     {
-        $this->connection = $this->driver->connect();
+        $this->connection = $this->driver->connect($this->params);
         return $this->connection;
     }
 

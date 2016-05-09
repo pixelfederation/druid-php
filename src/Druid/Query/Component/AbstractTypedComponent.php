@@ -5,17 +5,14 @@
  * @license   Internal use only
  */
 
-namespace Druid\Query\Component\LimitSpec;
-
-use Druid\Query\Component\TypedInterface;
+namespace Druid\Query\Component;
 
 /**
- * Class AbstractLimitSpec
- * @package Druid\Query\Component\LimitSpec
+ * Class AbstractTypedComponent
+ * @package Druid\Query\Component
  */
-class AbstractLimitSpec
+class AbstractTypedComponent
 {
-    const TYPE_DEFAULT = 'default';
 
     /**
      * @var string
@@ -23,7 +20,7 @@ class AbstractLimitSpec
     private $type;
 
     /**
-     * AbstractLimitSpec constructor.
+     * AbstractTypedComponent constructor.
      * @param string $type
      */
     public function __construct($type)

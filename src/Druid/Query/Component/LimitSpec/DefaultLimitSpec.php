@@ -7,9 +7,14 @@
 
 namespace Druid\Query\Component\LimitSpec;
 
-use Druid\Query\Component\TypedInterface;
+use Druid\Query\Component\AbstractTypedComponent;
+use Druid\Query\Component\LimitSpecInterface;
 
-class DefaultLimitSpec extends AbstractLimitSpec implements TypedInterface
+/**
+ * Class DefaultLimitSpec
+ * @package Druid\Query\Component\LimitSpec
+ */
+class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
 {
 
     /**

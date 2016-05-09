@@ -17,7 +17,16 @@ class DriverTest extends \PHPUnit_Framework_TestCase
     public function testConnect()
     {
         $driver = new Driver();
-        $connection = $driver->connect();
+        $connection = $driver->connect(['base_uri' => 'http://localhost']);
         $this->assertInstanceOf(Connection::class, $connection);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testFailureConnect()
+    {
+        $driver = new Driver();
+        $driver->connect(['base_uri' => '']);
     }
 }

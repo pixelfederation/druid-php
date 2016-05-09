@@ -8,10 +8,10 @@
 namespace Druid\Query\Component;
 
 /**
- * Interface DataSourceInterface
+ * Interface GranularityInterface
  * @package Druid\Query\Component
  */
-interface DataSourceInterface extends TypedInterface, ComponentInterface
+interface GranularityInterface extends TypedInterface, ComponentInterface
 {
-    const TYPE_TABLE = 'table';
+    const TYPE_PERIOD = 'period';
 }

@@ -7,16 +7,28 @@
 
 namespace Druid\Driver\Guzzle;
 
-use Druid\DriverInterface;
+use Druid\Driver\DriverInterface;
 use GuzzleHttp\Client;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 
 class Driver implements DriverInterface
 {
-    public function connect()
+    /**
+     * @param array $params
+     * @return Connection
+     */
+    public function connect(array $params)
     {
-        $serializer = SerializerBuilder::create()->build();
-        return new Connection(new Client(), $serializer);
-    }
+        if (!isset($params['base_uri']) || empty($params['base_uri'])) {
+            throw new \InvalidArgumentException(
+                sprintf('Required param %s missing', 'base_uri')
+            );
+        }
 
+        $serializer = SerializerBuilder::create()
+            ->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy())
+            ->build();
+        return new Connection(new Client($params), $serializer);
+    }
 }

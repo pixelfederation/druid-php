@@ -7,13 +7,14 @@
 
 namespace Druid\Query\Component\DimensionSpec;
 
-use Druid\Query\Component\TypedInterface;
+use Druid\Query\Component\AbstractTypedComponent;
+use Druid\Query\Component\DimensionSpecInterface;
 
 /**
  * Class DefaultDimension
  * @package Druid\Query\Component\Dimension
  */
-class DefaultDimensionSpec extends AbstractDimensionSpec implements TypedInterface
+class DefaultDimensionSpec extends AbstractTypedComponent implements DimensionSpecInterface
 {
     /**
      * @var string

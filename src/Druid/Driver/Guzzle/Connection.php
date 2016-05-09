@@ -41,6 +41,7 @@ class Connection implements DriverConnectionInterface
     public function send(QueryInterface $query)
     {
         $body = $this->serializer->serialize($query, 'json');
-        return $this->guzzle->post('/', ['body' => $body]);
+        var_dump($body);
+        return $this->guzzle->post('', ['body' => $body]);
     }
 }
