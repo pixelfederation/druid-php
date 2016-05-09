@@ -48,7 +48,9 @@ class Connection implements DriverConnectionInterface
      */
     private function connect()
     {
-        $this->connection = $this->driver->connect($this->params);
+        if (!$this->connection) {
+            $this->connection = $this->driver->connect($this->params);
+        }
         return $this->connection;
     }
 

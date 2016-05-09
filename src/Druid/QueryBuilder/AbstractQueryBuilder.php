@@ -9,6 +9,7 @@ namespace Druid\QueryBuilder;
 
 use Druid\Query\Component\ComponentInterface;
 use Druid\Query\Component\Factory\AggregatorFactory;
+use Druid\Query\Component\Factory\PostAggregatorFactory;
 use Druid\Query\QueryInterface;
 
 abstract class AbstractQueryBuilder
@@ -20,6 +21,11 @@ abstract class AbstractQueryBuilder
     public function aggregator()
     {
         return new AggregatorFactory();
+    }
+
+    public function postAggregator()
+    {
+        return new PostAggregatorFactory();
     }
 
     /**

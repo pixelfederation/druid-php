@@ -13,6 +13,7 @@ use Druid\Query\Component\DataSource\TableDataSource;
 use Druid\Query\Component\DimensionSpec\DefaultDimensionSpec;
 use Druid\Query\Component\Granularity\PeriodGranularity;
 use Druid\Query\Component\Interval\Interval;
+use Druid\Query\Component\PostAggregatorInterface;
 
 /**
  * Class GroupByQueryBuilder
@@ -39,9 +40,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
      */
     public function setDataSource($dataSource)
     {
-        $this->addComponent('dataSource', new TableDataSource($dataSource));
-
-        return $this;
+        return $this->addComponent('dataSource', new TableDataSource($dataSource));
     }
 
     /**
@@ -51,9 +50,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
      */
     public function setGranularity($period, $timeZone = 'UTC')
     {
-        $this->addComponent('granularity', new PeriodGranularity($period, $timeZone));
-
-        return $this;
+        return $this->addComponent('granularity', new PeriodGranularity($period, $timeZone));
     }
 
     /**
@@ -63,9 +60,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
      */
     public function addInterval(\DateTime $start, \DateTime $end)
     {
-        $this->addComponent('intervals', new Interval($start, $end));
-
-        return $this;
+        return $this->addComponent('intervals', new Interval($start, $end));
     }
 
     /**
@@ -74,9 +69,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
      */
     public function addAggregator(AggregatorInterface $aggregator)
     {
-        $this->addComponent('aggregations', $aggregator);
-
-        return $this;
+        return $this->addComponent('aggregations', $aggregator);
     }
 
     /**
@@ -86,9 +79,16 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
      */
     public function addDimension($dimension, $outputName)
     {
-        $this->addComponent('dimensions', new DefaultDimensionSpec($dimension, $outputName));
+        return $this->addComponent('dimensions', new DefaultDimensionSpec($dimension, $outputName));
+    }
 
-        return $this;
+    /**
+     * @param PostAggregatorInterface $postAggregator
+     * @return $this
+     */
+    public function addPostAggregator(PostAggregatorInterface $postAggregator)
+    {
+        return $this->addComponent('postAggregations', $postAggregator);
     }
 
     /**

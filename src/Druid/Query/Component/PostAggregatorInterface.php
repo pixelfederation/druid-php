@@ -11,7 +11,7 @@ namespace Druid\Query\Component;
  * Interface PostAggregatorInterface
  * @package Druid\Query\Component
  */
-interface PostAggregatorInterface extends TypedInterface
+interface PostAggregatorInterface extends TypedInterface, ComponentInterface
 {
     const TYPE_ARITHMETIC = 'arithmetic';
     const TYPE_FIELD_ACCESS = 'fieldAccess';
