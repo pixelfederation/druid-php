@@ -38,6 +38,4 @@ class ConstantPostAggregator extends AbstractTypedComponent implements PostAggre
         $this->name = $name;
         $this->value = $value;
     }
-
-
 }

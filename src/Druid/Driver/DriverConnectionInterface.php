@@ -17,7 +17,7 @@ interface DriverConnectionInterface
 {
     /**
      * @param QueryInterface $query
-     * @return 
+     * @return
      */
     public function send(QueryInterface $query);
 }

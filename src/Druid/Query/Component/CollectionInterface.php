@@ -7,7 +7,6 @@
 
 namespace Druid\Query\Component;
 
-
 interface CollectionInterface
 {
 

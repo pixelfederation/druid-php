@@ -17,5 +17,4 @@ interface QueryInterface
      * @return string
      */
     public function getQueryType();
-
 }

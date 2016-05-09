@@ -13,6 +13,7 @@ use Druid\Query\Component\PostAggregatorInterface;
 /**
  * Class ArithmeticPostAggregator
  * @package Druid\Query\Component\PostAggregator
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class ArithmeticPostAggregator extends AbstractTypedComponent implements PostAggregatorInterface
 {

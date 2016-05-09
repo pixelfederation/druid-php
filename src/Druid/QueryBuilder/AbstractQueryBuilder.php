@@ -56,5 +56,4 @@ abstract class AbstractQueryBuilder
      * @return QueryInterface
      */
     abstract public function getQuery();
-
 }
