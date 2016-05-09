@@ -8,12 +8,19 @@
 namespace Druid\QueryBuilder;
 
 use Druid\Query\Component\ComponentInterface;
+use Druid\Query\Component\Factory\AggregatorFactory;
 use Druid\Query\QueryInterface;
 
 abstract class AbstractQueryBuilder
 {
 
     protected $components = [];
+
+
+    public function aggregator()
+    {
+        return new AggregatorFactory();
+    }
 
     /**
      * @param string $componentName

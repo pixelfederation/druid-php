@@ -8,7 +8,9 @@
 namespace Druid\QueryBuilder;
 
 use Druid\Query\Aggregation\GroupBy;
+use Druid\Query\Component\AggregatorInterface;
 use Druid\Query\Component\DataSource\TableDataSource;
+use Druid\Query\Component\DimensionSpec\DefaultDimensionSpec;
 use Druid\Query\Component\Granularity\PeriodGranularity;
 use Druid\Query\Component\Interval\Interval;
 
@@ -62,6 +64,29 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
     public function addInterval(\DateTime $start, \DateTime $end)
     {
         $this->addComponent('intervals', new Interval($start, $end));
+
+        return $this;
+    }
+
+    /**
+     * @param AggregatorInterface $aggregator
+     * @return $this
+     */
+    public function addAggregator(AggregatorInterface $aggregator)
+    {
+        $this->addComponent('aggregations', $aggregator);
+
+        return $this;
+    }
+
+    /**
+     * @param string $dimension
+     * @param string $outputName
+     * @return $this
+     */
+    public function addDimension($dimension, $outputName)
+    {
+        $this->addComponent('dimensions', new DefaultDimensionSpec($dimension, $outputName));
 
         return $this;
     }

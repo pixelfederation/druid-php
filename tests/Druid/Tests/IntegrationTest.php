@@ -32,10 +32,12 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $queries->setDataSource('kpi_registrations_v1');
         $queries->setGranularity('P1D', 'UTC');
         $queries->addInterval(new \DateTime('2000-01-01'), new \DateTime());
+        
 
-        $queries->addComponent('aggregations', new CountAggregator('rows'));
-        $queries->addComponent('aggregations', new HyperUniqueAggregator('registrations', 'registrations'));
-        $queries->addComponent('dimensions', new DefaultDimensionSpec('project', 'project'));
+        $queries->addAggregator($queries->aggregator()->count('rows'));
+        $queries->addAggregator($queries->aggregator()->hyperUnique('registrations', 'registrations'));
+
+        $queries->addDimension('project', 'project');
 
         $query = new GroupBy();
         $query->setDataSource(new TableDataSource('kpi_registrations_v1'));
