@@ -7,7 +7,6 @@
 
 namespace Druid\Driver\Guzzle;
 
-use Druid\Driver\Record;
 use Druid\Driver\ResponseInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 
@@ -53,7 +52,8 @@ class Response implements ResponseInterface
                 if (isset($item['result'])) {
                     $record = array_merge($record, $item['result']);
                 }
-                return new Record($record);
+
+                return $record;
             }, $decodedRawBody);
         }
 
