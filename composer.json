@@ -1,11 +1,16 @@
 {
-  "name": "pixelfederation/druid",
-  "type": "package",
-  "license": "MIT",
+  "name": "pixelfederation/druid-php",
+  "license": "BSD-3-Clause",
+  "type": "library",
   "authors": [
     {
       "name": "Jozef Hrncar",
       "email": "jhrncar@pixelfederation.com"
+    },
+    {
+      "name": "Tomas Mihalicka",
+      "email": "tmihalicka@pixelfederation.com",
+      "homepage": "https://github.com/pixelfederation"
     }
   ],
   "minimum-stability": "stable",
