@@ -7,7 +7,6 @@
 
 namespace Druid\Tests\Driver\Guzzle;
 
-
 use Druid\Driver\Guzzle\Connection;
 use Druid\Driver\Guzzle\Driver;
 

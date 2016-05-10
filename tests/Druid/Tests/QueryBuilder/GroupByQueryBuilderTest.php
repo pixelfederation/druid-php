@@ -7,7 +7,6 @@
 
 namespace Druid\Tests\QueryBuilder;
 
-
 use Druid\Query\Component\ComponentInterface;
 use Druid\QueryBuilder\GroupByQueryBuilder;
 

@@ -7,8 +7,7 @@
 
 namespace Druid\Tests;
 
-
-use Druid\Connection;
+use Druid\Druid;
 use Druid\Driver\Guzzle\Driver;
 use Druid\Query\Aggregation\GroupBy;
 use Druid\Query\Component\Aggregator\CountAggregator;
@@ -27,7 +26,8 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
 
     public function testBasic()
     {
-        $connection = new Connection(new Driver(),
+        $connection = new Druid(
+            new Driver(),
             ['base_uri' => 'http://localhost:8084/druid/v2', 'proxy' => 'tcp://127.0.0.1:8080']
         );
 
@@ -53,29 +53,6 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
                 ]
             )
         );
-
-        $query = new GroupBy();
-        $query->setDataSource(new TableDataSource('kpi_registrations_v1'));
-        $query->setGranularity(new PeriodGranularity('P1D', 'UTC'));
-        $query->setIntervals([new Interval(new \DateTime('2000-01-01'), new \DateTime())]);
-        $query->setAggregations([
-            new CountAggregator('count_rows', 'event_count_metric'),
-            new DoubleSumAggregator('sum_rows', 'event_count_metric'),
-            new HyperUniqueAggregator('registrations', 'registrations')
-        ]);
-
-        $query->setDimensions([
-            new DefaultDimensionSpec('project', 'project')
-        ]);
-
-        $query->setPostAggregations([
-            new ArithmeticPostAggregator('average', '/', [
-                new FieldAccessPostAggregator('sum_rows', 'sum_rows'),
-                new FieldAccessPostAggregator('count_rows', 'count_rows')
-            ])
-        ]);
-
-        $this->assertEquals($query, $queries->getQuery());
 
         $connection->send($queries->getQuery());
     }

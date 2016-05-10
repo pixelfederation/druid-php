@@ -8,6 +8,7 @@
 namespace Druid\Driver\Guzzle;
 
 use Druid\Driver\DriverConnectionInterface;
+use Druid\Driver\ResponseInterface;
 use Druid\Query\QueryInterface;
 use GuzzleHttp\Client;
 use JMS\Serializer\SerializerInterface;
@@ -36,12 +37,12 @@ class Connection implements DriverConnectionInterface
 
     /**
      * @param QueryInterface $query
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
     public function send(QueryInterface $query)
     {
         $body = $this->serializer->serialize($query, 'json');
-        var_dump($body);
-        return $this->guzzle->post('', ['body' => $body]);
+        $response = $this->guzzle->post('', ['body' => $body]);
+        return new Response($response);
     }
 }
