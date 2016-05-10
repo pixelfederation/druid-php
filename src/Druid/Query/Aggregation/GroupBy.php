@@ -31,7 +31,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
     private $dataSource;
 
     /**
-     * @var DimensionSpecInterface[]
+     * @var array|DimensionSpecInterface[]
      */
     private $dimensions;
 
@@ -46,17 +46,17 @@ class GroupBy extends AbstractQuery implements QueryInterface
     private $granularity;
 
     /**
-     * @var AggregatorInterface[]
+     * @var array|AggregatorInterface[]
      */
     private $aggregations;
 
     /**
-     * @var PostAggregatorInterface[]
+     * @var array|PostAggregatorInterface[]
      */
     private $postAggregations;
 
     /**
-     * @var IntervalInterface[]
+     * @var array|IntervalInterface[]
      * @Serializer\Type("array<string>")
      */
     private $intervals;
@@ -76,14 +76,17 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param DataSourceInterface $dataSource
+     * @return GroupBy
      */
     public function setDataSource($dataSource)
     {
         $this->dataSource = $dataSource;
+
+        return $this;
     }
 
     /**
-     * @return \Druid\Query\Component\DimensionSpecInterface[]
+     * @return array|\Druid\Query\Component\DimensionSpecInterface[]
      */
     public function getDimensions()
     {
@@ -91,11 +94,14 @@ class GroupBy extends AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \Druid\Query\Component\DimensionSpecInterface[] $dimensions
+     * @param array|\Druid\Query\Component\DimensionSpecInterface[] $dimensions
+     * @return GroupBy
      */
     public function setDimensions($dimensions)
     {
         $this->dimensions = $dimensions;
+
+        return $this;
     }
 
     /**
@@ -108,10 +114,13 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param LimitSpecInterface $limitSpec
+     * @return GroupBy
      */
     public function setLimitSpec($limitSpec)
     {
         $this->limitSpec = $limitSpec;
+
+        return $this;
     }
 
     /**
@@ -124,14 +133,17 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param GranularityInterface $granularity
+     * @return GroupBy
      */
     public function setGranularity($granularity)
     {
         $this->granularity = $granularity;
+
+        return $this;
     }
 
     /**
-     * @return \Druid\Query\Component\AggregatorInterface[]
+     * @return array|\Druid\Query\Component\AggregatorInterface[]
      */
     public function getAggregations()
     {
@@ -139,15 +151,18 @@ class GroupBy extends AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \Druid\Query\Component\AggregatorInterface[] $aggregations
+     * @param array|\Druid\Query\Component\AggregatorInterface[] $aggregations
+     * @return GroupBy
      */
     public function setAggregations($aggregations)
     {
         $this->aggregations = $aggregations;
+
+        return $this;
     }
 
     /**
-     * @return \Druid\Query\Component\PostAggregatorInterface[]
+     * @return array|\Druid\Query\Component\PostAggregatorInterface[]
      */
     public function getPostAggregations()
     {
@@ -155,15 +170,18 @@ class GroupBy extends AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \Druid\Query\Component\PostAggregatorInterface[] $postAggregations
+     * @param array|\Druid\Query\Component\PostAggregatorInterface[] $postAggregations
+     * @return GroupBy
      */
     public function setPostAggregations($postAggregations)
     {
         $this->postAggregations = $postAggregations;
+
+        return $this;
     }
 
     /**
-     * @return \Druid\Query\Component\IntervalInterface[]
+     * @return array|\Druid\Query\Component\IntervalInterface[]
      */
     public function getIntervals()
     {
@@ -171,10 +189,13 @@ class GroupBy extends AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \Druid\Query\Component\IntervalInterface[] $intervals
+     * @param array|\Druid\Query\Component\IntervalInterface[] $intervals
+     * @return GroupBy
      */
     public function setIntervals($intervals)
     {
         $this->intervals = $intervals;
+        
+        return $this;
     }
 }

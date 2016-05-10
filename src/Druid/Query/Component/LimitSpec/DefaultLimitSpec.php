@@ -12,13 +12,12 @@ use Druid\Query\Component\LimitSpecInterface;
 
 /**
  * Class DefaultLimitSpec
- * @package Druid\Query\Component\LimitSpec
  */
 class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
 {
 
     /**
-     * @var int
+     * @var integer
      */
     private $limit;
 
@@ -29,8 +28,8 @@ class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterf
 
     /**
      * DefaultLimitSpec constructor.
-     * @param int $limit
-     * @param string $columns
+     * @param integer $limit   Number of limit.
+     * @param string  $columns Columns for ordering.
      */
     public function __construct($limit, $columns)
     {
@@ -40,7 +39,7 @@ class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterf
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getLimit()
     {

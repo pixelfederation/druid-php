@@ -9,11 +9,9 @@ namespace Druid\Query\Component;
 
 /**
  * Class AbstractTypedComponent
- * @package Druid\Query\Component
  */
 class AbstractTypedComponent
 {
-
     /**
      * @var string
      */
@@ -21,7 +19,7 @@ class AbstractTypedComponent
 
     /**
      * AbstractTypedComponent constructor.
-     * @param string $type
+     * @param string $type Type of component.
      */
     public function __construct($type)
     {

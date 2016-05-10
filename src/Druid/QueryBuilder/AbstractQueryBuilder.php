@@ -12,17 +12,26 @@ use Druid\Query\Component\Factory\AggregatorFactory;
 use Druid\Query\Component\Factory\PostAggregatorFactory;
 use Druid\Query\QueryInterface;
 
+/**
+ * Class AbstractQueryBuilder
+ * @package Druid\QueryBuilder
+ */
 abstract class AbstractQueryBuilder
 {
 
     protected $components = [];
 
-
+    /**
+     * @return AggregatorFactory
+     */
     public function aggregator()
     {
         return new AggregatorFactory();
     }
 
+    /**
+     * @return PostAggregatorFactory
+     */
     public function postAggregator()
     {
         return new PostAggregatorFactory();

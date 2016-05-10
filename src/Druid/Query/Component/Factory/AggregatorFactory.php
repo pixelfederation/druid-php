@@ -14,35 +14,65 @@ use Druid\Query\Component\FilterInterface;
 /**
  * Class AggregatorFactory
  * @package Druid\Query\Component\Factory
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AggregatorFactory
 {
-
+    /**
+     * @param string $name
+     * @return Aggregator\CountAggregator
+     */
     public function count($name)
     {
         return new Aggregator\CountAggregator($name);
     }
 
+    /**
+     * @param string $name
+     * @param string $fieldName
+     * @return Aggregator\HyperUniqueAggregator
+     */
     public function hyperUnique($name, $fieldName)
     {
         return new Aggregator\HyperUniqueAggregator($name, $fieldName);
     }
 
+    /**
+     * @param string $name
+     * @param string $fieldName
+     * @return Aggregator\DoubleSumAggregator
+     */
     public function doubleSum($name, $fieldName)
     {
         return new Aggregator\DoubleSumAggregator($name, $fieldName);
     }
 
+    /**
+     * @param string $name
+     * @param string $fieldName
+     * @return Aggregator\LongSumAggregator
+     */
     public function longSum($name, $fieldName)
     {
         return new Aggregator\LongSumAggregator($name, $fieldName);
     }
 
+    /**
+     * @param FilterInterface $filter
+     * @param AggregatorInterface $aggregator
+     * @return Aggregator\FilteredAggregator
+     */
     public function filtered(FilterInterface $filter, AggregatorInterface $aggregator)
     {
         return new Aggregator\FilteredAggregator($filter, $aggregator);
     }
 
+    /**
+     * @param string $type
+     * @param string $name
+     * @param string $fieldName
+     * @return AggregatorInterface
+     */
     public function arithmeticAggregator($type, $name, $fieldName)
     {
         switch ($type) {
