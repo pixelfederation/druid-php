@@ -9,7 +9,10 @@ namespace Druid;
 
 use Druid\Driver\DriverConnectionInterface;
 use Druid\Driver\DriverInterface;
+use Druid\Query\AbstractQuery;
 use Druid\Query\QueryInterface;
+use Druid\QueryBuilder\AbstractQueryBuilder;
+use Druid\QueryBuilder\GroupByQueryBuilder;
 
 /**
  * Class Connection
@@ -62,5 +65,21 @@ class Druid implements DriverConnectionInterface
     {
         $this->connect();
         return $this->connection->send($query);
+    }
+
+    /**
+     * @param string $queryType
+     * @return AbstractQueryBuilder
+     */
+    public function createQueryBuilder($queryType)
+    {
+        switch ($queryType) {
+            case AbstractQuery::TYPE_GROUP_BY:
+                return new GroupByQueryBuilder();
+            default:
+                throw new \RuntimeException(
+                    sprintf('Invalid query type %s', $queryType)
+                );
+        }
     }
 }
