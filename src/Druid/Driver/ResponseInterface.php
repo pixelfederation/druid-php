@@ -14,7 +14,7 @@ namespace Druid\Driver;
 interface ResponseInterface
 {
     /**
-     * @return RecordInterface[]|array
+     * @return array
      */
     public function getRecords();
 }

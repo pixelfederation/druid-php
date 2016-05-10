@@ -7,6 +7,7 @@
 
 namespace Druid\Tests\Driver\Guzzle;
 
+use Druid\Driver\ConnectionConfig;
 use Druid\Driver\Guzzle\Connection;
 use Druid\Driver\Guzzle\Driver;
 
@@ -16,16 +17,9 @@ class DriverTest extends \PHPUnit_Framework_TestCase
     public function testConnect()
     {
         $driver = new Driver();
-        $connection = $driver->connect(['base_uri' => 'http://localhost']);
-        $this->assertInstanceOf(Connection::class, $connection);
-    }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testFailureConnect()
-    {
-        $driver = new Driver();
-        $driver->connect(['base_uri' => '']);
+        $configMock = $this->getMockBuilder(ConnectionConfig::class)->disableOriginalConstructor()->getMock();
+        $connection = $driver->connect($configMock);
+        $this->assertInstanceOf(Connection::class, $connection);
     }
 }

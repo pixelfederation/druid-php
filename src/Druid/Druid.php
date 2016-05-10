@@ -7,6 +7,7 @@
 
 namespace Druid;
 
+use Druid\Driver\ConnectionConfig;
 use Druid\Driver\DriverConnectionInterface;
 use Druid\Driver\DriverInterface;
 use Druid\Query\AbstractQuery;
@@ -52,7 +53,7 @@ class Druid implements DriverConnectionInterface
     private function connect()
     {
         if (!$this->connection) {
-            $this->connection = $this->driver->connect($this->params);
+            $this->connection = $this->driver->connect(new ConnectionConfig($this->params));
         }
         return $this->connection;
     }

@@ -14,8 +14,8 @@ namespace Druid\Driver;
 interface DriverInterface
 {
     /**
-     * @param array $params
+     * @param ConnectionConfig $config
      * @return DriverConnectionInterface
      */
-    public function connect(array $params);
+    public function connect(ConnectionConfig $config);
 }

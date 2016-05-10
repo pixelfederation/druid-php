@@ -29,7 +29,6 @@ class DruidTest extends \PHPUnit_Framework_TestCase
         $driverConnectionMock->expects($this->once())->method('send')->willReturn(true);
 
         $driverMock->expects($this->once())->method('connect')
-            ->with(['base_uri' => 'http://localhost'])
             ->willReturn($driverConnectionMock);
 
         $connection = new Druid($driverMock, ['base_uri' => 'http://localhost']);
