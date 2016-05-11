@@ -11,6 +11,7 @@ use Druid\Query\Aggregation\GroupBy;
 use Druid\Query\Component\AggregatorInterface;
 use Druid\Query\Component\DataSource\TableDataSource;
 use Druid\Query\Component\DimensionSpec\DefaultDimensionSpec;
+use Druid\Query\Component\FilterInterface;
 use Druid\Query\Component\Granularity\PeriodGranularity;
 use Druid\Query\Component\Interval\Interval;
 use Druid\Query\Component\PostAggregatorInterface;
@@ -89,6 +90,15 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
     public function addPostAggregator(PostAggregatorInterface $postAggregator)
     {
         return $this->addComponent('postAggregations', $postAggregator);
+    }
+
+    /**
+     * @param FilterInterface $filter
+     * @return $this
+     */
+    public function setFilter(FilterInterface $filter)
+    {
+        return $this->addComponent('filter', $filter);
     }
 
     /**

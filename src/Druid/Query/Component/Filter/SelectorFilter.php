@@ -33,6 +33,7 @@ class SelectorFilter extends AbstractTypedComponent implements FilterInterface
      */
     public function __construct($dimension, $value)
     {
+        parent::__construct(self::TYPE_SELECTOR);
         $this->dimension = $dimension;
         $this->value = $value;
     }
