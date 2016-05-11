@@ -13,6 +13,7 @@ use Druid\Query\Component\DataSource\TableDataSource;
 use Druid\Query\Component\DimensionSpec\DefaultDimensionSpec;
 use Druid\Query\Component\FilterInterface;
 use Druid\Query\Component\Granularity\PeriodGranularity;
+use Druid\Query\Component\HavingInterface;
 use Druid\Query\Component\Interval\Interval;
 use Druid\Query\Component\PostAggregatorInterface;
 
@@ -99,6 +100,15 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
     public function setFilter(FilterInterface $filter)
     {
         return $this->addComponent('filter', $filter);
+    }
+
+    /**
+     * @param HavingInterface $having
+     * @return $this
+     */
+    public function setHaving(HavingInterface $having)
+    {
+        return $this->addComponent('having', $having);
     }
 
     /**

@@ -13,6 +13,7 @@ use Druid\Query\Component\DataSourceInterface;
 use Druid\Query\Component\DimensionSpecInterface;
 use Druid\Query\Component\FilterInterface;
 use Druid\Query\Component\GranularityInterface;
+use Druid\Query\Component\HavingInterface;
 use Druid\Query\Component\IntervalInterface;
 use Druid\Query\Component\LimitSpecInterface;
 use Druid\Query\Component\PostAggregatorInterface;
@@ -23,6 +24,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class GroupBy
  * @package Druid\Query\Aggregation
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class GroupBy extends AbstractQuery implements QueryInterface
 {
@@ -62,6 +64,11 @@ class GroupBy extends AbstractQuery implements QueryInterface
     private $filter;
 
     /**
+     * @var HavingInterface
+     */
+    private $having;
+
+    /**
      * @var array|IntervalInterface[]
      * @Serializer\Type("array<string>")
      */
@@ -84,7 +91,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @param DataSourceInterface $dataSource
      * @return GroupBy
      */
-    public function setDataSource($dataSource)
+    public function setDataSource(DataSourceInterface $dataSource)
     {
         $this->dataSource = $dataSource;
 
@@ -103,7 +110,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @param array|\Druid\Query\Component\DimensionSpecInterface[] $dimensions
      * @return GroupBy
      */
-    public function setDimensions($dimensions)
+    public function setDimensions(array $dimensions)
     {
         $this->dimensions = $dimensions;
 
@@ -122,7 +129,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @param LimitSpecInterface $limitSpec
      * @return GroupBy
      */
-    public function setLimitSpec($limitSpec)
+    public function setLimitSpec(LimitSpecInterface $limitSpec)
     {
         $this->limitSpec = $limitSpec;
 
@@ -141,7 +148,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @param GranularityInterface $granularity
      * @return GroupBy
      */
-    public function setGranularity($granularity)
+    public function setGranularity(GranularityInterface $granularity)
     {
         $this->granularity = $granularity;
 
@@ -160,7 +167,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @param array|\Druid\Query\Component\AggregatorInterface[] $aggregations
      * @return GroupBy
      */
-    public function setAggregations($aggregations)
+    public function setAggregations(array $aggregations)
     {
         $this->aggregations = $aggregations;
 
@@ -179,7 +186,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @param array|\Druid\Query\Component\PostAggregatorInterface[] $postAggregations
      * @return GroupBy
      */
-    public function setPostAggregations($postAggregations)
+    public function setPostAggregations(array $postAggregations)
     {
         $this->postAggregations = $postAggregations;
 
@@ -198,7 +205,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @param array|\Druid\Query\Component\IntervalInterface[] $intervals
      * @return GroupBy
      */
-    public function setIntervals($intervals)
+    public function setIntervals(array $intervals)
     {
         $this->intervals = $intervals;
 
@@ -217,9 +224,28 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @param FilterInterface $filter
      * @return GroupBy
      */
-    public function setFilter($filter)
+    public function setFilter(FilterInterface $filter)
     {
         $this->filter = $filter;
+
+        return $this;
+    }
+
+    /**
+     * @return HavingInterface
+     */
+    public function getHaving()
+    {
+        return $this->having;
+    }
+
+    /**
+     * @param HavingInterface $having
+     * @return GroupBy
+     */
+    public function setHaving(HavingInterface $having)
+    {
+        $this->having = $having;
 
         return $this;
     }

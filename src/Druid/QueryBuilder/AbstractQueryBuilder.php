@@ -10,6 +10,7 @@ namespace Druid\QueryBuilder;
 use Druid\Query\Component\ComponentInterface;
 use Druid\Query\Component\Factory\AggregatorFactory;
 use Druid\Query\Component\Factory\FilterFactory;
+use Druid\Query\Component\Factory\HavingFactory;
 use Druid\Query\Component\Factory\PostAggregatorFactory;
 use Druid\Query\QueryInterface;
 
@@ -38,9 +39,20 @@ abstract class AbstractQueryBuilder
         return new PostAggregatorFactory();
     }
 
+    /**
+     * @return FilterFactory
+     */
     public function filter()
     {
         return new FilterFactory();
+    }
+
+    /**
+     * @return HavingFactory
+     */
+    public function having()
+    {
+        return new HavingFactory();
     }
 
     /**
