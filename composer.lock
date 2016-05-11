@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f7f4e49536d3afefcb82c46bc95e5b76",
-    "content-hash": "6082b669b277e84910f73bfd06f16f57",
+    "hash": "3b311aa8eb539ded32cee351957cf2de",
+    "content-hash": "727dab40bd36e0976e0b1b7410015cfa",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1933,7 +1933,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -1986,16 +1986,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "4973244b171257b987332386405b0f393230de52"
+                "reference": "b2f4d40a6ed0f6ace59aa3c88d08a94eb9aef811"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/4973244b171257b987332386405b0f393230de52",
-                "reference": "4973244b171257b987332386405b0f393230de52",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/b2f4d40a6ed0f6ace59aa3c88d08a94eb9aef811",
+                "reference": "b2f4d40a6ed0f6ace59aa3c88d08a94eb9aef811",
                 "shasum": ""
             },
             "require": {
@@ -2008,6 +2008,7 @@
             },
             "suggest": {
                 "symfony/config": "",
+                "symfony/expression-language": "For using expressions in service container configuration",
                 "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
                 "symfony/yaml": ""
             },
@@ -2041,11 +2042,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-25 11:17:47"
+            "time": "2016-05-09 18:14:44"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -2094,7 +2095,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",

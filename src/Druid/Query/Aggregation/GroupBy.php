@@ -11,6 +11,7 @@ use Druid\Query\AbstractQuery;
 use Druid\Query\Component\AggregatorInterface;
 use Druid\Query\Component\DataSourceInterface;
 use Druid\Query\Component\DimensionSpecInterface;
+use Druid\Query\Component\FilterInterface;
 use Druid\Query\Component\GranularityInterface;
 use Druid\Query\Component\IntervalInterface;
 use Druid\Query\Component\LimitSpecInterface;
@@ -54,6 +55,11 @@ class GroupBy extends AbstractQuery implements QueryInterface
      * @var array|PostAggregatorInterface[]
      */
     private $postAggregations;
+
+    /**
+     * @var FilterInterface
+     */
+    private $filter;
 
     /**
      * @var array|IntervalInterface[]
@@ -195,7 +201,26 @@ class GroupBy extends AbstractQuery implements QueryInterface
     public function setIntervals($intervals)
     {
         $this->intervals = $intervals;
-        
+
+        return $this;
+    }
+
+    /**
+     * @return FilterInterface
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * @param FilterInterface $filter
+     * @return GroupBy
+     */
+    public function setFilter($filter)
+    {
+        $this->filter = $filter;
+
         return $this;
     }
 }
