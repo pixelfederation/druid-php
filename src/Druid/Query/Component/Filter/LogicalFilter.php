@@ -10,11 +10,7 @@ namespace Druid\Query\Component\Filter;
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\FilterInterface;
 
-/**
- * Class AndFilter
- * @package Druid\Query\Component\Filter
- */
-class AndFilter extends AbstractTypedComponent implements FilterInterface
+class LogicalFilter extends AbstractTypedComponent implements FilterInterface
 {
 
     /**
@@ -23,20 +19,13 @@ class AndFilter extends AbstractTypedComponent implements FilterInterface
     private $fields;
 
     /**
-     * AndFilter constructor.
+     * LogicalFilter constructor.
+     * @param string $type
      * @param array|\Druid\Query\Component\FilterInterface[] $fields
      */
-    public function __construct(array $fields)
+    public function __construct($type, array $fields)
     {
-        parent::__construct(self::TYPE_LOGICAL_AND);
+        parent::__construct($type);
         $this->fields = $fields;
-    }
-
-    /**
-     * @return array|\Druid\Query\Component\FilterInterface[]
-     */
-    public function getFields()
-    {
-        return $this->fields;
     }
 }
