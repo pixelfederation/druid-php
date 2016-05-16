@@ -1,0 +1,8 @@
+.idea
+vendor
+build
+!bin/setup-dev
+!bin/git/*
+!bin/static_analysis/*
+bin
+docs

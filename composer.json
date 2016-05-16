@@ -1,0 +1,40 @@
+{
+  "name": "pixelfederation/druid-php",
+  "license": "BSD-3-Clause",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Jozef Hrncar",
+      "email": "jhrncar@pixelfederation.com"
+    },
+    {
+      "name": "Tomas Mihalicka",
+      "email": "tmihalicka@pixelfederation.com",
+      "homepage": "https://github.com/pixelfederation"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "guzzlehttp/guzzle": "^6.2",
+    "jms/serializer": "^1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.3",
+    "phpunit/php-invoker": "^1.1",
+    "squizlabs/php_codesniffer": "^2.6",
+    "phpmd/phpmd": "^2.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Druid\\": "src/Druid"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Druid\\Tests\\": "tests/Druid"
+    }
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
