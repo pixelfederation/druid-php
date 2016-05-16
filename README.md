@@ -19,7 +19,7 @@ Put the following into your composer.json
     
 ## Usage
 
-```
+```php
 <?php
 
 use Druid\Druid;
