@@ -11,7 +11,7 @@ Put the following into your composer.json
 
     {
         "require": {
-            "sandrokeil/code-generator": "dev-master"
+            "pixelfederation/druid-php": "dev-master"
         }
     }
     
