@@ -10,6 +10,7 @@
          verbose="true">
     <testsuite>
         <directory suffix="Test.php">tests</directory>
+        <exclude>tests/Druid/Tests/IntegrationTest.php</exclude>
     </testsuite>
 
     <filter>
