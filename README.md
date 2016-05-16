@@ -2,8 +2,6 @@
 
 This library provider a [Druid](http://druid.io/) PHP Driver. 
 
-## Requirements
-
 ## Instalation
 
 Installation of this library uses composer. For composer documentation, please refer to
@@ -19,7 +17,9 @@ Put the following into your composer.json
     
 ## Usage
 
-```
+### Average aggregation
+
+```php
 <?php
 
 use Druid\Druid;
