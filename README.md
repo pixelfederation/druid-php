@@ -2,6 +2,8 @@
 
 This library provider a [Druid](http://druid.io/) PHP Driver. 
 
+## [License](LICENSE) 
+
 ## Instalation
 
 Installation of this library uses composer. For composer documentation, please refer to
@@ -63,3 +65,20 @@ $queryBuilder->addPostAggregator(
 
 $response = $druid->send($queryBuilder->getQuery());
 ```
+
+## TODO
+
+1. **Query types**
+    * Aggregation queries
+        * TopN
+        * Timeseries
+    * Metadata Queries
+        * Time Boundary
+        * Segment Metadata
+        * Datasource Metadata
+2. **Components**
+    * Data source
+        * union
+        * query
+    * Aggregations
+        * Cardinality aggregator
