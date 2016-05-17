@@ -4,17 +4,15 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query;
 
 /**
- * Class AbstractQuery
- * @package Druid\Query
+ * Class AbstractQuery.
  */
 abstract class AbstractQuery
 {
     const TYPE_GROUP_BY = 'groupBy';
-    
+
     /**
      * @var string
      */
@@ -22,6 +20,7 @@ abstract class AbstractQuery
 
     /**
      * AbstractQuery constructor.
+     *
      * @param string $queryType
      */
     public function __construct($queryType)

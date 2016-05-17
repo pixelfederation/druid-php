@@ -4,18 +4,15 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Interval;
 
 use Druid\Query\Component\IntervalInterface;
 
 /**
- * Class Interval
- * @package Druid\Query\Component\Interval
+ * Class Interval.
  */
 class Interval implements IntervalInterface
 {
-
     /**
      * @var \DateTime
      */
@@ -28,6 +25,7 @@ class Interval implements IntervalInterface
 
     /**
      * Interval constructor.
+     *
      * @param \DateTime $start
      * @param \DateTime $end
      */
@@ -55,6 +53,6 @@ class Interval implements IntervalInterface
 
     public function __toString()
     {
-        return $this->getStart() . '/' . $this->getEnd();
+        return $this->getStart().'/'.$this->getEnd();
     }
 }

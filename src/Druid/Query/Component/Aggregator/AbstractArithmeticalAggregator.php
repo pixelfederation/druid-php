@@ -4,14 +4,12 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Aggregator;
 
 use Druid\Query\Component\AbstractTypedComponent;
 
 abstract class AbstractArithmeticalAggregator extends AbstractTypedComponent
 {
-
     /**
      * @var string
      */
@@ -24,6 +22,7 @@ abstract class AbstractArithmeticalAggregator extends AbstractTypedComponent
 
     /**
      * AbstractArithmeticalAggregator constructor.
+     *
      * @param string $type
      * @param string $name
      * @param string $fieldName

@@ -4,11 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component;
 
 /**
- * Class AbstractTypedComponent
+ * Class AbstractTypedComponent.
  */
 class AbstractTypedComponent
 {
@@ -19,6 +18,7 @@ class AbstractTypedComponent
 
     /**
      * AbstractTypedComponent constructor.
+     *
      * @param string $type Type of component.
      */
     public function __construct($type)

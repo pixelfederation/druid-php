@@ -4,20 +4,18 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\LimitSpec;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\LimitSpecInterface;
 
 /**
- * Class DefaultLimitSpec
+ * Class DefaultLimitSpec.
  */
 class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
 {
-
     /**
-     * @var integer
+     * @var int
      */
     private $limit;
 
@@ -28,8 +26,9 @@ class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterf
 
     /**
      * DefaultLimitSpec constructor.
-     * @param integer $limit   Number of limit.
-     * @param string  $columns Columns for ordering.
+     *
+     * @param int    $limit   Number of limit.
+     * @param string $columns Columns for ordering.
      */
     public function __construct($limit, $columns)
     {
@@ -39,7 +38,7 @@ class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterf
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getLimit()
     {

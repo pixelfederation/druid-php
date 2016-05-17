@@ -4,15 +4,13 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Aggregator;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\AggregatorInterface;
 
 /**
- * Class CountAggregator
- * @package Druid\Query\Component\Aggregator
+ * Class CountAggregator.
  */
 class CountAggregator extends AbstractTypedComponent implements AggregatorInterface
 {
@@ -20,6 +18,7 @@ class CountAggregator extends AbstractTypedComponent implements AggregatorInterf
 
     /**
      * CountAggregator constructor.
+     *
      * @param $name
      */
     public function __construct($name)

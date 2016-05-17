@@ -4,12 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Driver;
 
 /**
- * Class ConnectionConfig
- * @package Druid\Driver
+ * Class ConnectionConfig.
  */
 class ConnectionConfig
 {
@@ -21,7 +19,7 @@ class ConnectionConfig
         'host' => 'localhost',
         'port' => '8084',
         'path' => '/druid/v2',
-        'proxy' => null
+        'proxy' => null,
     ];
 
     /**
@@ -31,6 +29,7 @@ class ConnectionConfig
 
     /**
      * ConnectionConfig constructor.
+     *
      * @param array $config
      */
     public function __construct(array $config)

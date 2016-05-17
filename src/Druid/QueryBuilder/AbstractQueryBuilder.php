@@ -4,7 +4,6 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\QueryBuilder;
 
 use Druid\Query\Component\ComponentInterface;
@@ -15,12 +14,10 @@ use Druid\Query\Component\Factory\PostAggregatorFactory;
 use Druid\Query\QueryInterface;
 
 /**
- * Class AbstractQueryBuilder
- * @package Druid\QueryBuilder
+ * Class AbstractQueryBuilder.
  */
 abstract class AbstractQueryBuilder
 {
-
     protected $components = [];
 
     /**
@@ -56,8 +53,9 @@ abstract class AbstractQueryBuilder
     }
 
     /**
-     * @param string $componentName
+     * @param string             $componentName
      * @param ComponentInterface $component
+     *
      * @return $this
      */
     public function addComponent($componentName, ComponentInterface $component)
@@ -72,10 +70,12 @@ abstract class AbstractQueryBuilder
         $isMultipleComponent = is_array($this->components[$componentName]);
         if ($isMultipleComponent) {
             $this->components[$componentName] = \array_merge($this->components[$componentName], [$component]);
+
             return $this;
         }
 
         $this->components[$componentName] = $component;
+
         return $this;
     }
 

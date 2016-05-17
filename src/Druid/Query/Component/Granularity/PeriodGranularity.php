@@ -4,15 +4,13 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Granularity;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\GranularityInterface;
 
 /**
- * Class PeriodGranularity
- * @package Druid\Query\Component\Granularity
+ * Class PeriodGranularity.
  */
 class PeriodGranularity extends AbstractTypedComponent implements GranularityInterface
 {
@@ -28,6 +26,7 @@ class PeriodGranularity extends AbstractTypedComponent implements GranularityInt
 
     /**
      * PeriodGranularity constructor.
+     *
      * @param string $period
      * @param string $timeZone
      */

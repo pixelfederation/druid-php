@@ -4,12 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component;
 
 /**
- * Interface DataSourceInterface
- * @package Druid\Query\Component
+ * Interface DataSourceInterface.
  */
 interface DataSourceInterface extends TypedInterface, ComponentInterface
 {

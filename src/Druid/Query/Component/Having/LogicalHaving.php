@@ -4,15 +4,13 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Having;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\HavingInterface;
 
 /**
- * Class LogicalHaving
- * @package Druid\Query\Component\Having
+ * Class LogicalHaving.
  */
 class LogicalHaving extends AbstractTypedComponent implements HavingInterface
 {
@@ -23,7 +21,8 @@ class LogicalHaving extends AbstractTypedComponent implements HavingInterface
 
     /**
      * LogicalHaving constructor.
-     * @param string $type
+     *
+     * @param string                                         $type
      * @param array|\Druid\Query\Component\HavingInterface[] $havingSpecs
      */
     public function __construct($type, array $havingSpecs)

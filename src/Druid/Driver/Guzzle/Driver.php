@@ -4,7 +4,6 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Driver\Guzzle;
 
 use Druid\Driver\ConnectionConfig;
@@ -13,10 +12,14 @@ use GuzzleHttp\Client;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 
+/**
+ * Class Driver.
+ */
 class Driver implements DriverInterface
 {
     /**
      * @param ConnectionConfig $config
+     *
      * @return Connection
      */
     public function connect(ConnectionConfig $config)

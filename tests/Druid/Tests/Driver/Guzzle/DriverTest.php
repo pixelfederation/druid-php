@@ -32,7 +32,7 @@ class DriverTest extends \PHPUnit_Framework_TestCase
             ->setMethods(['getProxy'])
             ->disableOriginalConstructor()
             ->getMock();
-        
+
         $configMock->expects($this->any())->method('getProxy')->willReturn('tcp://localhost:8080');
 
         $connection = $driver->connect($configMock);

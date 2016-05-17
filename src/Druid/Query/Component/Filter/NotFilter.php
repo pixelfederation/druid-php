@@ -4,19 +4,16 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Filter;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\FilterInterface;
 
 /**
- * Class NotFilter
- * @package Druid\Query\Component\Filter
+ * Class NotFilter.
  */
 class NotFilter extends AbstractTypedComponent implements FilterInterface
 {
-
     /**
      * @var FilterInterface
      */
@@ -24,6 +21,7 @@ class NotFilter extends AbstractTypedComponent implements FilterInterface
 
     /**
      * NotFilter constructor.
+     *
      * @param FilterInterface $field
      */
     public function __construct(FilterInterface $field)

@@ -4,12 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query;
 
 /**
- * Interface QueryInterface
- * @package Druid\Query
+ * Interface QueryInterface.
  */
 interface QueryInterface
 {

@@ -4,13 +4,15 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\DataSource;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\DataSourceInterface;
 use Druid\Query\Component\NamedInterface;
 
+/**
+ * Class TableDataSource.
+ */
 class TableDataSource extends AbstractTypedComponent implements DataSourceInterface, NamedInterface
 {
     /**
@@ -20,6 +22,7 @@ class TableDataSource extends AbstractTypedComponent implements DataSourceInterf
 
     /**
      * Table constructor.
+     *
      * @param string $name
      */
     public function __construct($name)

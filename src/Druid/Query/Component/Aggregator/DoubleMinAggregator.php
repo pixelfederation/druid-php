@@ -4,19 +4,18 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Aggregator;
 
 use Druid\Query\Component\AggregatorInterface;
 
 /**
- * Class DoubleMinAggregator
- * @package Druid\Query\Component\Aggregator
+ * Class DoubleMinAggregator.
  */
 class DoubleMinAggregator extends AbstractArithmeticalAggregator implements AggregatorInterface
 {
     /**
      * DoubleMinAggregator constructor.
+     *
      * @param string $name
      * @param string $fieldName
      */

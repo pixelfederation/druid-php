@@ -4,7 +4,6 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Factory;
 
 use Druid\Query\Component\Filter\LogicalFilter;
@@ -13,14 +12,14 @@ use Druid\Query\Component\Filter\SelectorFilter;
 use Druid\Query\Component\FilterInterface;
 
 /**
- * Class FilterFactory
- * @package Druid\Query\Component\Factory
+ * Class FilterFactory.
  */
 class FilterFactory
 {
     /**
      * @param string $dimension
      * @param string $value
+     *
      * @return SelectorFilter
      */
     public function selectorFilter($dimension, $value)
@@ -30,6 +29,7 @@ class FilterFactory
 
     /**
      * @param array|FilterInterface[] $fields
+     *
      * @return LogicalFilter
      */
     public function andFilter(array $fields)
@@ -39,6 +39,7 @@ class FilterFactory
 
     /**
      * @param array|FilterInterface $fields
+     *
      * @return LogicalFilter
      */
     public function orFilter(array $fields)
@@ -48,7 +49,8 @@ class FilterFactory
 
     /**
      * @param string $type
-     * @param array $fields
+     * @param array  $fields
+     *
      * @return LogicalFilter
      */
     public function logicalFilter($type, array $fields)
@@ -58,6 +60,7 @@ class FilterFactory
 
     /**
      * @param FilterInterface $field
+     *
      * @return NotFilter
      */
     public function notFilter(FilterInterface $field)

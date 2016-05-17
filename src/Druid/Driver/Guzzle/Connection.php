@@ -4,7 +4,6 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Driver\Guzzle;
 
 use Druid\Driver\DriverConnectionInterface;
@@ -13,6 +12,9 @@ use Druid\Query\QueryInterface;
 use GuzzleHttp\Client;
 use JMS\Serializer\SerializerInterface;
 
+/**
+ * Class Connection.
+ */
 class Connection implements DriverConnectionInterface
 {
     /**
@@ -26,7 +28,8 @@ class Connection implements DriverConnectionInterface
 
     /**
      * Connection constructor.
-     * @param Client $guzzle
+     *
+     * @param Client              $guzzle
      * @param SerializerInterface $serializer
      */
     public function __construct(Client $guzzle, SerializerInterface $serializer)
@@ -37,12 +40,14 @@ class Connection implements DriverConnectionInterface
 
     /**
      * @param QueryInterface $query
+     *
      * @return ResponseInterface
      */
     public function send(QueryInterface $query)
     {
         $body = $this->serializer->serialize($query, 'json');
         $response = $this->guzzle->post('', ['body' => $body]);
+
         return new Response($response);
     }
 }

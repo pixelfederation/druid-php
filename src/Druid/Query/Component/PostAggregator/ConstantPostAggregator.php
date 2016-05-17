@@ -4,19 +4,16 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\PostAggregator;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\PostAggregatorInterface;
 
 /**
- * Class ConstantPostAggregator
- * @package Druid\Query\Component\PostAggregator
+ * Class ConstantPostAggregator.
  */
 class ConstantPostAggregator extends AbstractTypedComponent implements PostAggregatorInterface
 {
-
     /**
      * @var string
      */
@@ -29,7 +26,8 @@ class ConstantPostAggregator extends AbstractTypedComponent implements PostAggre
 
     /**
      * ConstantPostAggregator constructor.
-     * @param string $name
+     *
+     * @param string    $name
      * @param float|int $value
      */
     public function __construct($name, $value)

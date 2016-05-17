@@ -4,12 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component;
 
 /**
- * Class DimensionSpecInterface
- * @package Druid\Query\Component
+ * Class DimensionSpecInterface.
  */
 interface DimensionSpecInterface extends TypedInterface, ComponentInterface
 {

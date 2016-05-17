@@ -4,12 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component;
 
 /**
- * Interface GranularityInterface
- * @package Druid\Query\Component
+ * Interface GranularityInterface.
  */
 interface GranularityInterface extends TypedInterface, ComponentInterface
 {

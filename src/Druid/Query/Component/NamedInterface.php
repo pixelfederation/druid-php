@@ -4,12 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component;
 
 /**
- * Interface NamedComponentInterface
- * @package Druid\Query\Component
+ * Interface NamedComponentInterface.
  */
 interface NamedInterface
 {

@@ -4,15 +4,13 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Filter;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\FilterInterface;
 
 /**
- * Class SelectorFilter
- * @package Druid\Query\Component\Filter
+ * Class SelectorFilter.
  */
 class SelectorFilter extends AbstractTypedComponent implements FilterInterface
 {
@@ -28,6 +26,7 @@ class SelectorFilter extends AbstractTypedComponent implements FilterInterface
 
     /**
      * SelectorFilter constructor.
+     *
      * @param string $dimension
      * @param string $value
      */

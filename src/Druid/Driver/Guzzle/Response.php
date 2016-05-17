@@ -4,19 +4,16 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Driver\Guzzle;
 
 use Druid\Driver\ResponseInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 
 /**
- * Class Response
- * @package Druid\Driver\Guzzle
+ * Class Response.
  */
 class Response implements ResponseInterface
 {
-
     /**
      * @var PsrResponseInterface
      */
@@ -26,6 +23,7 @@ class Response implements ResponseInterface
 
     /**
      * Response constructor.
+     *
      * @param PsrResponseInterface $originalResponse
      */
     public function __construct(PsrResponseInterface $originalResponse)
@@ -34,7 +32,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getRecords()
     {
@@ -42,7 +40,7 @@ class Response implements ResponseInterface
             $decodedRawBody = \json_decode($this->originalResponse->getBody(), true);
             $this->decodedBody = \array_map(function ($item) {
                 $record = [
-                    'timestamp' => $item['timestamp']
+                    'timestamp' => $item['timestamp'],
                 ];
 
                 if (isset($item['event'])) {

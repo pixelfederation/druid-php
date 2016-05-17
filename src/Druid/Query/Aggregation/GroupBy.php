@@ -4,7 +4,6 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Aggregation;
 
 use Druid\Query\AbstractQuery;
@@ -18,12 +17,11 @@ use Druid\Query\Component\IntervalInterface;
 use Druid\Query\Component\LimitSpecInterface;
 use Druid\Query\Component\PostAggregatorInterface;
 use Druid\Query\QueryInterface;
-
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GroupBy
- * @package Druid\Query\Aggregation
+ * Class GroupBy.
+ *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class GroupBy extends AbstractQuery implements QueryInterface
@@ -89,6 +87,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param DataSourceInterface $dataSource
+     *
      * @return GroupBy
      */
     public function setDataSource(DataSourceInterface $dataSource)
@@ -108,6 +107,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param array|\Druid\Query\Component\DimensionSpecInterface[] $dimensions
+     *
      * @return GroupBy
      */
     public function setDimensions(array $dimensions)
@@ -127,6 +127,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param LimitSpecInterface $limitSpec
+     *
      * @return GroupBy
      */
     public function setLimitSpec(LimitSpecInterface $limitSpec)
@@ -146,6 +147,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param GranularityInterface $granularity
+     *
      * @return GroupBy
      */
     public function setGranularity(GranularityInterface $granularity)
@@ -165,6 +167,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param array|\Druid\Query\Component\AggregatorInterface[] $aggregations
+     *
      * @return GroupBy
      */
     public function setAggregations(array $aggregations)
@@ -184,6 +187,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param array|\Druid\Query\Component\PostAggregatorInterface[] $postAggregations
+     *
      * @return GroupBy
      */
     public function setPostAggregations(array $postAggregations)
@@ -203,6 +207,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param array|\Druid\Query\Component\IntervalInterface[] $intervals
+     *
      * @return GroupBy
      */
     public function setIntervals(array $intervals)
@@ -222,6 +227,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param FilterInterface $filter
+     *
      * @return GroupBy
      */
     public function setFilter(FilterInterface $filter)
@@ -241,6 +247,7 @@ class GroupBy extends AbstractQuery implements QueryInterface
 
     /**
      * @param HavingInterface $having
+     *
      * @return GroupBy
      */
     public function setHaving(HavingInterface $having)

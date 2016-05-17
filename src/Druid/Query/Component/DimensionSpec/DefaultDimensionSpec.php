@@ -4,15 +4,13 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\DimensionSpec;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\DimensionSpecInterface;
 
 /**
- * Class DefaultDimension
- * @package Druid\Query\Component\Dimension
+ * Class DefaultDimension.
  */
 class DefaultDimensionSpec extends AbstractTypedComponent implements DimensionSpecInterface
 {
@@ -28,6 +26,7 @@ class DefaultDimensionSpec extends AbstractTypedComponent implements DimensionSp
 
     /**
      * DefaultDimension constructor.
+     *
      * @param string $dimension
      * @param string $outputName
      */

@@ -4,14 +4,12 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Aggregator;
 
 use Druid\Query\Component\AggregatorInterface;
 
 /**
- * Class DoubleMaxAggregator
- * @package Druid\Query\Component\Aggregator
+ * Class DoubleMaxAggregator.
  */
 class DoubleMaxAggregator extends AbstractArithmeticalAggregator implements AggregatorInterface
 {

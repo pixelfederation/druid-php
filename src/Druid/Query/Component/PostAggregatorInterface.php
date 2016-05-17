@@ -4,12 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component;
 
 /**
- * Interface PostAggregatorInterface
- * @package Druid\Query\Component
+ * Interface PostAggregatorInterface.
  */
 interface PostAggregatorInterface extends TypedInterface, ComponentInterface
 {

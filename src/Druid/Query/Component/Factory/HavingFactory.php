@@ -4,19 +4,21 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Factory;
 
 use Druid\Query\Component\Having\LogicalHaving;
 use Druid\Query\Component\Having\NumericHaving;
 use Druid\Query\Component\HavingInterface;
 
+/**
+ * Class HavingFactory.
+ */
 class HavingFactory
 {
-
     /**
-     * @param string $aggregation
-     * @param integer|float $value
+     * @param string    $aggregation
+     * @param int|float $value
+     *
      * @return NumericHaving
      */
     public function equalToHaving($aggregation, $value)
@@ -25,8 +27,9 @@ class HavingFactory
     }
 
     /**
-     * @param string $aggregation
-     * @param integer|float $value
+     * @param string    $aggregation
+     * @param int|float $value
+     *
      * @return NumericHaving
      */
     public function greaterThanHaving($aggregation, $value)
@@ -35,8 +38,9 @@ class HavingFactory
     }
 
     /**
-     * @param string $aggregation
-     * @param integer|float $value
+     * @param string    $aggregation
+     * @param int|float $value
+     *
      * @return NumericHaving
      */
     public function lessThanHaving($aggregation, $value)
@@ -46,6 +50,7 @@ class HavingFactory
 
     /**
      * @param array|HavingInterface[] $havingSpecs
+     *
      * @return LogicalHaving
      */
     public function andHaving(array $havingSpecs)
@@ -55,6 +60,7 @@ class HavingFactory
 
     /**
      * @param array $havingSpecs
+     *
      * @return LogicalHaving
      */
     public function orHaving(array $havingSpecs)
@@ -63,9 +69,10 @@ class HavingFactory
     }
 
     /**
-     * @param string $type
-     * @param string $aggregation
-     * @param integer|float $value
+     * @param string    $type
+     * @param string    $aggregation
+     * @param int|float $value
+     *
      * @return NumericHaving
      */
     public function numericHaving($type, $aggregation, $value)
@@ -75,7 +82,8 @@ class HavingFactory
 
     /**
      * @param string $type
-     * @param array $havingSpecs
+     * @param array  $havingSpecs
+     *
      * @return LogicalHaving
      */
     public function logicalHaving($type, array $havingSpecs)

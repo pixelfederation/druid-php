@@ -4,7 +4,6 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Factory;
 
 use Druid\Query\Component\Aggregator;
@@ -12,14 +11,15 @@ use Druid\Query\Component\AggregatorInterface;
 use Druid\Query\Component\FilterInterface;
 
 /**
- * Class AggregatorFactory
- * @package Druid\Query\Component\Factory
+ * Class AggregatorFactory.
+ *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AggregatorFactory
 {
     /**
      * @param string $name
+     *
      * @return Aggregator\CountAggregator
      */
     public function count($name)
@@ -30,6 +30,7 @@ class AggregatorFactory
     /**
      * @param string $name
      * @param string $fieldName
+     *
      * @return Aggregator\HyperUniqueAggregator
      */
     public function hyperUnique($name, $fieldName)
@@ -40,6 +41,7 @@ class AggregatorFactory
     /**
      * @param string $name
      * @param string $fieldName
+     *
      * @return Aggregator\DoubleSumAggregator
      */
     public function doubleSum($name, $fieldName)
@@ -50,6 +52,7 @@ class AggregatorFactory
     /**
      * @param string $name
      * @param string $fieldName
+     *
      * @return Aggregator\LongSumAggregator
      */
     public function longSum($name, $fieldName)
@@ -58,8 +61,9 @@ class AggregatorFactory
     }
 
     /**
-     * @param FilterInterface $filter
+     * @param FilterInterface     $filter
      * @param AggregatorInterface $aggregator
+     *
      * @return Aggregator\FilteredAggregator
      */
     public function filtered(FilterInterface $filter, AggregatorInterface $aggregator)
@@ -71,6 +75,7 @@ class AggregatorFactory
      * @param string $type
      * @param string $name
      * @param string $fieldName
+     *
      * @return AggregatorInterface
      */
     public function arithmeticAggregator($type, $name, $fieldName)

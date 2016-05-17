@@ -4,7 +4,6 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid;
 
 use Druid\Driver\ConnectionConfig;
@@ -16,8 +15,7 @@ use Druid\QueryBuilder\AbstractQueryBuilder;
 use Druid\QueryBuilder\GroupByQueryBuilder;
 
 /**
- * Class Connection
- * @package Druid
+ * Class Connection.
  */
 class Druid implements DriverConnectionInterface
 {
@@ -38,8 +36,9 @@ class Druid implements DriverConnectionInterface
 
     /**
      * Connection constructor.
+     *
      * @param DriverInterface $driver
-     * @param array $params
+     * @param array           $params
      */
     public function __construct(DriverInterface $driver, array $params)
     {
@@ -55,21 +54,25 @@ class Druid implements DriverConnectionInterface
         if (!$this->connection) {
             $this->connection = $this->driver->connect(new ConnectionConfig($this->params));
         }
+
         return $this->connection;
     }
 
     /**
      * @param QueryInterface $query
+     *
      * @return mixed
      */
     public function send(QueryInterface $query)
     {
         $this->connect();
+
         return $this->connection->send($query);
     }
 
     /**
      * @param string $queryType
+     *
      * @return AbstractQueryBuilder
      */
     public function createQueryBuilder($queryType)

@@ -4,7 +4,6 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\QueryBuilder;
 
 use Druid\Query\Aggregation\GroupBy;
@@ -18,8 +17,7 @@ use Druid\Query\Component\Interval\Interval;
 use Druid\Query\Component\PostAggregatorInterface;
 
 /**
- * Class GroupByQueryBuilder
- * @package Druid\QueryBuilder
+ * Class GroupByQueryBuilder.
  */
 class GroupByQueryBuilder extends AbstractQueryBuilder
 {
@@ -32,12 +30,12 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
         'filter' => null,
         'aggregations' => [],
         'postAggregations' => [],
-        'intervals' => []
+        'intervals' => [],
     ];
-
 
     /**
      * @param string $dataSource
+     *
      * @return $this
      */
     public function setDataSource($dataSource)
@@ -48,6 +46,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
     /**
      * @param string $period
      * @param string $timeZone
+     *
      * @return $this
      */
     public function setGranularity($period, $timeZone = 'UTC')
@@ -58,6 +57,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
     /**
      * @param \DateTime $start
      * @param \DateTime $end
+     *
      * @return $this
      */
     public function addInterval(\DateTime $start, \DateTime $end)
@@ -67,6 +67,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
 
     /**
      * @param AggregatorInterface $aggregator
+     *
      * @return $this
      */
     public function addAggregator(AggregatorInterface $aggregator)
@@ -77,6 +78,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
     /**
      * @param string $dimension
      * @param string $outputName
+     *
      * @return $this
      */
     public function addDimension($dimension, $outputName)
@@ -86,6 +88,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
 
     /**
      * @param PostAggregatorInterface $postAggregator
+     *
      * @return $this
      */
     public function addPostAggregator(PostAggregatorInterface $postAggregator)
@@ -95,6 +98,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
 
     /**
      * @param FilterInterface $filter
+     *
      * @return $this
      */
     public function setFilter(FilterInterface $filter)
@@ -104,6 +108,7 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
 
     /**
      * @param HavingInterface $having
+     *
      * @return $this
      */
     public function setHaving(HavingInterface $having)
@@ -119,10 +124,11 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
         $query = new GroupBy();
         foreach ($this->components as $componentName => $component) {
             if (!empty($component)) {
-                $method = 'set' . ucfirst($componentName);
+                $method = 'set'.ucfirst($componentName);
                 $query->$method($component);
             }
         }
+
         return $query;
     }
 }

@@ -4,12 +4,14 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\PostAggregator;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\PostAggregatorInterface;
 
+/**
+ * Class FieldAccessPostAggregator.
+ */
 class FieldAccessPostAggregator extends AbstractTypedComponent implements PostAggregatorInterface
 {
     /**
@@ -23,6 +25,7 @@ class FieldAccessPostAggregator extends AbstractTypedComponent implements PostAg
 
     /**
      * FieldAccessPostAggregator constructor.
+     *
      * @param string $name
      * @param string $fieldName
      */

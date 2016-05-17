@@ -4,15 +4,13 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Query\Component\Having;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\HavingInterface;
 
 /**
- * Class NumericHaving
- * @package Druid\Query\Component
+ * Class NumericHaving.
  */
 class NumericHaving extends AbstractTypedComponent implements HavingInterface
 {
@@ -22,14 +20,15 @@ class NumericHaving extends AbstractTypedComponent implements HavingInterface
     private $aggregation;
 
     /**
-     * @var integer|float
+     * @var int|float
      */
     private $value;
 
     /**
      * NumericHaving constructor.
-     * @param string $type
-     * @param string $aggregation
+     *
+     * @param string    $type
+     * @param string    $aggregation
      * @param float|int $value
      */
     public function __construct($type, $aggregation, $value)

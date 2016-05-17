@@ -4,12 +4,10 @@
  * @copyright PIXEL FEDERATION
  * @license   Internal use only
  */
-
 namespace Druid\Driver;
 
 /**
- * Interface ResponseInterface
- * @package Druid\Driver
+ * Interface ResponseInterface.
  */
 interface ResponseInterface
 {
