@@ -36,6 +36,8 @@ use Druid\Query\Component\IntervalInterface;
  */
 class Interval implements IntervalInterface
 {
+    const INTERVAL_FORMAT = 'Y-m-d\TH:i:s';
+
     /**
      * @var \DateTime
      */
@@ -47,15 +49,22 @@ class Interval implements IntervalInterface
     private $end;
 
     /**
+     * @var bool
+     */
+    private $useZuluTime;
+
+    /**
      * Interval constructor.
      *
      * @param \DateTime $start
      * @param \DateTime $end
+     * @param bool $useZuluTime
      */
-    public function __construct(\DateTime $start, \DateTime $end)
+    public function __construct(\DateTime $start, \DateTime $end, $useZuluTime = false)
     {
         $this->start = $start;
         $this->end = $end;
+        $this->useZuluTime = $useZuluTime;
     }
 
     /**
@@ -63,7 +72,7 @@ class Interval implements IntervalInterface
      */
     public function getStart()
     {
-        return $this->start->format('Y-m-d\TH:i:s\Z');
+        return $this->start->format($this->getIntervalFormat());
     }
 
     /**
@@ -71,11 +80,28 @@ class Interval implements IntervalInterface
      */
     public function getEnd()
     {
-        return $this->end->format('Y-m-d\TH:i:s\Z');
+        return $this->end->format($this->getIntervalFormat());
     }
 
     public function __toString()
     {
         return $this->getStart().'/'.$this->getEnd();
+    }
+
+    /**
+     * Get Interval Format
+     *
+     * By default returns format with current offset
+     * when is enabled only ZULU time returns format with \Z
+     *
+     * @return string
+     */
+    private function getIntervalFormat()
+    {
+        if ($this->useZuluTime) {
+            return self::INTERVAL_FORMAT . '\Z';
+        }
+
+        return self::INTERVAL_FORMAT . 'O';
     }
 }

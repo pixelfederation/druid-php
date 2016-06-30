@@ -80,12 +80,13 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
     /**
      * @param \DateTime $start
      * @param \DateTime $end
-     *
+     * @param bool $useZuluTime
+     * 
      * @return $this
      */
-    public function addInterval(\DateTime $start, \DateTime $end)
+    public function addInterval(\DateTime $start, \DateTime $end, $useZuluTime = false)
     {
-        return $this->addComponent('intervals', new Interval($start, $end));
+        return $this->addComponent('intervals', new Interval($start, $end, $useZuluTime));
     }
 
     /**
