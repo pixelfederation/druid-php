@@ -16,6 +16,14 @@ Put the following into your composer.json
             "pixelfederation/druid-php": "dev-master"
         }
     }
+
+## Current State
+
+Currently this driver supports only **GroupBy** aggregation type which is tested on out production environment.
+Everybody is welcome to create pull requests to implement some of the missing things.
+
+Also, some unit tests are bound to running on our internal Druid instance, there is plan to change it to docker container
+with some testing data.
     
 ## Usage
 
@@ -65,6 +73,18 @@ $queryBuilder->addPostAggregator(
 
 $response = $druid->send($queryBuilder->getQuery());
 ```
+
+## Contribution
+
+If you'd like to contribtue, we strongly recommend to run
+
+```bash
+./bin/setup-dev
+```
+
+from the project directory. This script will set up a commit hook, which checks the PSR/2 coding standards
+using [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer) and also runs PHP linter and 
+PHP Mess Detector [PHPMD](http://phpmd.org/)
 
 ## TODO
 
