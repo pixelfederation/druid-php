@@ -34,7 +34,7 @@ use Druid\Query\Component\AggregatorInterface;
 use Druid\Query\Component\DataSource\TableDataSource;
 use Druid\Query\Component\DimensionSpec\DefaultDimensionSpec;
 use Druid\Query\Component\FilterInterface;
-use Druid\Query\Component\Granularity\PeriodGranularity;
+use Druid\Query\Component\GranularityInterface;
 use Druid\Query\Component\HavingInterface;
 use Druid\Query\Component\Interval\Interval;
 use Druid\Query\Component\PostAggregatorInterface;
@@ -67,21 +67,20 @@ class GroupByQueryBuilder extends AbstractQueryBuilder
     }
 
     /**
-     * @param string $period
-     * @param string $timeZone
+     * @param GranularityInterface $granularity
      *
      * @return $this
      */
-    public function setGranularity($period, $timeZone = 'UTC')
+    public function setGranularity(GranularityInterface $granularity)
     {
-        return $this->addComponent('granularity', new PeriodGranularity($period, $timeZone));
+        return $this->addComponent('granularity', $granularity);
     }
 
     /**
      * @param \DateTime $start
      * @param \DateTime $end
      * @param bool $useZuluTime
-     * 
+     *
      * @return $this
      */
     public function addInterval(\DateTime $start, \DateTime $end, $useZuluTime = false)

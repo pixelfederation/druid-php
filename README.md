@@ -1,8 +1,8 @@
 # Druid PHP driver
 
-This library provider a [Druid](http://druid.io/) PHP Driver. 
+This library provider a [Druid](http://druid.io/) PHP Driver.
 
-## [License](LICENSE) 
+## [License](LICENSE)
 
 ## Instalation
 
@@ -24,7 +24,7 @@ Everybody is welcome to create pull requests to implement some of the missing th
 
 Also, some unit tests are bound to running on our internal Druid instance, there is plan to change it to docker container
 with some testing data.
-    
+
 ## Usage
 
 ### Average aggregation
@@ -35,6 +35,7 @@ with some testing data.
 use Druid\Druid;
 use Druid\Driver\Guzzle\Driver;
 use Druid\Query\AbstractQuery;
+use Druid\Query\Component\Granularity\PeriodGranularity;
 
 $druid = new Druid(
     new Driver(),
@@ -50,9 +51,10 @@ $druid = new Druid(
 $queryBuilder = $druid->createQueryBuilder(AbstractQuery::TYPE_GROUP_BY);
 
 $queryBuilder->setDataSource('kpi_registrations_v1');
-$queryBuilder->setGranularity('P1D', 'UTC');
 $queryBuilder->addInterval(new \DateTime('2000-01-01'), new \DateTime());
 
+$granularity = new PeriodGranularity('P1D', 'UTC');
+$queryBuilder->setGranularity($granularity);
 
 $queryBuilder->addAggregator($queryBuilder->aggregator()->count('count_rows'));
 $queryBuilder->addAggregator($queryBuilder->aggregator()->doubleSum('sum_rows', 'event_count_metric'));
@@ -83,7 +85,7 @@ If you'd like to contribtue, we strongly recommend to run
 ```
 
 from the project directory. This script will set up a commit hook, which checks the PSR/2 coding standards
-using [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer) and also runs PHP linter and 
+using [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer) and also runs PHP linter and
 PHP Mess Detector [PHPMD](http://phpmd.org/)
 
 ## TODO
