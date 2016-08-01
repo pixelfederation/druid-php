@@ -27,14 +27,38 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Component;
+namespace Druid\Query\Component\Granularity;
+
+use Druid\Query\Component\AbstractTypedComponent;
+use Druid\Query\Component\GranularityInterface;
 
 /**
- * Interface GranularityInterface.
+ * Class SimpleGranularity.
  */
-interface GranularityInterface extends TypedInterface, ComponentInterface
+class SimpleGranularity extends AbstractTypedComponent implements GranularityInterface
 {
-    const TYPE_PERIOD = 'period';
-    const TYPE_ALL = 'all';
-    const TYPE_NONE = 'none';
+    /**
+     * @var string
+     */
+    private $granularity;
+
+    /**
+     * SimpleGranularity constructor.
+     *
+     * @param string $granularity
+     */
+    public function __construct($granularity)
+    {
+        $this->granularity = $granularity;
+
+        parent::__construct($granularity);
+    }
+
+    /**
+     * @return string
+     */
+    public function getGranularity()
+    {
+        return $this->granularity;
+    }
 }
