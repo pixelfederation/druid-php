@@ -57,7 +57,7 @@ class DruidTest extends \PHPUnit_Framework_TestCase
 
         $connection = new Druid($driverMock, ['base_uri' => 'http://localhost']);
 
-        $queryMock = $this->getMock(QueryInterface::class);
+        $queryMock = $this->createMock(QueryInterface::class);
         $result = $connection->send($queryMock);
         $this->assertTrue($result);
     }
