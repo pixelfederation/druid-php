@@ -31,6 +31,7 @@ namespace Druid\Tests\QueryBuilder;
 
 use Druid\Query\Component\ComponentInterface;
 use Druid\QueryBuilder\GroupByQueryBuilder;
+use Druid\Query\Component\Granularity\PeriodGranularity;
 
 class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,7 +42,7 @@ class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
     public function testFailAddComponent()
     {
         $builder = new GroupByQueryBuilder();
-        $component = $this->getMock(ComponentInterface::class);
+        $component = $this->createMock(ComponentInterface::class);
         $builder->addComponent('not_exists_component', $component);
     }
 
@@ -51,7 +52,7 @@ class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
 
         $now = new \DateTime();
         $builder->setDataSource('dataSource')
-            ->setGranularity('P1D')
+            ->setGranularity(new PeriodGranularity('P1D', 'UTC'))
             ->setFilter($builder->filter()->selectorFilter('gender', 'male'))
             ->addInterval($now, new \DateTime())
             ->addAggregator($builder->aggregator()->doubleSum('sum', 'sum'))
@@ -69,7 +70,7 @@ class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('dataSource', $query->getDataSource()->getName());
         $this->assertEquals('gender', $query->getFilter()->getDimension());
         $this->assertEquals('male', $query->getFilter()->getValue());
-        $this->assertEquals($now->format('Y-m-d\TH:i:s\Z'), $query->getIntervals()[0]->getStart());
+        $this->assertEquals($now->format('Y-m-d\TH:i:s+0000'), $query->getIntervals()[0]->getStart());
         $this->assertEquals('sum', $query->getAggregations()[0]->getName());
         $this->assertEquals('count', $query->getAggregations()[1]->getName());
         $this->assertEquals('gender', $query->getDimensions()[0]->getDimension());
