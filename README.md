@@ -19,7 +19,7 @@ Put the following into your composer.json
 
 ## Current State
 
-Currently this driver supports only **GroupBy** aggregation type which is tested on out production environment.
+Currently this driver supports **GroupBy** and **Timeseries** aggregation types.
 Everybody is welcome to create pull requests to implement some of the missing things.
 
 Also, some unit tests are bound to running on our internal Druid instance, there is plan to change it to docker container
@@ -93,7 +93,6 @@ PHP Mess Detector [PHPMD](http://phpmd.org/)
 1. **Query types**
     * Aggregation queries
         * TopN
-        * Timeseries
     * Metadata Queries
         * Time Boundary
         * Segment Metadata

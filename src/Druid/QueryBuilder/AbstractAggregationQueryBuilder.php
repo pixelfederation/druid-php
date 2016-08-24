@@ -27,94 +27,79 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Aggregation;
+namespace Druid\QueryBuilder;
 
-use Druid\Query\Component\DimensionSpecInterface;
-use Druid\Query\Component\HavingInterface;
-use Druid\Query\Component\LimitSpecInterface;
+use Druid\Query\Component\DataSource\TableDataSource;
+use Druid\Query\Component\GranularityInterface;
+use Druid\Query\Component\Interval\Interval;
+use Druid\Query\Component\FilterInterface;
+use Druid\Query\Component\PostAggregatorInterface;
+use Druid\Query\Component\AggregatorInterface;
 
 /**
- * Class GroupBy.
+ * Class AbstractAggregationQueryBuilder.
  */
-class GroupBy extends AbstractAggregationQuery
+abstract class AbstractAggregationQueryBuilder extends AbstractQueryBuilder
 {
     /**
-     * @var array|DimensionSpecInterface[]
-     */
-    private $dimensions;
-
-    /**
-     * @var LimitSpecInterface
-     */
-    private $limitSpec;
-
-    /**
-     * @var HavingInterface
-     */
-    private $having;
-
-    public function __construct()
-    {
-        parent::__construct(self::TYPE_GROUP_BY);
-    }
-
-    /**
-     * @return array|\Druid\Query\Component\DimensionSpecInterface[]
-     */
-    public function getDimensions()
-    {
-        return $this->dimensions;
-    }
-
-    /**
-     * @param array|\Druid\Query\Component\DimensionSpecInterface[] $dimensions
+     * @param string $dataSource
      *
-     * @return GroupBy
+     * @return $this
      */
-    public function setDimensions(array $dimensions)
+    public function setDataSource($dataSource)
     {
-        $this->dimensions = $dimensions;
-
-        return $this;
+        return $this->addComponent('dataSource', new TableDataSource($dataSource));
     }
 
     /**
-     * @return LimitSpecInterface
-     */
-    public function getLimitSpec()
-    {
-        return $this->limitSpec;
-    }
-
-    /**
-     * @param LimitSpecInterface $limitSpec
+     * @param GranularityInterface $granularity
      *
-     * @return GroupBy
+     * @return $this
      */
-    public function setLimitSpec(LimitSpecInterface $limitSpec)
+    public function setGranularity(GranularityInterface $granularity)
     {
-        $this->limitSpec = $limitSpec;
-
-        return $this;
+        return $this->addComponent('granularity', $granularity);
     }
 
     /**
-     * @return HavingInterface
-     */
-    public function getHaving()
-    {
-        return $this->having;
-    }
-
-    /**
-     * @param HavingInterface $having
+     * @param \DateTime $start
+     * @param \DateTime $end
+     * @param bool $useZuluTime
      *
-     * @return GroupBy
+     * @return $this
      */
-    public function setHaving(HavingInterface $having)
+    public function addInterval(\DateTime $start, \DateTime $end, $useZuluTime = false)
     {
-        $this->having = $having;
+        return $this->addComponent('intervals', new Interval($start, $end, $useZuluTime));
+    }
 
-        return $this;
+    /**
+     * @param FilterInterface $filter
+     *
+     * @return $this
+     */
+    public function setFilter(FilterInterface $filter)
+    {
+        return $this->addComponent('filter', $filter);
+    }
+
+    /**
+     * @param AggregatorInterface $aggregator
+     *
+     * @return $this
+     */
+    public function addAggregator(AggregatorInterface $aggregator)
+    {
+        return $this->addComponent('aggregations', $aggregator);
+    }
+
+    /**
+     * @param PostAggregatorInterface $postAggregator
+     *
+     * @return $this
+     */
+    public function addPostAggregator(PostAggregatorInterface $postAggregator)
+    {
+        return $this->addComponent('postAggregations', $postAggregator);
     }
 }

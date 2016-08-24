@@ -27,36 +27,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query;
+namespace Druid\Query\Component;
 
 /**
- * Class AbstractQuery.
+ * Interface DescendingInterface.
  */
-abstract class AbstractQuery implements QueryInterface
+interface DescendingInterface extends ComponentInterface
 {
-    const TYPE_GROUP_BY = 'groupBy';
-    const TYPE_TIMESERIES = 'timeseries';
-
     /**
-     * @var string
+     * @return bool
      */
-    private $queryType;
-
-    /**
-     * AbstractQuery constructor.
-     *
-     * @param string $queryType
-     */
-    public function __construct($queryType)
-    {
-        $this->queryType = $queryType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getQueryType()
-    {
-        return $this->queryType;
-    }
+    public function getDescending();
 }

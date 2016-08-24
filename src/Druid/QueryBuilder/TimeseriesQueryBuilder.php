@@ -27,94 +27,49 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Aggregation;
+namespace Druid\QueryBuilder;
 
-use Druid\Query\Component\DimensionSpecInterface;
-use Druid\Query\Component\HavingInterface;
-use Druid\Query\Component\LimitSpecInterface;
+use Druid\Query\Aggregation\Timeseries;
+use Druid\Query\Component\Descending\Descending;
 
 /**
- * Class GroupBy.
+ * Class TimeseriesQueryBuilder.
  */
-class GroupBy extends AbstractAggregationQuery
+class TimeseriesQueryBuilder extends AbstractAggregationQueryBuilder
 {
-    /**
-     * @var array|DimensionSpecInterface[]
-     */
-    private $dimensions;
+    protected $components = [
+        'dataSource' => null,
+        'granularity' => null,
+        'descending' => null,
+        'filter' => null,
+        'aggregations' => [],
+        'postAggregations' => [],
+        'intervals' => [],
+    ];
 
     /**
-     * @var LimitSpecInterface
-     */
-    private $limitSpec;
-
-    /**
-     * @var HavingInterface
-     */
-    private $having;
-
-    public function __construct()
-    {
-        parent::__construct(self::TYPE_GROUP_BY);
-    }
-
-    /**
-     * @return array|\Druid\Query\Component\DimensionSpecInterface[]
-     */
-    public function getDimensions()
-    {
-        return $this->dimensions;
-    }
-
-    /**
-     * @param array|\Druid\Query\Component\DimensionSpecInterface[] $dimensions
+     * @param bool $descending
      *
-     * @return GroupBy
+     * @return $this
      */
-    public function setDimensions(array $dimensions)
+    public function setDescending($descending)
     {
-        $this->dimensions = $dimensions;
-
-        return $this;
+        return $this->addComponent('descending', new Descending($descending));
     }
 
     /**
-     * @return LimitSpecInterface
+     * @return Timeseries
      */
-    public function getLimitSpec()
+    public function getQuery()
     {
-        return $this->limitSpec;
-    }
+        $query = new Timeseries();
+        foreach ($this->components as $componentName => $component) {
+            if (!empty($component)) {
+                $method = 'set'.ucfirst($componentName);
+                $query->$method($component);
+            }
+        }
 
-    /**
-     * @param LimitSpecInterface $limitSpec
-     *
-     * @return GroupBy
-     */
-    public function setLimitSpec(LimitSpecInterface $limitSpec)
-    {
-        $this->limitSpec = $limitSpec;
-
-        return $this;
-    }
-
-    /**
-     * @return HavingInterface
-     */
-    public function getHaving()
-    {
-        return $this->having;
-    }
-
-    /**
-     * @param HavingInterface $having
-     *
-     * @return GroupBy
-     */
-    public function setHaving(HavingInterface $having)
-    {
-        $this->having = $having;
-
-        return $this;
+        return $query;
     }
 }
