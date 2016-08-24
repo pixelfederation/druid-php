@@ -87,7 +87,7 @@ abstract class AbstractAggregationQuery extends AbstractQuery
     /**
      * @param DataSourceInterface $dataSource
      *
-     * @return GroupBy
+     * @return $this
      */
     public function setDataSource(DataSourceInterface $dataSource)
     {
@@ -107,7 +107,7 @@ abstract class AbstractAggregationQuery extends AbstractQuery
     /**
      * @param GranularityInterface $granularity
      *
-     * @return GroupBy
+     * @return $this
      */
     public function setGranularity(GranularityInterface $granularity)
     {
@@ -127,7 +127,7 @@ abstract class AbstractAggregationQuery extends AbstractQuery
     /**
      * @param array|\Druid\Query\Component\AggregatorInterface[] $aggregations
      *
-     * @return GroupBy
+     * @return $this
      */
     public function setAggregations(array $aggregations)
     {
@@ -147,7 +147,7 @@ abstract class AbstractAggregationQuery extends AbstractQuery
     /**
      * @param array|\Druid\Query\Component\PostAggregatorInterface[] $postAggregations
      *
-     * @return GroupBy
+     * @return $this
      */
     public function setPostAggregations(array $postAggregations)
     {
@@ -167,7 +167,7 @@ abstract class AbstractAggregationQuery extends AbstractQuery
     /**
      * @param array|\Druid\Query\Component\IntervalInterface[] $intervals
      *
-     * @return GroupBy
+     * @return $this
      */
     public function setIntervals(array $intervals)
     {
@@ -187,7 +187,7 @@ abstract class AbstractAggregationQuery extends AbstractQuery
     /**
      * @param FilterInterface $filter
      *
-     * @return GroupBy
+     * @return $this
      */
     public function setFilter(FilterInterface $filter)
     {
