@@ -48,7 +48,7 @@ $druid = new Druid(
     ]
 );
 
-$queryBuilder = $druid->createQueryBuilder(AbstractQuery::TYPE_GROUP_BY);
+$queryBuilder = $druid->createQueryBuilder(AbstractQuery::TYPE_GROUP_BY); // or AbstractQuery::TYPE_TIMESERIES
 
 $queryBuilder->setDataSource('kpi_registrations_v1');
 $queryBuilder->addInterval(new \DateTime('2000-01-01'), new \DateTime());
@@ -60,6 +60,7 @@ $queryBuilder->addAggregator($queryBuilder->aggregator()->count('count_rows'));
 $queryBuilder->addAggregator($queryBuilder->aggregator()->doubleSum('sum_rows', 'event_count_metric'));
 $queryBuilder->addAggregator($queryBuilder->aggregator()->hyperUnique('registrations', 'registrations'));
 
+// Only include for GroupBy queries
 $queryBuilder->addDimension('project', 'project');
 
 $queryBuilder->addPostAggregator(
