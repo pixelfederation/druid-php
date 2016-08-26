@@ -29,91 +29,39 @@
 
 namespace Druid\Query\Aggregation;
 
-use Druid\Query\Component\DimensionSpecInterface;
-use Druid\Query\Component\HavingInterface;
-use Druid\Query\Component\LimitSpecInterface;
+use Druid\Query\Component\DescendingInterface;
 
 /**
- * Class GroupBy.
+ * Class Timeseries.
  */
-class GroupBy extends AbstractAggregationQuery
+class Timeseries extends AbstractAggregationQuery
 {
     /**
-     * @var array|DimensionSpecInterface[]
+     * @var DescendingInterface
      */
-    private $dimensions;
-
-    /**
-     * @var LimitSpecInterface
-     */
-    private $limitSpec;
-
-    /**
-     * @var HavingInterface
-     */
-    private $having;
+    private $descending;
 
     public function __construct()
     {
-        parent::__construct(self::TYPE_GROUP_BY);
+        parent::__construct(self::TYPE_TIMESERIES);
     }
 
     /**
-     * @return array|\Druid\Query\Component\DimensionSpecInterface[]
+     * @return DescendingInterface
      */
-    public function getDimensions()
+    public function getDescending()
     {
-        return $this->dimensions;
+        return $this->descending;
     }
 
     /**
-     * @param array|\Druid\Query\Component\DimensionSpecInterface[] $dimensions
+     * @param DescendingInterface
      *
-     * @return GroupBy
+     * @return Timeseries
      */
-    public function setDimensions(array $dimensions)
+    public function setDescending(DescendingInterface $descending)
     {
-        $this->dimensions = $dimensions;
-
-        return $this;
-    }
-
-    /**
-     * @return LimitSpecInterface
-     */
-    public function getLimitSpec()
-    {
-        return $this->limitSpec;
-    }
-
-    /**
-     * @param LimitSpecInterface $limitSpec
-     *
-     * @return GroupBy
-     */
-    public function setLimitSpec(LimitSpecInterface $limitSpec)
-    {
-        $this->limitSpec = $limitSpec;
-
-        return $this;
-    }
-
-    /**
-     * @return HavingInterface
-     */
-    public function getHaving()
-    {
-        return $this->having;
-    }
-
-    /**
-     * @param HavingInterface $having
-     *
-     * @return GroupBy
-     */
-    public function setHaving(HavingInterface $having)
-    {
-        $this->having = $having;
+        $this->descending = $descending;
 
         return $this;
     }

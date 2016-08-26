@@ -19,7 +19,7 @@ Put the following into your composer.json
 
 ## Current State
 
-Currently this driver supports only **GroupBy** aggregation type which is tested on out production environment.
+Currently this driver supports **GroupBy** and **Timeseries** aggregation types.
 Everybody is welcome to create pull requests to implement some of the missing things.
 
 Also, some unit tests are bound to running on our internal Druid instance, there is plan to change it to docker container
@@ -48,7 +48,7 @@ $druid = new Druid(
     ]
 );
 
-$queryBuilder = $druid->createQueryBuilder(AbstractQuery::TYPE_GROUP_BY);
+$queryBuilder = $druid->createQueryBuilder(AbstractQuery::TYPE_GROUP_BY); // or AbstractQuery::TYPE_TIMESERIES
 
 $queryBuilder->setDataSource('kpi_registrations_v1');
 $queryBuilder->addInterval(new \DateTime('2000-01-01'), new \DateTime());
@@ -60,6 +60,7 @@ $queryBuilder->addAggregator($queryBuilder->aggregator()->count('count_rows'));
 $queryBuilder->addAggregator($queryBuilder->aggregator()->doubleSum('sum_rows', 'event_count_metric'));
 $queryBuilder->addAggregator($queryBuilder->aggregator()->hyperUnique('registrations', 'registrations'));
 
+// Only include for GroupBy queries
 $queryBuilder->addDimension('project', 'project');
 
 $queryBuilder->addPostAggregator(
@@ -93,7 +94,6 @@ PHP Mess Detector [PHPMD](http://phpmd.org/)
 1. **Query types**
     * Aggregation queries
         * TopN
-        * Timeseries
     * Metadata Queries
         * Time Boundary
         * Segment Metadata
