@@ -27,16 +27,52 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Component;
+namespace Druid\Query\Component\Filter;
+
+use Druid\Query\Component\AbstractTypedComponent;
+use Druid\Query\Component\FilterInterface;
 
 /**
- * Interface FilterInterface.
+ * Class InFilter.
  */
-interface FilterInterface extends TypedInterface, ComponentInterface
+class InFilter extends AbstractTypedComponent implements FilterInterface
 {
-    const TYPE_SELECTOR = 'selector';
-    const TYPE_LOGICAL_AND = 'and';
-    const TYPE_LOGICAL_OR = 'or';
-    const TYPE_LOGICAL_NOT = 'not';
-    const TYPE_LOGICAL_IN = 'in';
+    /**
+     * @var string
+     */
+    private $dimension;
+
+    /**
+     * @var array
+     */
+    private $values;
+
+    /**
+     * InFilter constructor.
+     *
+     * @param string $dimension
+     * @param string $values
+     */
+    public function __construct($dimension, $values)
+    {
+        parent::__construct(FilterInterface::TYPE_LOGICAL_IN);
+        $this->dimension = $dimension;
+        $this->values = $values;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDimension()
+    {
+        return $this->dimension;
+    }
+
+    /**
+     * @return array
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
 }
