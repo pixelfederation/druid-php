@@ -43,6 +43,7 @@ class ConnectionConfig
         'port' => '8084',
         'path' => '/druid/v2',
         'proxy' => null,
+        'timeout' => null,
     ];
 
     /**
@@ -112,5 +113,13 @@ class ConnectionConfig
     public function getProxy()
     {
         return $this->config['proxy'];
+    }
+
+    /**
+     * @return float
+     */
+    public function getTimeout()
+    {
+        return $this->config['timeout'];
     }
 }

@@ -52,8 +52,12 @@ class Driver implements DriverInterface
             ->build();
 
         $params = ['base_uri' => $config->getBaseUri()];
-        if ($config->getProxy()) {
-            $params['proxy'] = $config->getProxy();
+        if ($proxy = $config->getProxy()) {
+            $params['proxy'] = $proxy;
+        }
+
+        if ($timeout = $config->getTimeout()) {
+            $params['timeout'] = $timeout;
         }
 
         return new Connection(new Client($params), $serializer);
