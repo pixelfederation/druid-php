@@ -44,7 +44,8 @@ $druid = new Druid(
         'host' => 'localhost',
         'port' => '9999',
         'path' => '/druid/v2',
-        'proxy' => 'tcp://127.0.0.1:8080' // default null
+        'proxy' => 'tcp://127.0.0.1:8080', // default null
+        'timeout' => 3.7, // in seconds - default null
     ]
 );
 
