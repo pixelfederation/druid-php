@@ -27,52 +27,40 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Component\LimitSpec;
+namespace Druid\Query\Component\Threshold;
 
-use Druid\Query\Component\AbstractTypedComponent;
-use Druid\Query\Component\LimitSpecInterface;
+use Druid\Query\Component\ThresholdInterface;
 
 /**
- * Class DefaultLimitSpec.
+ * Class Threshold.
  */
-class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
+class Threshold implements ThresholdInterface
 {
     /**
      * @var int
      */
-    private $limit;
+    private $threshold;
 
     /**
-     * @var string
-     */
-    private $columns;
-
-    /**
-     * DefaultLimitSpec constructor.
+     * Threshold constructor.
      *
-     * @param int   $limit   Number of limit.
-     * @param array $columns Columns for ordering.
+     * @param int $threshold
      */
-    public function __construct($limit, $columns)
+    public function __construct($threshold)
     {
-        parent::__construct(self::TYPE_DEFAULT);
-        $this->limit = $limit;
-        $this->columns = $columns;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLimit()
-    {
-        return $this->limit;
+        $this->threshold = (int)$threshold;
     }
 
     /**
      * @return string
      */
-    public function getColumns()
+    public function getThreshold()
     {
-        return $this->columns;
+        return $this->threshold;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->threshold;
     }
 }

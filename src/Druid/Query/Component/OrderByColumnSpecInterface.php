@@ -27,52 +27,23 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Component\LimitSpec;
-
-use Druid\Query\Component\AbstractTypedComponent;
-use Druid\Query\Component\LimitSpecInterface;
+namespace Druid\Query\Component;
 
 /**
- * Class DefaultLimitSpec.
+ * Interface OrderByColumnSpecInterface.
  */
-class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
+interface OrderByColumnSpecInterface extends ComponentInterface
 {
-    /**
-     * @var int
-     */
-    private $limit;
-
-    /**
-     * @var string
-     */
-    private $columns;
-
-    /**
-     * DefaultLimitSpec constructor.
-     *
-     * @param int   $limit   Number of limit.
-     * @param array $columns Columns for ordering.
-     */
-    public function __construct($limit, $columns)
-    {
-        parent::__construct(self::TYPE_DEFAULT);
-        $this->limit = $limit;
-        $this->columns = $columns;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLimit()
-    {
-        return $this->limit;
-    }
+    const DIRECTION_ASCENDING = 'ascending';
+    const DIRECTION_DESCENDING = 'descending';
 
     /**
      * @return string
      */
-    public function getColumns()
-    {
-        return $this->columns;
-    }
+    public function getDirection();
+
+    /**
+     * @return string
+     */
+    public function getDimension();
 }

@@ -53,7 +53,7 @@ fi
 echo "Checking PHP Mess Detector..."
 for FILE in $SFILES
 do
-    ./bin/phpmd $PROJECT/$FILE text cleancode,codesize,controversial,design,naming,unusedcode
+    ./bin/phpmd $PROJECT/$FILE text ./bin/static_analysis/phpmd.ruleset.xml
     if [ $? != 0 ]
     then
         if [ -n "$STATIC_ANALYSIS_IGNORE_ERRORS" ]
