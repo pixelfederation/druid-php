@@ -35,9 +35,7 @@ use Druid\Query\Component\DataSourceInterface;
 use Druid\Query\Component\FilterInterface;
 use Druid\Query\Component\GranularityInterface;
 use Druid\Query\Component\IntervalInterface;
-use Druid\Query\Component\LimitSpecInterface;
 use Druid\Query\Component\PostAggregatorInterface;
-use Druid\Query\QueryInterface;
 use JMS\Serializer\Annotation as Serializer;
 
 /**

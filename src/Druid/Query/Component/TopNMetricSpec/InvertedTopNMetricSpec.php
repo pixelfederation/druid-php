@@ -27,52 +27,37 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Component\LimitSpec;
+namespace Druid\Query\Component\TopNMetricSpec;
 
 use Druid\Query\Component\AbstractTypedComponent;
-use Druid\Query\Component\LimitSpecInterface;
+use Druid\Query\Component\TopNMetricSpecInterface;
 
 /**
- * Class DefaultLimitSpec.
+ * Class InvertedTopNMetricSpec.
  */
-class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
+class InvertedTopNMetricSpec extends AbstractTypedComponent implements TopNMetricSpecInterface
 {
     /**
-     * @var int
+     * @var TopNMetricSpecInterface
      */
-    private $limit;
+    private $metric;
 
     /**
-     * @var string
-     */
-    private $columns;
-
-    /**
-     * DefaultLimitSpec constructor.
+     * InvertedTopNMetricSpec constructor.
      *
-     * @param int   $limit   Number of limit.
-     * @param array $columns Columns for ordering.
+     * @param TopNMetricSpecInterface $metric
      */
-    public function __construct($limit, $columns)
+    public function __construct(TopNMetricSpecInterface $metric)
     {
-        parent::__construct(self::TYPE_DEFAULT);
-        $this->limit = $limit;
-        $this->columns = $columns;
+        $this->metric = $metric;
+        parent::__construct(self::TYPE_INVERTED);
     }
 
     /**
-     * @return int
+     * @return TopNMetricSpecInterface
      */
-    public function getLimit()
+    public function getMetric()
     {
-        return $this->limit;
-    }
-
-    /**
-     * @return string
-     */
-    public function getColumns()
-    {
-        return $this->columns;
+        return $this->metric;
     }
 }

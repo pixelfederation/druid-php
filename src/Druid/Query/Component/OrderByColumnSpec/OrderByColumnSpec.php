@@ -27,52 +27,50 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Component\LimitSpec;
+namespace Druid\Query\Component\OrderByColumnSpec;
 
-use Druid\Query\Component\AbstractTypedComponent;
-use Druid\Query\Component\LimitSpecInterface;
+use Druid\Query\Component\OrderByColumnSpecInterface;
 
 /**
- * Class DefaultLimitSpec.
+ * Class OrderByColumnSpec.
  */
-class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
+class OrderByColumnSpec implements OrderByColumnSpecInterface
 {
     /**
-     * @var int
+     * @var string
      */
-    private $limit;
+    private $dimension;
 
     /**
      * @var string
      */
-    private $columns;
+    private $direction;
 
     /**
-     * DefaultLimitSpec constructor.
+     * OrderByColumnSpec constructor.
      *
-     * @param int   $limit   Number of limit.
-     * @param array $columns Columns for ordering.
+     * @param string $dimension
+     * @param string $direction
      */
-    public function __construct($limit, $columns)
+    public function __construct($dimension, $direction)
     {
-        parent::__construct(self::TYPE_DEFAULT);
-        $this->limit = $limit;
-        $this->columns = $columns;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLimit()
-    {
-        return $this->limit;
+        $this->dimension = (string)$dimension;
+        $this->direction = (string)$direction;
     }
 
     /**
      * @return string
      */
-    public function getColumns()
+    public function getDimension()
     {
-        return $this->columns;
+        return $this->dimension;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDirection()
+    {
+        return $this->direction;
     }
 }

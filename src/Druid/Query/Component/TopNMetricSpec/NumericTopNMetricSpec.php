@@ -27,52 +27,37 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Component\LimitSpec;
+namespace Druid\Query\Component\TopNMetricSpec;
 
 use Druid\Query\Component\AbstractTypedComponent;
-use Druid\Query\Component\LimitSpecInterface;
+use Druid\Query\Component\TopNMetricSpecInterface;
 
 /**
- * Class DefaultLimitSpec.
+ * Class NumericTopNMetricSpec.
  */
-class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
+class NumericTopNMetricSpec extends AbstractTypedComponent implements TopNMetricSpecInterface
 {
-    /**
-     * @var int
-     */
-    private $limit;
-
     /**
      * @var string
      */
-    private $columns;
+    private $metric;
 
     /**
-     * DefaultLimitSpec constructor.
+     * NumericTopNMetricSpec constructor.
      *
-     * @param int   $limit   Number of limit.
-     * @param array $columns Columns for ordering.
+     * @param string $metric
      */
-    public function __construct($limit, $columns)
+    public function __construct($metric)
     {
-        parent::__construct(self::TYPE_DEFAULT);
-        $this->limit = $limit;
-        $this->columns = $columns;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLimit()
-    {
-        return $this->limit;
+        $this->metric = (string)$metric;
+        parent::__construct(self::TYPE_NUMERIC);
     }
 
     /**
      * @return string
      */
-    public function getColumns()
+    public function getMetric()
     {
-        return $this->columns;
+        return $this->metric;
     }
 }

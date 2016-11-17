@@ -27,52 +27,70 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query\Component\LimitSpec;
-
-use Druid\Query\Component\AbstractTypedComponent;
-use Druid\Query\Component\LimitSpecInterface;
+namespace Druid\Query\Component;
 
 /**
- * Class DefaultLimitSpec.
+ * Interface ContextInterface.
  */
-class DefaultLimitSpec extends AbstractTypedComponent implements LimitSpecInterface
+interface ContextInterface extends ComponentInterface
 {
     /**
-     * @var int
+     * @return int
      */
-    private $limit;
-
-    /**
-     * @var string
-     */
-    private $columns;
-
-    /**
-     * DefaultLimitSpec constructor.
-     *
-     * @param int   $limit   Number of limit.
-     * @param array $columns Columns for ordering.
-     */
-    public function __construct($limit, $columns)
-    {
-        parent::__construct(self::TYPE_DEFAULT);
-        $this->limit = $limit;
-        $this->columns = $columns;
-    }
+    public function getTimeout();
 
     /**
      * @return int
      */
-    public function getLimit()
-    {
-        return $this->limit;
-    }
+    public function getPriority();
 
     /**
      * @return string
      */
-    public function getColumns()
-    {
-        return $this->columns;
-    }
+    public function getQueryId();
+
+    /**
+     * @return bool
+     */
+    public function isUseCache();
+
+    /**
+     * @return bool
+     */
+    public function isPopulateCache();
+
+    /**
+     * @return bool
+     */
+    public function isBySegment();
+
+    /**
+     * @return bool
+     */
+    public function isFinalize();
+
+    /**
+     * @return string
+     */
+    public function getChunkPeriod();
+
+    /**
+     * @return int
+     */
+    public function getMinTopNThreshold();
+
+    /**
+     * @return int
+     */
+    public function getMaxResults();
+
+    /**
+     * @return int
+     */
+    public function getMaxIntermediateRows();
+
+    /**
+     * @return bool
+     */
+    public function isGroupByIsSingleThreaded();
 }

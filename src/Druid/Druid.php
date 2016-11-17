@@ -37,6 +37,7 @@ use Druid\Query\QueryInterface;
 use Druid\QueryBuilder\AbstractQueryBuilder;
 use Druid\QueryBuilder\GroupByQueryBuilder;
 use Druid\QueryBuilder\TimeseriesQueryBuilder;
+use Druid\QueryBuilder\TopNQueryBuilder;
 
 /**
  * Class Connection.
@@ -104,6 +105,9 @@ class Druid implements DriverConnectionInterface
         switch ($queryType) {
             case AbstractQuery::TYPE_GROUP_BY:
                 return new GroupByQueryBuilder();
+                break;
+            case AbstractQuery::TYPE_TOP_N:
+                return new TopNQueryBuilder();
                 break;
             case AbstractQuery::TYPE_TIMESERIES:
                 return new TimeseriesQueryBuilder();
