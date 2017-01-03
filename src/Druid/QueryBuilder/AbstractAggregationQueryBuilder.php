@@ -30,6 +30,7 @@
 namespace Druid\QueryBuilder;
 
 use Druid\Query\Component\DataSource\TableDataSource;
+use Druid\Query\Component\DataSourceInterface;
 use Druid\Query\Component\GranularityInterface;
 use Druid\Query\Component\Interval\Interval;
 use Druid\Query\Component\FilterInterface;
@@ -42,12 +43,17 @@ use Druid\Query\Component\AggregatorInterface;
 abstract class AbstractAggregationQueryBuilder extends AbstractQueryBuilder
 {
     /**
-     * @param string $dataSource
+     * @param string|DataSourceInterface $dataSource
      *
      * @return $this
      */
     public function setDataSource($dataSource)
     {
+        if( $dataSource instanceof DataSourceInterface ){
+            return $this->addComponent('dataSource', $dataSource);
+        }
+
+        // the default
         return $this->addComponent('dataSource', new TableDataSource($dataSource));
     }
 

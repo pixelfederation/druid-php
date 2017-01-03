@@ -35,4 +35,5 @@ namespace Druid\Query\Component;
 interface DataSourceInterface extends TypedInterface, ComponentInterface
 {
     const TYPE_TABLE = 'table';
+    const TYPE_UNION = 'union';
 }
