@@ -101,7 +101,6 @@ PHP Mess Detector [PHPMD](http://phpmd.org/)
         * Datasource Metadata
 2. **Components**
     * Data source
-        * union
         * query
     * Aggregations
         * Cardinality aggregator
