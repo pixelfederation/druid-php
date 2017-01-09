@@ -35,4 +35,14 @@ namespace Druid\Query\Component;
 interface DimensionSpecInterface extends TypedInterface, ComponentInterface
 {
     const TYPE_DEFAULT = 'default';
+
+    /**
+     * @return string
+     */
+    public function getDimension();
+
+    /**
+     * @return string
+     */
+    public function getOutputName();
 }
