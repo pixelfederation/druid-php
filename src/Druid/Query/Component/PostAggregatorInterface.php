@@ -37,4 +37,9 @@ interface PostAggregatorInterface extends TypedInterface, ComponentInterface
     const TYPE_ARITHMETIC = 'arithmetic';
     const TYPE_FIELD_ACCESS = 'fieldAccess';
     const TYPE_CONSTANT = 'constant';
+
+    /**
+     * @return string
+     */
+    public function getName();
 }

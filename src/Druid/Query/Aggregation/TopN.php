@@ -27,37 +27,87 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query;
+namespace Druid\Query\Aggregation;
 
-/**
- * Class AbstractQuery.
- */
-abstract class AbstractQuery implements QueryInterface
+
+use Druid\Query\Component\DimensionSpecInterface;
+use Druid\Query\Component\MetricInterface;
+
+class TopN extends AbstractAggregationQuery
 {
-    const TYPE_GROUP_BY = 'groupBy';
-    const TYPE_TIMESERIES = 'timeseries';
-    const TYPE_TOP_N = 'topN';
+    /**
+     * @var DimensionSpecInterface
+     */
+    private $dimension;
 
     /**
-     * @var string
+     * @var int
      */
-    private $queryType;
+    private $threshold = null;
 
     /**
-     * AbstractQuery constructor.
-     *
-     * @param string $queryType
+     * @var MetricInterface
      */
-    public function __construct($queryType)
+    private $metric;
+
+    public function __construct()
     {
-        $this->queryType = $queryType;
+        parent::__construct(self::TYPE_TOP_N);
     }
 
     /**
-     * @return string
+     * @param \Druid\Query\Component\DimensionSpecInterface $dimension
+     * @return TopN
      */
-    public function getQueryType()
+    public function setDimension(DimensionSpecInterface $dimension)
     {
-        return $this->queryType;
+        $this->dimension = $dimension;
+        return $this;
     }
+
+    /**
+     * @return \Druid\Query\Component\DimensionSpecInterface
+     */
+    public function getDimension()
+    {
+        return $this->dimension;
+    }
+
+    /**
+     * @param int $threshold
+     * @return TopN
+     */
+    public function setThreshold($threshold)
+    {
+        $this->threshold = (int)(string)$threshold;
+        return $this;
+    }
+
+    /**
+     * @param MetricInterface $metric
+     * @return TopN
+     */
+    public function setMetric(MetricInterface $metric)
+    {
+        $this->metric = $metric;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getThreshold()
+    {
+        return (int)$this->threshold;
+    }
+
+    /**
+     * @return MetricInterface
+     */
+    public function getMetric()
+    {
+        return $this->metric;
+    }
+
+
 }
