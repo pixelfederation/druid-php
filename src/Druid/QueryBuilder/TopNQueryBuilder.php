@@ -27,37 +27,75 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query;
+namespace Druid\QueryBuilder;
+
+use Druid\Query\Aggregation\TopN;
+use Druid\Query\Component\DimensionSpec\DefaultDimensionSpec;
+use Druid\Query\Component\MetricInterface;
+use Druid\Query\Component\ThresholdInterface;
+use Druid\Query\QueryInterface;
 
 /**
- * Class AbstractQuery.
+ * Class TopNQueryBuilder
  */
-abstract class AbstractQuery implements QueryInterface
+class TopNQueryBuilder extends AbstractAggregationQueryBuilder
 {
-    const TYPE_GROUP_BY = 'groupBy';
-    const TYPE_TIMESERIES = 'timeseries';
-    const TYPE_TOP_N = 'topN';
+    protected $components = [
+        'dataSource' => null,
+        'intervals' => [],
+        'granularity' => null,
+        'filter' => null,
+        'aggregations' => [],
+        'postAggregations' => [],
+        'dimension' => '',
+        'threshold' => null,
+        'metric' => null,
+    ];
 
     /**
-     * @var string
-     */
-    private $queryType;
-
-    /**
-     * AbstractQuery constructor.
+     * @param string $dimension
+     * @param string $outputName
      *
-     * @param string $queryType
+     * @return $this
      */
-    public function __construct($queryType)
+    public function setDimension($dimension, $outputName)
     {
-        $this->queryType = $queryType;
+        return $this->addComponent('dimension', new DefaultDimensionSpec($dimension, $outputName));
     }
 
     /**
-     * @return string
+     * @param MetricInterface $metric
+     *
+     * @return $this
      */
-    public function getQueryType()
+    public function setMetric(MetricInterface $metric)
     {
-        return $this->queryType;
+        return $this->addComponent('metric', $metric);
+    }
+
+    /**
+     * @param ThresholdInterface $threshold
+     *
+     * @return $this
+     */
+    public function setThreshold($threshold)
+    {
+        return $this->addComponent('threshold', $threshold);
+    }
+
+    /**
+     * @return TopN
+     */
+    public function getQuery()
+    {
+        $query = new TopN();
+        foreach ($this->components as $componentName => $component) {
+            if (!empty($component)) {
+                $method = 'set' . ucfirst($componentName);
+                $query->$method($component);
+            }
+        }
+
+        return $query;
     }
 }

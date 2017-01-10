@@ -93,8 +93,6 @@ PHP Mess Detector [PHPMD](http://phpmd.org/)
 ## TODO
 
 1. **Query types**
-    * Aggregation queries
-        * TopN
     * Metadata Queries
         * Time Boundary
         * Segment Metadata
