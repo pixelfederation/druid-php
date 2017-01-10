@@ -74,8 +74,8 @@ class AggregatorFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new AggregatorFactory();
 
-        $filterMock = $this->createMock(FilterInterface::class);
-        $aggregatorMock = $this->createMock(AggregatorInterface::class);
+        $filterMock = $this->getMock(FilterInterface::class);
+        $aggregatorMock = $this->getMock(AggregatorInterface::class);
 
         $aggregator = $factory->filtered($filterMock, $aggregatorMock);
         $this->assertInstanceOf(FilteredAggregator::class, $aggregator);

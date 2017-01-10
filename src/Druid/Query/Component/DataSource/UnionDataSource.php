@@ -27,37 +27,39 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Tests\Driver\Guzzle;
+namespace Druid\Query\Component\DataSource;
 
-use Druid\Driver\Guzzle\Connection;
-use Druid\Query\QueryInterface;
-use GuzzleHttp\Client;
-use JMS\Serializer\SerializerInterface;
-use Psr\Http\Message\ResponseInterface;
+use Druid\Query\Component\AbstractTypedComponent;
+use Druid\Query\Component\DataSourceInterface;
+use Druid\Query\Component\DataSourcesListInterface;
+use Druid\Query\Component\NamedInterface;
 
-class ConnectionTest extends \PHPUnit_Framework_TestCase
+/**
+ * Class TableDataSource.
+ */
+class UnionDataSource extends AbstractTypedComponent implements DataSourceInterface, DataSourcesListInterface
 {
-    public function testSend()
+    /**
+     * @var array
+     */
+    private $dataSources = [];
+
+    /**
+     * Table constructor.
+     *
+     * @param string[] $data_sources
+     */
+    public function __construct( array $data_sources )
     {
-        $guzzleMock = $this->getMockBuilder(Client::class)->setMethods(['post'])->getMock();
+        parent::__construct(self::TYPE_UNION);
 
-        $responseMock = $this->getMockBuilder(ResponseInterface::class)->getMock();
-        $guzzleMock->expects($this->once())->method('post')->willReturn($responseMock);
+        $this->dataSources = $data_sources;
+    }
 
-        $serializerMock = $this->getMockBuilder(SerializerInterface::class)
-            ->setMethods(['serialize', 'deserialize'])
-            ->getMock();
-
-        $serializerMock->expects($this->once())->method('serialize');
-
-
-        /** @var Client $guzzleMock */
-        /** @var SerializerInterface $serializerMock */
-        $connection = new Connection($guzzleMock, $serializerMock);
-
-        $queryMock = $this->getMock(QueryInterface::class);
-
-        /** @var QueryInterface $queryMock */
-        $connection->send($queryMock);
+    /**
+     * @return string[]
+     */
+    public function getDataSources(){
+        return $this->dataSources;
     }
 }
