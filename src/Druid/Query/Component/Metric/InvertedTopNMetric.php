@@ -2,7 +2,6 @@
 
 namespace Druid\Query\Component\Metric;
 
-
 use Druid\Query\Component\MetricInterface;
 
 class InvertedTopNMetric implements MetricInterface
@@ -45,5 +44,4 @@ class InvertedTopNMetric implements MetricInterface
     {
         return $this->metric;
     }
-
 }

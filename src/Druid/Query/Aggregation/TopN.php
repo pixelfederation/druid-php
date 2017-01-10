@@ -29,7 +29,6 @@
 
 namespace Druid\Query\Aggregation;
 
-
 use Druid\Query\Component\DimensionSpecInterface;
 use Druid\Query\Component\MetricInterface;
 
@@ -108,6 +107,4 @@ class TopN extends AbstractAggregationQuery
     {
         return $this->metric;
     }
-
-
 }

@@ -49,7 +49,7 @@ class UnionDataSource extends AbstractTypedComponent implements DataSourceInterf
      *
      * @param string[] $data_sources
      */
-    public function __construct( array $data_sources )
+    public function __construct(array $data_sources)
     {
         parent::__construct(self::TYPE_UNION);
 
@@ -59,7 +59,8 @@ class UnionDataSource extends AbstractTypedComponent implements DataSourceInterf
     /**
      * @return string[]
      */
-    public function getDataSources(){
+    public function getDataSources()
+    {
         return $this->dataSources;
     }
 }

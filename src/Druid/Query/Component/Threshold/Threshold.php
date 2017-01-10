@@ -8,7 +8,6 @@
 
 namespace Druid\Query\Component\Threshold;
 
-
 use Druid\Query\Component\ThresholdInterface;
 
 class Threshold implements ThresholdInterface

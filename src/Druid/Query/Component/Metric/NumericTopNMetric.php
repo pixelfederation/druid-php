@@ -2,7 +2,6 @@
 
 namespace Druid\Query\Component\Metric;
 
-
 use Druid\Query\Component\MetricInterface;
 
 class NumericTopNMetric implements MetricInterface

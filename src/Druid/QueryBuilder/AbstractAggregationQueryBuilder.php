@@ -49,7 +49,7 @@ abstract class AbstractAggregationQueryBuilder extends AbstractQueryBuilder
      */
     public function setDataSource($dataSource)
     {
-        if( $dataSource instanceof DataSourceInterface ){
+        if ($dataSource instanceof DataSourceInterface) {
             return $this->addComponent('dataSource', $dataSource);
         }
 

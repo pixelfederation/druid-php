@@ -2,7 +2,6 @@
 
 namespace Druid\Query\Component\Metric;
 
-
 use Druid\Query\Component\MetricInterface;
 
 class DimensionTopNMetric implements MetricInterface
@@ -77,5 +76,4 @@ class DimensionTopNMetric implements MetricInterface
     {
         return $this->previousStop;
     }
-
 }

@@ -29,10 +29,8 @@
 
 namespace Druid\Query\Component;
 
-
 interface ThresholdInterface extends ComponentInterface
 {
 
     public function __toString();
-
 }

@@ -29,7 +29,6 @@
 
 namespace Druid\Query\Component;
 
-
 interface MetricInterface extends ComponentInterface
 {
 
@@ -41,5 +40,4 @@ interface MetricInterface extends ComponentInterface
      * @return string
      */
     public function getType();
-
 }
