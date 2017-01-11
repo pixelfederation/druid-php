@@ -47,15 +47,16 @@ class Timeseries extends AbstractAggregationQuery
     }
 
     /**
-     * @return DescendingInterface
+     * Whether to make descending ordered result. Default is false(ascending).
+     * @return bool
      */
     public function getDescending()
     {
-        return $this->descending;
+        return $this->descending->getDescending();
     }
 
     /**
-     * @param DescendingInterface
+     * @param DescendingInterface $descending
      *
      * @return Timeseries
      */

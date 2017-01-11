@@ -58,10 +58,10 @@ class TimeseriesQueryBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('dataSource', $query->getDataSource()->getName());
         $this->assertEquals('gender', $query->getFilter()->getDimension());
         $this->assertEquals('male', $query->getFilter()->getValue());
-        $this->assertEquals($now->format('Y-m-d\TH:i:s+0000'), $query->getIntervals()[0]->getStart());
+        $this->assertEquals($now->format('Y-m-d\TH:i:sO'), $query->getIntervals()[0]->getStart());
         $this->assertEquals('sum', $query->getAggregations()[0]->getName());
         $this->assertEquals('count', $query->getAggregations()[1]->getName());
         $this->assertEquals('average', $query->getPostAggregations()[0]->getName());
-        $this->assertEquals(true, $query->getDescending()->getDescending());
+        $this->assertEquals(true, $query->getDescending());
     }
 }
