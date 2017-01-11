@@ -30,6 +30,7 @@
 namespace Druid\Query\Aggregation;
 
 use Druid\Query\Component\DescendingInterface;
+use Druid\Query\Exception\RequiredArgumentException;
 
 /**
  * Class Timeseries.
@@ -64,5 +65,22 @@ class Timeseries extends AbstractAggregationQuery
         $this->descending = $descending;
 
         return $this;
+    }
+
+    /**
+     * Performs query validation
+     * @throws RequiredArgumentException
+     */
+    public function validate()
+    {
+        if (!$this->getDataSource()) {
+            throw new RequiredArgumentException('\'dataSource\' is a required parameter');
+        }
+        if (!$this->getIntervals()) {
+            throw new RequiredArgumentException('\'intervals\' is a required parameter');
+        }
+        if (!$this->getGranularity()) {
+            throw new RequiredArgumentException('\'granularity\' is a required parameter');
+        }
     }
 }

@@ -29,9 +29,11 @@
 
 namespace Druid\Query\Aggregation;
 
+
 use Druid\Query\Component\DimensionSpecInterface;
 use Druid\Query\Component\HavingInterface;
 use Druid\Query\Component\LimitSpecInterface;
+use Druid\Query\Exception\RequiredArgumentException;
 
 /**
  * Class GroupBy.
@@ -116,5 +118,25 @@ class GroupBy extends AbstractAggregationQuery
         $this->having = $having;
 
         return $this;
+    }
+
+    /**
+     * Performs query validation
+     * @throws RequiredArgumentException
+     */
+    public function validate()
+    {
+        if (!$this->getDataSource()) {
+            throw new RequiredArgumentException('\'dataSource\' is a required parameter');
+        }
+        if (!count($this->getDimensions())) {
+            throw new RequiredArgumentException('\'dimensions\' is a required parameter');
+        }
+        if (!$this->getGranularity()) {
+            throw new RequiredArgumentException('\'granularity\' is a required parameter');
+        }
+        if (!$this->getIntervals()) {
+            throw new RequiredArgumentException('\'intervals\' is a required parameter');
+        }
     }
 }
