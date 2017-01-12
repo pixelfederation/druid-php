@@ -1,10 +1,7 @@
 <?php
 
-namespace Druid\Driver\Guzzle;
+namespace Druid\Driver;
 
-
-use Druid\Driver\DriverConnectionInterface;
-use Druid\Driver\ResponseInterface;
 use Druid\Query\QueryInterface;
 
 class ValidateConnectionDecorator implements DriverConnectionInterface
@@ -30,6 +27,6 @@ class ValidateConnectionDecorator implements DriverConnectionInterface
     public function send(QueryInterface $query)
     {
         $query->validate();
-        return $this->decoratedConnection->send( $query );
+        return $this->decoratedConnection->send($query);
     }
 }

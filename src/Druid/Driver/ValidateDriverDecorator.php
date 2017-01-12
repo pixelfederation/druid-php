@@ -1,11 +1,6 @@
 <?php
 
-namespace Druid\Driver\Guzzle;
-
-
-use Druid\Driver\ConnectionConfig;
-use Druid\Driver\DriverConnectionInterface;
-use Druid\Driver\DriverInterface;
+namespace Druid\Driver;
 
 class ValidateDriverDecorator implements DriverInterface
 {
