@@ -31,6 +31,7 @@ namespace Druid\QueryBuilder;
 
 use Druid\Query\Component\DataSource\TableDataSource;
 use Druid\Query\Component\DataSourceInterface;
+use Druid\Query\Component\Granularity\SimpleGranularity;
 use Druid\Query\Component\GranularityInterface;
 use Druid\Query\Component\Interval\Interval;
 use Druid\Query\Component\FilterInterface;
@@ -58,13 +59,18 @@ abstract class AbstractAggregationQueryBuilder extends AbstractQueryBuilder
     }
 
     /**
-     * @param GranularityInterface $granularity
+     * @param string|GranularityInterface $granularity
      *
      * @return $this
      */
-    public function setGranularity(GranularityInterface $granularity)
+    public function setGranularity($granularity)
     {
-        return $this->addComponent('granularity', $granularity);
+        if ($granularity instanceof GranularityInterface) {
+            return $this->addComponent('granularity', $granularity);
+        } elseif (is_string($granularity)) {
+            return $this->addComponent('granularity', new SimpleGranularity($granularity));
+        }
+        return $this;
     }
 
     /**

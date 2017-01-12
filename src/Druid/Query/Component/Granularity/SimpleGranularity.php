@@ -31,11 +31,12 @@ namespace Druid\Query\Component\Granularity;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\GranularityInterface;
+use Druid\Query\Component\StringComponentInterface;
 
 /**
  * Class SimpleGranularity.
  */
-class SimpleGranularity extends AbstractTypedComponent implements GranularityInterface
+class SimpleGranularity extends AbstractTypedComponent implements GranularityInterface, StringComponentInterface
 {
     /**
      * @var string
@@ -49,7 +50,7 @@ class SimpleGranularity extends AbstractTypedComponent implements GranularityInt
      */
     public function __construct($granularity)
     {
-        $this->granularity = $granularity;
+        $this->granularity = (string)$granularity;
 
         parent::__construct($granularity);
     }
@@ -58,6 +59,14 @@ class SimpleGranularity extends AbstractTypedComponent implements GranularityInt
      * @return string
      */
     public function getGranularity()
+    {
+        return $this->granularity;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
     {
         return $this->granularity;
     }
