@@ -32,9 +32,7 @@ namespace Druid\Tests\QueryBuilder;
 use Druid\Query\Aggregation\TopN;
 use Druid\Query\Component\ComponentInterface;
 use Druid\Query\Component\Metric\DimensionTopNMetric;
-use Druid\Query\Component\Metric\NumericTopNMetric;
 use Druid\Query\Component\MetricInterface;
-use Druid\Query\Component\Threshold\Threshold;
 use Druid\QueryBuilder\TopNQueryBuilder;
 use Druid\Query\Component\Granularity\PeriodGranularity;
 
@@ -49,6 +47,15 @@ class TopNQueryBuilderTest extends \PHPUnit_Framework_TestCase
         $builder = new TopNQueryBuilder();
         $component = $this->getMock(ComponentInterface::class);
         $builder->addComponent('not_exists_component', $component);
+    }
+
+    /**
+     * @expectedException \Druid\Query\Exception\RequiredArgumentException
+     */
+    public function testValidationFail()
+    {
+        $builder = new TopNQueryBuilder();
+        $builder->getQuery()->validate();
     }
 
     public function testSettersAndGetters()
@@ -68,7 +75,7 @@ class TopNQueryBuilderTest extends \PHPUnit_Framework_TestCase
                 $builder->postAggregator()->fieldAccessPostAggregator('count', 'count'),
             ]))
             ->setMetric( new DimensionTopNMetric( DimensionTopNMetric::ORDERING_NUMERIC, 500 ) )
-            ->setThreshold( new Threshold( 50 ) )
+            ->setThreshold( 50 )
         ;
 
         /** @var TopN $query */

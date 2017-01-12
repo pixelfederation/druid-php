@@ -32,8 +32,8 @@ namespace Druid\QueryBuilder;
 use Druid\Query\Aggregation\TopN;
 use Druid\Query\Component\DimensionSpec\DefaultDimensionSpec;
 use Druid\Query\Component\MetricInterface;
+use Druid\Query\Component\Threshold\Threshold;
 use Druid\Query\Component\ThresholdInterface;
-use Druid\Query\QueryInterface;
 
 /**
  * Class TopNQueryBuilder
@@ -74,13 +74,13 @@ class TopNQueryBuilder extends AbstractAggregationQueryBuilder
     }
 
     /**
-     * @param ThresholdInterface $threshold
+     * @param int|ThresholdInterface $threshold
      *
      * @return $this
      */
     public function setThreshold($threshold)
     {
-        return $this->addComponent('threshold', $threshold);
+        return $this->addComponent('threshold', $threshold instanceof ThresholdInterface ? $threshold : new Threshold((int)$threshold));
     }
 
     /**

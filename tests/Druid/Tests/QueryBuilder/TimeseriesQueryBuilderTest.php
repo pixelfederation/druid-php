@@ -29,7 +29,6 @@
 
 namespace Druid\Tests\QueryBuilder;
 
-use Druid\Query\Component\ComponentInterface;
 use Druid\QueryBuilder\TimeseriesQueryBuilder;
 use Druid\Query\Component\Granularity\PeriodGranularity;
 

@@ -29,6 +29,9 @@
 
 namespace Druid\Query;
 
+
+use Druid\Query\Exception\RequiredArgumentException;
+
 /**
  * Interface QueryInterface.
  */
@@ -38,4 +41,10 @@ interface QueryInterface
      * @return string
      */
     public function getQueryType();
+
+    /**
+     * Performs query validation
+     * @throws RequiredArgumentException
+     */
+    public function validate();
 }
