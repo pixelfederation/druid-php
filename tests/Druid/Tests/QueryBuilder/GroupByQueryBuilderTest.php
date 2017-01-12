@@ -30,7 +30,6 @@
 namespace Druid\Tests\QueryBuilder;
 
 use Druid\Query\Component\ComponentInterface;
-use Druid\Query\Component\DataSource\UnionDataSource;
 use Druid\QueryBuilder\GroupByQueryBuilder;
 use Druid\Query\Component\Granularity\PeriodGranularity;
 
@@ -66,14 +65,11 @@ class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
             ->setHaving($builder->having()->equalToHaving('gender', 300))
         ;
 
-//        $builder->setDataSource( new UnionDataSource( [ 'source-1', 'source-2' ] ) );
         $query = $builder->getQuery();
-//        $s = $query->getDataSource();
-//        $s->getDataSources();
         $this->assertEquals('dataSource', $query->getDataSource()->getName());
         $this->assertEquals('gender', $query->getFilter()->getDimension());
         $this->assertEquals('male', $query->getFilter()->getValue());
-        $this->assertEquals($now->format('Y-m-d\TH:i:s+0000'), $query->getIntervals()[0]->getStart());
+        $this->assertEquals($now->format('Y-m-d\TH:i:sO'), $query->getIntervals()[0]->getStart());
         $this->assertEquals('sum', $query->getAggregations()[0]->getName());
         $this->assertEquals('count', $query->getAggregations()[1]->getName());
         $this->assertEquals('gender', $query->getDimensions()[0]->getDimension());
