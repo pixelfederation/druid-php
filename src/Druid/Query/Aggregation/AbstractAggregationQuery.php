@@ -35,8 +35,8 @@ use Druid\Query\Component\DataSourceInterface;
 use Druid\Query\Component\FilterInterface;
 use Druid\Query\Component\GranularityInterface;
 use Druid\Query\Component\IntervalInterface;
-use Druid\Query\Component\LimitSpecInterface;
 use Druid\Query\Component\PostAggregatorInterface;
+use Druid\Query\Component\StringComponentInterface;
 use Druid\Query\QueryInterface;
 use JMS\Serializer\Annotation as Serializer;
 
@@ -97,11 +97,11 @@ abstract class AbstractAggregationQuery extends AbstractQuery
     }
 
     /**
-     * @return GranularityInterface
+     * @return string|GranularityInterface
      */
     public function getGranularity()
     {
-        return $this->granularity;
+        return $this->granularity instanceof StringComponentInterface ? (string)$this->granularity : $this->granularity;
     }
 
     /**
