@@ -29,7 +29,6 @@
 
 namespace Druid\Query\Aggregation;
 
-
 use Druid\Query\Component\DimensionSpecInterface;
 use Druid\Query\Component\HavingInterface;
 use Druid\Query\Component\LimitSpecInterface;
