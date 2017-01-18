@@ -80,7 +80,10 @@ class TopNQueryBuilder extends AbstractAggregationQueryBuilder
      */
     public function setThreshold($threshold)
     {
-        return $this->addComponent('threshold', $threshold instanceof ThresholdInterface ? $threshold : new Threshold((int)$threshold));
+        return $this->addComponent(
+            'threshold',
+            $threshold instanceof ThresholdInterface ? $threshold : new Threshold((int)$threshold)
+        );
     }
 
     /**
