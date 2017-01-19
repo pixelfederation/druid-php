@@ -27,38 +27,28 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query;
+namespace Druid\Query\Component;
 
 /**
- * Class AbstractQuery.
+ * Interface SortInterface.
+ * @link http://druid.io/docs/latest/querying/sorting-orders.html
  */
-abstract class AbstractQuery implements QueryInterface
+interface SortInterface extends ComponentInterface
 {
-    const TYPE_GROUP_BY = 'groupBy';
-    const TYPE_TIMESERIES = 'timeseries';
-    const TYPE_TOP_N = 'topN';
-    const TYPE_SEARCH = 'search';
+
+    const SORT_LEXICOGRAPHIC = 'lexicographic';
+    const SORT_ALPHANUMERIC = 'alphanumeric';
+    const SORT_NUMERIC = 'numeric';
+    const SORT_STRLEN = 'strlen';
 
     /**
-     * @var string
+     * @param string $sort
+     * @return $this
      */
-    private $queryType;
-
-    /**
-     * AbstractQuery constructor.
-     *
-     * @param string $queryType
-     */
-    public function __construct($queryType)
-    {
-        $this->queryType = $queryType;
-    }
+    public function setSort($sort);
 
     /**
      * @return string
      */
-    public function getQueryType()
-    {
-        return $this->queryType;
-    }
+    public function getSort();
 }

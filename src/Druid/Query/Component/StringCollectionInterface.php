@@ -27,38 +27,26 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query;
+namespace Druid\Query\Component;
 
-/**
- * Class AbstractQuery.
- */
-abstract class AbstractQuery implements QueryInterface
+interface StringCollectionInterface
 {
-    const TYPE_GROUP_BY = 'groupBy';
-    const TYPE_TIMESERIES = 'timeseries';
-    const TYPE_TOP_N = 'topN';
-    const TYPE_SEARCH = 'search';
-
     /**
-     * @var string
-     */
-    private $queryType;
-
-    /**
-     * AbstractQuery constructor.
+     * @param array|string[] $collection
      *
-     * @param string $queryType
+     * @return $this
      */
-    public function __construct($queryType)
-    {
-        $this->queryType = $queryType;
-    }
+    public function set(array $collection);
 
     /**
-     * @return string
+     * @param string $entry
+     *
+     * @return $this
      */
-    public function getQueryType()
-    {
-        return $this->queryType;
-    }
+    public function add($entry);
+
+    /**
+     * @return string[]
+     */
+    public function get();
 }

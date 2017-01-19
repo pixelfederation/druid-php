@@ -27,38 +27,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query;
+namespace Druid\QueryBuilder;
 
 /**
- * Class AbstractQuery.
+ * Class SearchQueryBuilder
  */
-abstract class AbstractQuery implements QueryInterface
+class SearchQueryBuilder extends AbstractSearchQueryBuilder
 {
-    const TYPE_GROUP_BY = 'groupBy';
-    const TYPE_TIMESERIES = 'timeseries';
-    const TYPE_TOP_N = 'topN';
-    const TYPE_SEARCH = 'search';
 
-    /**
-     * @var string
-     */
-    private $queryType;
-
-    /**
-     * AbstractQuery constructor.
-     *
-     * @param string $queryType
-     */
-    public function __construct($queryType)
-    {
-        $this->queryType = $queryType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getQueryType()
-    {
-        return $this->queryType;
-    }
 }

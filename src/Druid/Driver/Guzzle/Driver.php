@@ -33,6 +33,7 @@ use Druid\Driver\ConnectionConfig;
 use Druid\Driver\DriverInterface;
 use GuzzleHttp\Client;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\SerializerBuilder;
 
 /**
@@ -48,7 +49,7 @@ class Driver implements DriverInterface
     public function connect(ConnectionConfig $config)
     {
         $serializer = SerializerBuilder::create()
-            ->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy())
+            ->setPropertyNamingStrategy(new SerializedNameAnnotationStrategy(new IdenticalPropertyNamingStrategy()))
             ->build();
 
         $params = ['base_uri' => $config->getBaseUri()];

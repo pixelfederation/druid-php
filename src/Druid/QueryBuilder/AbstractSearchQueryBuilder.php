@@ -29,69 +29,89 @@
 
 namespace Druid\QueryBuilder;
 
-use Druid\Query\Aggregation\TopN;
-use Druid\Query\Component\DimensionSpec\DefaultDimensionSpec;
-use Druid\Query\Component\MetricInterface;
-use Druid\Query\Component\Threshold\Threshold;
-use Druid\Query\Component\ThresholdInterface;
+use Druid\Query\Component\SearchDimensions\SearchDimensions;
+use Druid\Query\Component\SearchLimit\SearchLimit;
+use Druid\Query\Component\SearchQuerySpec\InsensitiveContainsSearchQuerySpec;
+use Druid\Query\Component\SearchQuerySpecInterface;
+use Druid\Query\Component\Sort\Sort;
+use Druid\Query\Search\Search;
 
 /**
- * Class TopNQueryBuilder
+ * Class AbstractSearchQueryBuilder.
  */
-class TopNQueryBuilder extends AbstractAggregationQueryBuilder
+abstract class AbstractSearchQueryBuilder extends AbstractQueryBuilder
 {
     protected $components = [
         'dataSource' => null,
-        'intervals' => [],
         'granularity' => null,
         'filter' => null,
-        'aggregations' => [],
-        'postAggregations' => [],
-        'dimension' => '',
-        'threshold' => null,
-        'metric' => null,
+        'limit' => null,
+        'intervals' => [],
+        'searchDimensions' => null,
+        'query' => null,
+        'sort' => null,
     ];
 
     /**
-     * @param string $dimension
-     * @param string $outputName
+     * @param int|SearchLimit $limit
      *
      * @return $this
      */
-    public function setDimension($dimension, $outputName)
-    {
-        return $this->addComponent('dimension', new DefaultDimensionSpec($dimension, $outputName));
-    }
-
-    /**
-     * @param MetricInterface $metric
-     *
-     * @return $this
-     */
-    public function setMetric(MetricInterface $metric)
-    {
-        return $this->addComponent('metric', $metric);
-    }
-
-    /**
-     * @param int|ThresholdInterface $threshold
-     *
-     * @return $this
-     */
-    public function setThreshold($threshold)
+    public function setLimit($limit)
     {
         return $this->addComponent(
-            'threshold',
-            $threshold instanceof ThresholdInterface ? $threshold : new Threshold((int)$threshold)
+            'limit',
+            $limit instanceof SearchLimit ? $limit : new SearchLimit($limit)
         );
     }
 
     /**
-     * @return TopN
+     * @param SearchDimensions|array $dimensions
+     *
+     * @return $this
+     */
+    public function setSearchDimensions($dimensions)
+    {
+        return $this->addComponent(
+            'searchDimensions',
+            $dimensions instanceof SearchDimensions ? $dimensions : new SearchDimensions($dimensions)
+        );
+    }
+
+    /**
+     * @param SearchQuerySpecInterface|string $searchQuery
+     *
+     * @return $this
+     */
+    public function setQuery($searchQuery)
+    {
+        return $this->addComponent(
+            'query',
+            $searchQuery instanceof SearchQuerySpecInterface
+                ? $searchQuery
+                : new InsensitiveContainsSearchQuerySpec($searchQuery)
+        );
+    }
+
+    /**
+     * @param Sort|string $sort
+     *
+     * @return $this
+     */
+    public function setSort($sort)
+    {
+        return $this->addComponent(
+            'sort',
+            $sort instanceof Sort ? $sort : new Sort($sort)
+        );
+    }
+
+    /**
+     * @return Search
      */
     public function getQuery()
     {
-        $query = new TopN();
+        $query = new Search();
         foreach ($this->components as $componentName => $component) {
             if (!empty($component)) {
                 $method = 'set' . ucfirst($componentName);

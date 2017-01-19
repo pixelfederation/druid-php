@@ -32,7 +32,7 @@ namespace Druid\Query\Component;
 /**
  * Class AbstractTypedComponent.
  */
-class AbstractTypedComponent
+class AbstractTypedComponent implements TypedInterface
 {
     /**
      * @var string

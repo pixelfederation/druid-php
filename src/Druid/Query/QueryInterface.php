@@ -29,7 +29,6 @@
 
 namespace Druid\Query;
 
-
 use Druid\Query\Exception\RequiredArgumentException;
 
 /**

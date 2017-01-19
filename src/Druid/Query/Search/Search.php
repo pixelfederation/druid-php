@@ -27,38 +27,41 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query;
+namespace Druid\Query\Search;
+
+use Druid\Query\Component\DimensionSpecInterface;
+use Druid\Query\Component\MetricInterface;
+use Druid\Query\Component\ThresholdInterface;
+use Druid\Query\Exception\RequiredArgumentException;
 
 /**
- * Class AbstractQuery.
+ * Class Search
+ * @package Druid\Query\Search
  */
-abstract class AbstractQuery implements QueryInterface
+class Search extends AbstractSearchQuery
 {
-    const TYPE_GROUP_BY = 'groupBy';
-    const TYPE_TIMESERIES = 'timeseries';
-    const TYPE_TOP_N = 'topN';
-    const TYPE_SEARCH = 'search';
-
-    /**
-     * @var string
-     */
-    private $queryType;
-
-    /**
-     * AbstractQuery constructor.
-     *
-     * @param string $queryType
-     */
-    public function __construct($queryType)
+    public function __construct()
     {
-        $this->queryType = $queryType;
+        parent::__construct(self::TYPE_SEARCH);
     }
 
     /**
-     * @return string
+     * Performs query validation
+     * @throws RequiredArgumentException
      */
-    public function getQueryType()
+    public function validate()
     {
-        return $this->queryType;
+        if (!$this->getDataSource()) {
+            throw new RequiredArgumentException('\'dataSource\' is a required parameter');
+        }
+        if (!$this->getGranularity()) {
+            throw new RequiredArgumentException('\'granularity\' is a required parameter');
+        }
+        if (!$this->getIntervals()) {
+            throw new RequiredArgumentException('\'intervals\' is a required parameter');
+        }
+        if (!$this->getQuery()) {
+            throw new RequiredArgumentException('\'query\' is a required parameter');
+        }
     }
 }
