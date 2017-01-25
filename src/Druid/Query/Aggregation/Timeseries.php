@@ -65,7 +65,7 @@ class Timeseries extends AbstractAggregationQuery
      */
     public function preSerialize()
     {
-        $this->descending = $this->descending->getDescending();
+        $this->descending = $this->descending ? $this->descending->getDescending() : null;
     }
 
     /**
@@ -74,7 +74,7 @@ class Timeseries extends AbstractAggregationQuery
     public function postSerialize()
     {
         /** @noinspection PhpParamsInspection */
-        $this->setDescending(new Descending($this->descending));
+        !is_null($this->descending) && $this->setDescending(new Descending($this->descending));
     }
 
     /**
