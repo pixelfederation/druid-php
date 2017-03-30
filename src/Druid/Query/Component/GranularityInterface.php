@@ -34,6 +34,7 @@ namespace Druid\Query\Component;
  */
 interface GranularityInterface extends TypedInterface, ComponentInterface
 {
+    const TYPE_SIMPLE = 'simple';
     const TYPE_PERIOD = 'period';
     const TYPE_ALL = 'all';
     const TYPE_NONE = 'none';

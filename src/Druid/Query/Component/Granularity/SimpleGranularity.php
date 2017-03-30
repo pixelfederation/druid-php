@@ -31,12 +31,27 @@ namespace Druid\Query\Component\Granularity;
 
 use Druid\Query\Component\AbstractTypedComponent;
 use Druid\Query\Component\GranularityInterface;
+use Druid\Query\Component\StringComponentInterface;
 
 /**
  * Class SimpleGranularity.
+ * @link http://druid.io/docs/latest/querying/granularities.html
  */
-class SimpleGranularity extends AbstractTypedComponent implements GranularityInterface
+class SimpleGranularity extends AbstractTypedComponent implements GranularityInterface, StringComponentInterface
 {
+    const ALL = "all";
+    const NONE = "none";
+    const SECOND = "second";
+    const MINUTE = "minute";
+    const FIFTEEN_MINUTE = "fifteen_minute";
+    const THIRTY_MINUTE = "thirty_minute";
+    const HOUR = "hour";
+    const DAY = "day";
+    const WEEK = "week";
+    const MONTH = "month";
+    const QUARTER = "quarter";
+    const YEAR = "year";
+
     /**
      * @var string
      */
@@ -49,9 +64,10 @@ class SimpleGranularity extends AbstractTypedComponent implements GranularityInt
      */
     public function __construct($granularity)
     {
-        $this->granularity = $granularity;
-
-        parent::__construct($granularity);
+        if (defined('self::' . strtoupper($granularity))) {
+            $this->granularity = (string)$granularity;
+        }
+        parent::__construct(self::TYPE_SIMPLE);
     }
 
     /**
@@ -60,5 +76,13 @@ class SimpleGranularity extends AbstractTypedComponent implements GranularityInt
     public function getGranularity()
     {
         return $this->granularity;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->granularity;
     }
 }
