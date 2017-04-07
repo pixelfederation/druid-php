@@ -85,7 +85,7 @@ class TopN extends AbstractAggregationQuery
      */
     public function setThreshold(ThresholdInterface $threshold)
     {
-        $this->threshold = $threshold;
+        $this->threshold = (int)(string)$threshold;
         return $this;
     }
 
@@ -104,7 +104,7 @@ class TopN extends AbstractAggregationQuery
      */
     public function getThreshold()
     {
-        return (int)(string)$this->threshold;
+        return (int)$this->threshold;
     }
 
     /**
