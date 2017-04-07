@@ -29,7 +29,11 @@
 
 namespace Druid\Query\Aggregation;
 
+use Druid\Query\Component\Descending\Descending;
 use Druid\Query\Component\DescendingInterface;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\PreSerialize;
+use JMS\Serializer\Annotation\PostSerialize;
 use Druid\Query\Exception\RequiredArgumentException;
 
 /**
@@ -49,11 +53,28 @@ class Timeseries extends AbstractAggregationQuery
 
     /**
      * Whether to make descending ordered result. Default is false(ascending).
-     * @return bool
+     * @return DescendingInterface
      */
     public function getDescending()
     {
-        return $this->descending->getDescending();
+        return $this->descending;
+    }
+
+    /**
+     * @PreSerialize
+     */
+    public function preSerialize()
+    {
+        $this->descending = $this->descending->getDescending();
+    }
+
+    /**
+     * @PostSerialize
+     */
+    public function postSerialize()
+    {
+        /** @noinspection PhpParamsInspection */
+        $this->setDescending(new Descending($this->descending));
     }
 
     /**
