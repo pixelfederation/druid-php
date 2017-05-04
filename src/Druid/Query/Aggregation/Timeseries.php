@@ -50,10 +50,23 @@ class Timeseries extends AbstractAggregationQuery
     /**
      * Whether to make descending ordered result. Default is false(ascending).
      * @return bool
+     * @SuppressWarnings(PHPMD)
      */
     public function getDescending()
     {
-        return $this->descending->getDescending();
+        trigger_error('The method \Druid\Query\Aggregation\Timeseries::getDescending()' .
+            ' is deprecated. Consider using \Druid\Query\Aggregation\Timeseries::isDescending()' .
+            ' instead.', E_USER_DEPRECATED);
+        return $this->isDescending();
+    }
+
+    /**
+     * Whether to make descending ordered result. Default is false(ascending).
+     * @return bool
+     */
+    public function isDescending()
+    {
+        return $this->descending->isDescending();
     }
 
     /**

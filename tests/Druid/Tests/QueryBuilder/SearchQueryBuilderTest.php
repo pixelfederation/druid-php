@@ -44,7 +44,7 @@ class SearchQueryBuilderTest extends \PHPUnit_Framework_TestCase
     public function testFailAddComponent()
     {
         $builder = new SearchQueryBuilder();
-        $component = $this->getMock(ComponentInterface::class);
+        $component = $this->createMock(ComponentInterface::class);
         $builder->addComponent('not_exists_component', $component);
     }
 

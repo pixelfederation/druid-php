@@ -54,7 +54,7 @@ class Descending implements DescendingInterface
     /**
      * @return bool
      */
-    public function getDescending()
+    public function isDescending()
     {
         return $this->descending;
     }

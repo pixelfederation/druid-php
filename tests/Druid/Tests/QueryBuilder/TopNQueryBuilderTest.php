@@ -45,7 +45,7 @@ class TopNQueryBuilderTest extends \PHPUnit_Framework_TestCase
     public function testFailAddComponent()
     {
         $builder = new TopNQueryBuilder();
-        $component = $this->getMock(ComponentInterface::class);
+        $component = $this->createMock(ComponentInterface::class);
         $builder->addComponent('not_exists_component', $component);
     }
 
@@ -74,8 +74,8 @@ class TopNQueryBuilderTest extends \PHPUnit_Framework_TestCase
                 $builder->postAggregator()->fieldAccessPostAggregator('sum', 'sum'),
                 $builder->postAggregator()->fieldAccessPostAggregator('count', 'count'),
             ]))
-            ->setMetric( new DimensionTopNMetric( DimensionTopNMetric::ORDERING_NUMERIC, 500 ) )
-            ->setThreshold( 50 )
+            ->setMetric(new DimensionTopNMetric(DimensionTopNMetric::ORDERING_NUMERIC, 500))
+            ->setThreshold(50)
         ;
 
         /** @var TopN $query */
