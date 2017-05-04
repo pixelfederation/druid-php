@@ -30,6 +30,7 @@
 namespace Druid\Query\Aggregation;
 
 use Druid\Query\Component\DimensionSpecInterface;
+use Druid\Query\Component\Granularity\SimpleGranularity;
 use Druid\Query\Component\HavingInterface;
 use Druid\Query\Component\LimitSpecInterface;
 use Druid\Query\Exception\RequiredArgumentException;
@@ -133,6 +134,9 @@ class GroupBy extends AbstractAggregationQuery
         }
         if (!$this->getGranularity()) {
             throw new RequiredArgumentException('\'granularity\' is a required parameter');
+        }
+        if ($this->getGranularity() instanceof SimpleGranularity && !$this->getGranularity()->getGranularity()) {
+            throw new RequiredArgumentException('invalid \'granularity\' parameter');
         }
         if (!$this->getIntervals()) {
             throw new RequiredArgumentException('\'intervals\' is a required parameter');

@@ -40,7 +40,6 @@ use Druid\Query\Component\AggregatorInterface;
  */
 abstract class AbstractAggregationQueryBuilder extends AbstractQueryBuilder
 {
-
     /**
      * @return AggregatorFactory
      */
