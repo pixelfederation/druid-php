@@ -34,5 +34,4 @@ namespace Druid\QueryBuilder;
  */
 class SearchQueryBuilder extends AbstractSearchQueryBuilder
 {
-
 }
