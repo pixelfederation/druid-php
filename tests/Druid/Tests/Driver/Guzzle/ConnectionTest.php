@@ -55,7 +55,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         /** @var SerializerInterface $serializerMock */
         $connection = new Connection($guzzleMock, $serializerMock);
 
-        $queryMock = $this->getMock(QueryInterface::class);
+        $queryMock = $this->createMock(QueryInterface::class);
 
         /** @var QueryInterface $queryMock */
         $connection->send($queryMock);

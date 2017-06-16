@@ -19,7 +19,7 @@ Put the following into your composer.json
 
 ## Current State
 
-Currently this driver supports **GroupBy, TopN** and **Timeseries** aggregation types.
+Currently this driver supports **GroupBy, TopN** and **Timeseries** aggregation types, and **Search** query type.
 Everybody is welcome to create pull requests to implement some of the missing things.
 
 Also, some unit tests are bound to running on our internal Druid instance, there is plan to change it to docker container

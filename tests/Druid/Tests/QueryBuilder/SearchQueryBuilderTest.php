@@ -30,10 +30,12 @@
 namespace Druid\Tests\QueryBuilder;
 
 use Druid\Query\Component\ComponentInterface;
-use Druid\QueryBuilder\GroupByQueryBuilder;
 use Druid\Query\Component\Granularity\PeriodGranularity;
+use Druid\Query\Component\SearchQuerySpec\InsensitiveContainsSearchQuerySpec;
+use Druid\Query\Component\SortInterface;
+use Druid\QueryBuilder\SearchQueryBuilder;
 
-class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
+class SearchQueryBuilderTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -41,39 +43,35 @@ class GroupByQueryBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testFailAddComponent()
     {
-        $builder = new GroupByQueryBuilder();
+        $builder = new SearchQueryBuilder();
         $component = $this->createMock(ComponentInterface::class);
         $builder->addComponent('not_exists_component', $component);
     }
 
     public function testSettersAndGetters()
     {
-        $builder = new GroupByQueryBuilder();
+        $builder = new SearchQueryBuilder();
 
         $now = new \DateTime();
-        $builder->setDataSource('dataSource')
+        $builder
+            ->setDataSource('dataSource')
             ->setGranularity(new PeriodGranularity('P1D', 'UTC'))
             ->setFilter($builder->filter()->selectorFilter('gender', 'male'))
+            ->setLimit(500)
             ->addInterval($now, new \DateTime())
-            ->addAggregator($builder->aggregator()->doubleSum('sum', 'sum'))
-            ->addAggregator($builder->aggregator()->count('count'))
-            ->addDimension('gender', 'gender')
-            ->addPostAggregator($builder->postAggregator()->arithmeticPostAggregator('average', '/', [
-                $builder->postAggregator()->fieldAccessPostAggregator('sum', 'sum'),
-                $builder->postAggregator()->fieldAccessPostAggregator('count', 'count'),
-            ]))
-            ->setHaving($builder->having()->equalToHaving('gender', 300))
-        ;
+            ->setSearchDimensions(['one', 'two'])
+            ->setQuery('search-query')
+            ->setSort(SortInterface::SORT_STRLEN);
 
         $query = $builder->getQuery();
+
         $this->assertEquals('dataSource', $query->getDataSource()->getName());
         $this->assertEquals('gender', $query->getFilter()->getDimension());
         $this->assertEquals('male', $query->getFilter()->getValue());
-        $this->assertEquals($now->format('Y-m-d\TH:i:sO'), $query->getIntervals()[0]->getStart());
-        $this->assertEquals('sum', $query->getAggregations()[0]->getName());
-        $this->assertEquals('count', $query->getAggregations()[1]->getName());
-        $this->assertEquals('gender', $query->getDimensions()[0]->getDimension());
-        $this->assertEquals('average', $query->getPostAggregations()[0]->getName());
-        $this->assertEquals(300, $query->getHaving()->getValue());
+        $this->assertEquals($now->format(DATE_ISO8601), $query->getIntervals()[0]->getStart());
+        $this->assertEquals('one', $query->getSearchDimensions()->get()[0]);
+        $this->assertInstanceOf(InsensitiveContainsSearchQuerySpec::class, $query->getQuery());
+        $this->assertEquals('search-query', $query->getQuery()->getValue());
+        $this->assertEquals(SortInterface::SORT_STRLEN, $query->getSort()->getSort());
     }
 }

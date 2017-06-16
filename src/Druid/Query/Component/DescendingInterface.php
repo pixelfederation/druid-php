@@ -37,5 +37,5 @@ interface DescendingInterface extends ComponentInterface
     /**
      * @return bool
      */
-    public function getDescending();
+    public function isDescending();
 }

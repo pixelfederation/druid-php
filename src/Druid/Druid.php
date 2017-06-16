@@ -36,6 +36,7 @@ use Druid\Query\AbstractQuery;
 use Druid\Query\QueryInterface;
 use Druid\QueryBuilder\AbstractQueryBuilder;
 use Druid\QueryBuilder\GroupByQueryBuilder;
+use Druid\QueryBuilder\SearchQueryBuilder;
 use Druid\QueryBuilder\TimeseriesQueryBuilder;
 use Druid\QueryBuilder\TopNQueryBuilder;
 
@@ -111,6 +112,9 @@ class Druid implements DriverConnectionInterface
                 break;
             case AbstractQuery::TYPE_TIMESERIES:
                 return new TimeseriesQueryBuilder();
+                break;
+            case AbstractQuery::TYPE_SEARCH:
+                return new SearchQueryBuilder();
                 break;
             default:
                 throw new \RuntimeException(

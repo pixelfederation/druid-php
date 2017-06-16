@@ -30,10 +30,13 @@
 namespace Druid\QueryBuilder;
 
 use Druid\Query\Component\ComponentInterface;
-use Druid\Query\Component\Factory\AggregatorFactory;
+use Druid\Query\Component\DataSource\TableDataSource;
+use Druid\Query\Component\DataSourceInterface;
 use Druid\Query\Component\Factory\FilterFactory;
-use Druid\Query\Component\Factory\HavingFactory;
-use Druid\Query\Component\Factory\PostAggregatorFactory;
+use Druid\Query\Component\FilterInterface;
+use Druid\Query\Component\Granularity\SimpleGranularity;
+use Druid\Query\Component\GranularityInterface;
+use Druid\Query\Component\Interval\Interval;
 use Druid\Query\QueryInterface;
 
 /**
@@ -47,22 +50,6 @@ abstract class AbstractQueryBuilder
     protected $components = [];
 
     /**
-     * @return AggregatorFactory
-     */
-    public function aggregator()
-    {
-        return new AggregatorFactory();
-    }
-
-    /**
-     * @return PostAggregatorFactory
-     */
-    public function postAggregator()
-    {
-        return new PostAggregatorFactory();
-    }
-
-    /**
      * @return FilterFactory
      */
     public function filter()
@@ -71,11 +58,54 @@ abstract class AbstractQueryBuilder
     }
 
     /**
-     * @return HavingFactory
+     * @param string|DataSourceInterface $dataSource
+     *
+     * @return $this
      */
-    public function having()
+    public function setDataSource($dataSource)
     {
-        return new HavingFactory();
+        if ($dataSource instanceof DataSourceInterface) {
+            return $this->addComponent('dataSource', $dataSource);
+        }
+        // the default
+        return $this->addComponent('dataSource', new TableDataSource($dataSource));
+    }
+
+    /**
+     * @param \DateTime $start
+     * @param \DateTime $end
+     * @param bool $useZuluTime
+     *
+     * @return $this
+     */
+    public function addInterval(\DateTime $start, \DateTime $end, $useZuluTime = false)
+    {
+        return $this->addComponent('intervals', new Interval($start, $end, $useZuluTime));
+    }
+
+    /**
+     * @param string|GranularityInterface $granularity
+     *
+     * @return $this
+     */
+    public function setGranularity($granularity)
+    {
+        if ($granularity instanceof GranularityInterface) {
+            return $this->addComponent('granularity', $granularity);
+        } elseif (is_string($granularity)) {
+            return $this->addComponent('granularity', new SimpleGranularity($granularity));
+        }
+        return $this;
+    }
+
+    /**
+     * @param FilterInterface $filter
+     *
+     * @return $this
+     */
+    public function setFilter(FilterInterface $filter)
+    {
+        return $this->addComponent('filter', $filter);
     }
 
     /**

@@ -27,38 +27,20 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Druid\Query;
+namespace Druid\Query\Component;
 
 /**
- * Class AbstractQuery.
+ * Interface LimitInterface.
  */
-abstract class AbstractQuery implements QueryInterface
+interface LimitInterface
 {
-    const TYPE_GROUP_BY = 'groupBy';
-    const TYPE_TIMESERIES = 'timeseries';
-    const TYPE_TOP_N = 'topN';
-    const TYPE_SEARCH = 'search';
+    /**
+     * @param int $limit
+     */
+    public function setLimit($limit);
 
     /**
-     * @var string
+     * @return int
      */
-    private $queryType;
-
-    /**
-     * AbstractQuery constructor.
-     *
-     * @param string $queryType
-     */
-    public function __construct($queryType)
-    {
-        $this->queryType = $queryType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getQueryType()
-    {
-        return $this->queryType;
-    }
+    public function getLimit();
 }
